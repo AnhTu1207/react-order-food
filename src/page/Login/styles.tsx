@@ -11,7 +11,6 @@ import { Alert } from '@material-ui/lab';
 export const Wrapper = styled("div")({
   width: "100vw",
   height: "100vh",
-  overflow: "hidden",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -46,7 +45,7 @@ export const ProcessLine = styled(LinearProgress)({
 export const InputField = styled(Input)({
   display: "block",
   width: "100%",
-  marginBottom: 14,
+  marginBottom: 18,
   "& input, div": {
     display: "block",
     width: "100%",
@@ -79,7 +78,7 @@ export const LinkSignUp = styled("span")({
 });
 
 export const CircleLoading = styled(CircularProgress)({
-  color: "#FFF"
+  color: "var(--color-primary)"
 });
 
 export const CustomAlert = styled(Alert)({

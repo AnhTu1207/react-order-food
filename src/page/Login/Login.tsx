@@ -63,7 +63,7 @@ const Login: FC = () => {
             />
             <LoginButton onClick={handleOnLogin} disabled={isLoading}>
               {isLoading ? (
-                <CircleLoading size={10} />
+                <CircleLoading size={15} />
               ) : (
                 i18n.t("login.button_title")
               )}
