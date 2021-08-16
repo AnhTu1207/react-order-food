@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import Helmet from "react-helmet";
+import Snackbar from "@material-ui/core/Snackbar";
 import { useTranslations } from "hooks";
 
 import {
@@ -13,11 +14,13 @@ import {
   Subtext,
   LinkSignUp,
   CircleLoading,
+  CustomAlert,
 } from "./styles";
 
 const Login: FC = () => {
   const { i18n } = useTranslations();
   const [isLoading, setLoading] = useState(false);
+  const [isErr, setErr] = useState(false);
 
   const handleOnLogin = () => {
     setLoading(true);
@@ -25,6 +28,7 @@ const Login: FC = () => {
     // TODO: call request handle login
     setTimeout(() => {
       setLoading(false);
+      setErr(true);
     }, 2000);
   };
 
@@ -33,6 +37,16 @@ const Login: FC = () => {
       <Helmet>
         <title>{i18n.t("login.title")}</title>
       </Helmet>
+      <Snackbar
+        open={isErr}
+        autoHideDuration={3000}
+        onClose={() => setErr(false)}
+        anchorOrigin={{ horizontal: "center", vertical: "top" }}
+      >
+        <CustomAlert severity="error">
+          {i18n.t("login.message_error")}
+        </CustomAlert>
+      </Snackbar>
       <Wrapper>
         <Logo src="./logo.svg" />
         <LoginWrapper>

@@ -6,6 +6,7 @@ export default {
     password_input_placeholder: "Password",
     title: "Login",
     sub_text: "Don't have an account?",
-    sign_up_link: "Sign up"
+    sign_up_link: "Sign up",
+    message_error: "Wrong username or password!",
   },
 };
