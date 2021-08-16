@@ -62,10 +62,6 @@ export const FormWrapper = styled("div")({
   paddingBottom: "20px",
 });
 
-export const Logo = styled("img")({
-  marginBottom: 16,
-});
-
 export const Subtext = styled(Typography)({
   color: "#000",
   fontSize: 14,
