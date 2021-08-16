@@ -30,7 +30,6 @@ export const LoginButton = styled(Button)({
   color: "#FFF",
   display: "block",
   width: "100%",
-  marginBottom: 14,
   "&:hover": {
     background: "var(--color-button-hover)",
   },
@@ -84,4 +83,11 @@ export const CircleLoading = styled(CircularProgress)({
 export const CustomAlert = styled(Alert)({
   width: 300,
   margin: "10px auto",
+});
+
+export const ButtonWrapper = styled("div")({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  marginBottom: 16, 
 });
