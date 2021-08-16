@@ -6,6 +6,7 @@ import {
   Input,
   CircularProgress,
 } from "@material-ui/core";
+import { Alert } from '@material-ui/lab';
 
 export const Wrapper = styled("div")({
   width: "100vw",
@@ -79,4 +80,9 @@ export const LinkSignUp = styled("span")({
 
 export const CircleLoading = styled(CircularProgress)({
   color: "#FFF"
+});
+
+export const CustomAlert = styled(Alert)({
+  width: 300,
+  margin: "10px auto",
 });
