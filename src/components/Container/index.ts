@@ -1,3 +1,4 @@
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./Routes/PrivateRoute";
+import MainPageTemplate from "./MainPage";
 
-export { PrivateRoute };
+export { PrivateRoute, MainPageTemplate };

@@ -1,3 +1,4 @@
-import { PrivateRoute } from "./Container";
+import { PrivateRoute, MainPageTemplate } from "./Container";
+import Logo from "./Logo";
 
-export { PrivateRoute };
+export { PrivateRoute, MainPageTemplate, Logo };

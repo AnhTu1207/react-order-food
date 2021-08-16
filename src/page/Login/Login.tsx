@@ -1,8 +1,10 @@
 import { FC, useState } from "react";
 import Helmet from "react-helmet";
 import Snackbar from "@material-ui/core/Snackbar";
+import { useHistory } from "react-router-dom";
 import { useTranslations } from "hooks";
 
+import { Logo } from "components";
 import {
   Wrapper,
   LoginWrapper,
@@ -10,7 +12,6 @@ import {
   ProcessLine,
   InputField,
   FormWrapper,
-  Logo,
   Subtext,
   LinkSignUp,
   CircleLoading,
@@ -23,6 +24,8 @@ const Login: FC = () => {
   const [isLoading, setLoading] = useState(false);
   const [isErr, setErr] = useState(false);
 
+  const history = useHistory();
+
   const handleOnLogin = () => {
     setLoading(true);
 
@@ -30,6 +33,8 @@ const Login: FC = () => {
     setTimeout(() => {
       setLoading(false);
       setErr(true);
+      sessionStorage.setItem("access_token", "token");
+      history.replace("/");
     }, 2000);
   };
 
@@ -49,33 +54,35 @@ const Login: FC = () => {
         </CustomAlert>
       </Snackbar>
       <Wrapper>
-        <Logo src="./logo.svg" />
+        <Logo margin="0 0 16px 0" />
         <LoginWrapper>
           {isLoading && <ProcessLine />}
-          <FormWrapper>
-            <InputField
-              placeholder={i18n.t("login.email_input_placeholder")}
-              disabled={isLoading}
-            />
-            <InputField
-              placeholder={i18n.t("login.password_input_placeholder")}
-              disabled={isLoading}
-              type="password"
-            />
-            <ButtonWrapper>
-              {isLoading ? (
-                <CircleLoading size={25} />
-              ) : (
-                <LoginButton onClick={handleOnLogin}>
-                  {i18n.t("login.button_title")}
-                </LoginButton>
-              )}
-            </ButtonWrapper>
-            <Subtext>
-              {i18n.t("login.sub_text")}{" "}
-              <LinkSignUp>{i18n.t("login.sign_up_link")}</LinkSignUp>
-            </Subtext>
-          </FormWrapper>
+          <form autoComplete="off">
+            <FormWrapper>
+              <InputField
+                placeholder={i18n.t("login.email_input_placeholder")}
+                disabled={isLoading}
+              />
+              <InputField
+                placeholder={i18n.t("login.password_input_placeholder")}
+                disabled={isLoading}
+                type="password"
+              />
+              <ButtonWrapper>
+                {isLoading ? (
+                  <CircleLoading size={25} />
+                ) : (
+                  <LoginButton onClick={handleOnLogin}>
+                    {i18n.t("login.button_title")}
+                  </LoginButton>
+                )}
+              </ButtonWrapper>
+              <Subtext>
+                {i18n.t("login.sub_text")}{" "}
+                <LinkSignUp>{i18n.t("login.sign_up_link")}</LinkSignUp>
+              </Subtext>
+            </FormWrapper>
+          </form>
         </LoginWrapper>
       </Wrapper>
     </>
