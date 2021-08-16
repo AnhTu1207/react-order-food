@@ -15,6 +15,7 @@ import {
   LinkSignUp,
   CircleLoading,
   CustomAlert,
+  ButtonWrapper,
 } from "./styles";
 
 const Login: FC = () => {
@@ -61,13 +62,15 @@ const Login: FC = () => {
               disabled={isLoading}
               type="password"
             />
-            <LoginButton onClick={handleOnLogin} disabled={isLoading}>
+            <ButtonWrapper>
               {isLoading ? (
-                <CircleLoading size={15} />
+                <CircleLoading size={25} />
               ) : (
-                i18n.t("login.button_title")
+                <LoginButton onClick={handleOnLogin}>
+                  {i18n.t("login.button_title")}
+                </LoginButton>
               )}
-            </LoginButton>
+            </ButtonWrapper>
             <Subtext>
               {i18n.t("login.sub_text")}{" "}
               <LinkSignUp>{i18n.t("login.sign_up_link")}</LinkSignUp>
