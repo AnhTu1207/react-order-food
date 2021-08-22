@@ -6,7 +6,6 @@ interface IProps {
 }
 
 const PrivateRoute: FC<IProps> = ({ children }: IProps) => {
-  console.log(sessionStorage.getItem("access_token"));
   const history = useHistory();
   if (!sessionStorage.getItem("access_token")) {
     history.replace("/login");
