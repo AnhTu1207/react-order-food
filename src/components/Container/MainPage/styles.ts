@@ -5,7 +5,7 @@ import {
   makeStyles,
   styled,
 } from "@material-ui/core/styles";
-import { Toolbar, MenuItem, Divider, AppBar } from "@material-ui/core";
+import { Toolbar, MenuItem, Divider, AppBar, withTheme, Paper } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -69,11 +69,14 @@ export const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const CustomToolbar = styled(Toolbar)({
+export const CustomToolbar = styled(withTheme(Toolbar))((props) => ({
   background: "#FFF",
   width: "85%",
   margin: "0 auto",
-});
+  [props.theme.breakpoints.down("sm")]: {
+    width: "95%",
+  }
+}));
 
 export const Wrapper = styled("div")({
   background: "#f4f4f4",
@@ -122,12 +125,16 @@ export const CustomDivider = styled(Divider)({
   width: "100%",
 });
 
-export const Content = styled("div")({
+export const Content = styled(withTheme(Paper))((props) => ({
   width: "85%",
   margin: "0 auto",
   minHeight: "100vh",
   padding: "25px 16px 0 16px",
-});
+  background: "#f4f4f4",
+  [props.theme.breakpoints.down("sm")]: {
+    width: "95%",
+  }
+}));
 
 export const CustomAppbar = styled(AppBar)({
   background: "#FFF",
