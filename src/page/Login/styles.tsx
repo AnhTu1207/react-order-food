@@ -36,6 +36,7 @@ export const LoginButton = styled(Button)({
 });
 
 export const ProcessLine = styled(LinearProgress)({
+  background: "#FFF",
   "& .MuiLinearProgress-barColorPrimary": {
     background: "var(--color-primary)",
   },

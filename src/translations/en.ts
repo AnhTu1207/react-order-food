@@ -18,5 +18,8 @@ export default {
       contact: "Contact",
     },
     input_search_placeholder: "Search",
+  },
+  home_page: {
+    title: "Home",
   }
 };
