@@ -14,7 +14,7 @@ const MainPageTemplate: FC<IProps> = ({ children }: IProps) => {
     <Wrapper>
       <Header onClickMenu={() => setOpen(true)} />
       <Drawer open={open} onOpen={() => {}} onClose={() => setOpen(false)} />
-      <Content>{children}</Content>
+      <Content elevation={0}>{children}</Content>
     </Wrapper>
   );
 };
