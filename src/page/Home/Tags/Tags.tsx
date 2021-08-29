@@ -47,9 +47,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 500,
 	},
 	indicator: {
-		background: "blue",
-    color: "#FFF",
-	}
+		background: "var(--color-primary)",
+    
+	},
 }));
 
 export default function FullWidthTabs() {
@@ -71,11 +71,12 @@ export default function FullWidthTabs() {
         <Tabs
           value={value}
           onChange={handleChange}
-          textColor="primary"
+          
           variant="fullWidth"
 					aria-label="full width tabs example"
 					classes={{
 						indicator: classes.indicator
+			
 					}}>
 					{map(TagsList, (item, index) => (
 						<TapStyled label={item.name} {...a11yProps(index)}  key={index} />
@@ -88,13 +89,13 @@ export default function FullWidthTabs() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          Item One
+          
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
+          
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
+
         </TabPanel>
       </SwipeableViews>
     </Wrapper>
