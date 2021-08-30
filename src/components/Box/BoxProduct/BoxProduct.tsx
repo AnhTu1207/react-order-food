@@ -5,11 +5,13 @@ import IconButton from "@material-ui/core/IconButton";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import CardMedia from "@material-ui/core/CardMedia";
 
+import { useTranslations } from "hooks";
 import { useStyles, NameOfFood, Price, CustomCardHeader } from "./styles";
 import { IProduct } from "models/types";
 
 const BoxProduct: FC<{ product: IProduct }> = ({ product }) => {
   const classes = useStyles();
+  const { i18n } = useTranslations();
 
   return (
     <Card className={classes.root}>
@@ -38,7 +40,7 @@ const BoxProduct: FC<{ product: IProduct }> = ({ product }) => {
           <MoreHorizIcon />
         </IconButton>
         <Button size="small" className={classes.addBtn}>
-          Add
+          {i18n.t("home_page.button_add")}
         </Button>
       </CardActions>
     </Card>
