@@ -25,16 +25,17 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     addBtn: {
       background: "var(--color-primary)",
-      color: "white",
-      padding: "0.4rem 2rem",
+      color: "#FFFF",
+      fontSize: "14px",
+      padding: "8px 25px",
       "&:hover": {
         background: "var(--color-button-hover)",
       },
       [theme.breakpoints.down("md")]: {
-        fontSize: "1em",
+        fontSize: "16px",
       },
       [theme.breakpoints.down("xs")]: {
-        fontSize: "1em",
+        fontSize: "20px",
       },
     },
     detail: {
@@ -43,7 +44,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       justifyContent: "space-around",
       alignItems: "flex-start",
-      padding: "1em",
+      padding: "10px",
       "&& .MuiCardHeader-root": {
         padding: 0,
       },
@@ -57,7 +58,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       "&:hover": {
         background: "var(--color-button-hover)",
         transition: "0.5s",
-        color: "white",
+        color: "#FFFF",
       },
     },
     action: {
@@ -74,7 +75,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         alignItems: "center",
         justifyContent: "space-around",
         flexBasic: "20%",
-        padding: "0 1rem",
+        padding: "0 16px",
       },
     },
   })
@@ -82,35 +83,27 @@ export const useStyles = makeStyles((theme: Theme) =>
 
 export const NameOfFood = styled(withTheme(Typography))((props) => ({
   fontWeight: "bold",
-  fontSize: "1.4em",
+  fontSize: 20,
   overflow: "hidden",
   textOverflow: "ellipsis",
   maxWidth: "10em",
   [props.theme.breakpoints.down("md")]: {
     width: "7em",
-    fontSize: "1.5em",
+    fontSize: 20,
   },
   [props.theme.breakpoints.down("sm")]: {
     width: "15em",
-    fontSize: "1.5em",
-  },
-  [props.theme.breakpoints.down("xs")]: {
-    textOverflow: "ellipsis",
-    overflow: "inherit",
-    fontSize: "1.5em",
+    fontSize: 24,
   },
 }));
 export const Price = styled(withTheme(Typography))((props) => ({
   fontWeight: "bolder",
-  fontSize: "1.2em",
+  fontSize: 18,
   [props.theme.breakpoints.down("md")]: {
-    fontSize: "1.3em",
+    fontSize: 25,
   },
   [props.theme.breakpoints.down("sm")]: {
-    fontSize: "1.2em",
-  },
-  [props.theme.breakpoints.down("xs")]: {
-    fontSize: "1.2em",
+    fontSize: 20,
   },
 }));
 export const CustomCardHeader = styled(withTheme(CardHeader))((props) => ({
@@ -121,11 +114,11 @@ export const CustomCardHeader = styled(withTheme(CardHeader))((props) => ({
     whiteSpace: "nowrap",
     [props.theme.breakpoints.down("md")]: {
       width: "6em",
-      fontSize: "1.3em",
+      fontSize: "20px",
     },
     [props.theme.breakpoints.down("sm")]: {
-      width: "12em",
-      fontSize: "1.3em",
+      width: "72px",
+      fontSize: "20px",
     },
     [props.theme.breakpoints.down("xs")]: {
       textOverflow: "ellipsis",

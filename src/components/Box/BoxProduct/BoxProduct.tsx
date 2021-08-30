@@ -14,6 +14,7 @@ import { useTranslations } from "hooks";
 import { IProduct } from "models/types";
 
 import { useStyles, NameOfFood, Price, CustomCardHeader } from "./styles";
+
 interface IProps {
   product: IProduct;
 }
