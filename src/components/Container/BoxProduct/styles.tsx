@@ -22,15 +22,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       flexBasis: "50%",
-      [theme.breakpoints.down("md")]: {
-        flexBasic: "40%",
-      },
-      [theme.breakpoints.down("sm")]: {
-        flexBasic: "40%",
-      },
-      [theme.breakpoints.down("xs")]: {
-        flexBasic: "50%",
-      },
     },
     addBtn: {
       background: "var(--color-primary)",
