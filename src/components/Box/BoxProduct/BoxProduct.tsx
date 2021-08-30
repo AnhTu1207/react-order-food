@@ -1,15 +1,24 @@
 import { FC } from "react";
-import { Box, Button, Card, CardActions } from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardMedia,
+  Avatar,
+  IconButton,
+} from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import CardMedia from "@material-ui/core/CardMedia";
 
 import { useTranslations } from "hooks";
-import { useStyles, NameOfFood, Price, CustomCardHeader } from "./styles";
 import { IProduct } from "models/types";
 
-const BoxProduct: FC<{ product: IProduct }> = ({ product }) => {
+import { useStyles, NameOfFood, Price, CustomCardHeader } from "./styles";
+interface IProps {
+  product: IProduct;
+}
+
+const BoxProduct: FC<IProps> = ({ product }: IProps) => {
   const classes = useStyles();
   const { i18n } = useTranslations();
 
