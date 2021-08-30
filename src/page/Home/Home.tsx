@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 import { useTranslations } from "hooks";
 import { MainPageTemplate } from "components";
 import Tags from "./Tags";
+import CommunityMenu from "./CommunityMenu";
 
 const Home: FC = () => {
   const { i18n } = useTranslations();
@@ -15,7 +16,7 @@ const Home: FC = () => {
       </Helmet>
       <MainPageTemplate>
         <Tags />
-        123
+        <CommunityMenu />
       </MainPageTemplate>
     </>
   );
