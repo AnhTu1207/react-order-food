@@ -12,6 +12,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "flex-start",
       height: 150,
+      background: "none",
+      border: "1px solid #808080",
+      borderRadius: 8,
+      padding: 5,
       [theme.breakpoints.down("xs")]: {
         flexDirection: "column",
         height: 450,
@@ -22,6 +26,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       flexBasis: "50%",
+      borderRadius: 8,
     },
     addBtn: {
       background: "var(--color-primary)",
@@ -117,12 +122,11 @@ export const CustomCardHeader = styled(withTheme(CardHeader))((props) => ({
       fontSize: "20px",
     },
     [props.theme.breakpoints.down("sm")]: {
-      width: "72px",
+      width: "20em",
       fontSize: "20px",
     },
     [props.theme.breakpoints.down("xs")]: {
-      textOverflow: "ellipsis",
-      overflow: "inherit",
+      width: "25em",
     },
   },
 }));

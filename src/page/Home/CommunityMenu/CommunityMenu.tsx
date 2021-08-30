@@ -13,7 +13,7 @@ const CommunityMenu: FC = () => {
   return (
     <div>
       <Title>{i18n.t("home_page.community_menu_title")}</Title>
-      <Grid container spacing={2}>
+      <Grid container spacing={4}>
         {CommunityMenuData.map((item, index) => (
           <Grid item md={6} xs={12} key={index}>
             <BoxProduct product={item} />
