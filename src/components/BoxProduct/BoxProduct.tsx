@@ -12,6 +12,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import { useTranslations } from "hooks";
 import { IProduct } from "models/types";
+import { formatPrice } from "utils/formatPrice";
 
 import { useStyles, NameOfFood, Price, CustomCardHeader } from "./styles";
 
@@ -22,6 +23,7 @@ interface IProps {
 const BoxProduct: FC<IProps> = ({ product }: IProps) => {
   const classes = useStyles();
   const { i18n } = useTranslations();
+  const price = formatPrice(product.price);
 
   return (
     <Card className={classes.root}>
@@ -32,7 +34,7 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
       />
       <Box className={classes.detail}>
         <NameOfFood noWrap>{product.nameOfFood}</NameOfFood>
-        <Price noWrap>{product.price}</Price>
+        <Price noWrap>{price}</Price>
         <CustomCardHeader
           avatar={
             <Avatar

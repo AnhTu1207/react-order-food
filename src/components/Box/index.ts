@@ -1,3 +1,3 @@
-import BoxProduct from "./BoxProduct";
+import BoxProduct from "../BoxProduct";
 
 export { BoxProduct };

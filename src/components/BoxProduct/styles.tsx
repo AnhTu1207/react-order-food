@@ -32,10 +32,10 @@ export const useStyles = makeStyles((theme: Theme) =>
         background: "var(--color-button-hover)",
       },
       [theme.breakpoints.down("md")]: {
-        fontSize: "16px",
+        fontSize: 16,
       },
       [theme.breakpoints.down("xs")]: {
-        fontSize: "20px",
+        fontSize: 18,
       },
     },
     detail: {
