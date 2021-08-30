@@ -5,7 +5,16 @@ import {
   makeStyles,
   styled,
 } from "@material-ui/core/styles";
-import { Toolbar, MenuItem, Divider, AppBar, withTheme, Paper } from "@material-ui/core";
+import {
+  Toolbar,
+  MenuItem,
+  Divider,
+  AppBar,
+  withTheme,
+  Paper,
+  Popover,
+  Typography,
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -75,7 +84,7 @@ export const CustomToolbar = styled(withTheme(Toolbar))((props) => ({
   margin: "0 auto",
   [props.theme.breakpoints.down("sm")]: {
     width: "95%",
-  }
+  },
 }));
 
 export const Wrapper = styled("div")({
@@ -96,6 +105,16 @@ export const CustomAccountIcon = styled(AccountCircle)({
   marginTop: 2,
 });
 
+export const CustomPopover = styled(Popover)({
+  color: "var(--color-primary)",
+  width: "100%",
+  marginTop: "10px",
+});
+
+export const CustomTypoPopover = styled(Typography)({
+  color: "var(--color-primary)",
+});
+
 export const DrawerContentWrapper = styled("div")({
   width: 250,
   display: "flex",
@@ -105,21 +124,23 @@ export const DrawerContentWrapper = styled("div")({
 
 interface IDrawerListItemProps {
   active?: boolean;
-};
+}
 
-export const DrawerListItem = styled(MenuItem)(({ active }: IDrawerListItemProps) => ({
-  color: active ? "var(--color-primary)" : "#000",
-  textAlign: "center",
-  display: "flex",
-  justifyContent: "center",
-  borderRadius: 4,
-  width: "100%",
-  padding: "15px 0",
-  "&:hover": {
-    color: "#FFF",
-    background: "var(--color-button-hover)",
-  }
-}));
+export const DrawerListItem = styled(MenuItem)(
+  ({ active }: IDrawerListItemProps) => ({
+    color: active ? "var(--color-primary)" : "#000",
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    borderRadius: 4,
+    width: "100%",
+    padding: "15px 0",
+    "&:hover": {
+      color: "#FFF",
+      background: "var(--color-button-hover)",
+    },
+  })
+);
 
 export const CustomDivider = styled(Divider)({
   width: "100%",
@@ -133,7 +154,7 @@ export const Content = styled(withTheme(Paper))((props) => ({
   background: "#f4f4f4",
   [props.theme.breakpoints.down("sm")]: {
     width: "95%",
-  }
+  },
 }));
 
 export const CustomAppbar = styled(AppBar)({

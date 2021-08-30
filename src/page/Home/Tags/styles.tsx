@@ -1,5 +1,5 @@
 import { styled } from "@material-ui/styles";
-import {  Tab } from "@material-ui/core";
+import {  Chip } from "@material-ui/core";
 
 export const Wrapper = styled("div")({
 	overflowX: "auto",
@@ -16,11 +16,20 @@ export const Wrapper = styled("div")({
   
 });
 
-export const TapStyled = styled(Tab)({
+export const ChipStyled = styled(Chip)({
   background: "transparent",
   color: "var(--color-primary)",
   border: "1px solid var(--color-button-hover)",
+  padding: 2,
   fontSize: 14,
   marginRight: 10,
   borderRadius: 6,
+  "&:hover": {
+    background: "var(--color-primary)",
+    color: "#FFF",
+  },
+  "&:focus": {
+    backgroundColor: "var(--color-primary)",
+    color: "#FFF",
+  },
 });

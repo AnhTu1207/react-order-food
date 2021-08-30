@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useState } from 'react'
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
 
@@ -10,8 +11,11 @@ import {
   CustomToolbar,
   CustomMenuIcon,
   CustomSearchIcon,
-  CustomAccountIcon,
-  CustomAppbar,
+	CustomAccountIcon,
+	CustomPopover,
+	CustomTypoPopover,
+	CustomAppbar,
+	
 } from "./styles";
 
 interface IProps {
@@ -19,7 +23,15 @@ interface IProps {
 }
 const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
   const classes = useStyles();
-  const { i18n } = useTranslations();
+	const { i18n } = useTranslations();
+	const [anchorEl, setAnchorEl] = useState(null)
+	const handleClick = (event:any) => {
+		setAnchorEl(anchorEl ? null : event.currentTarget)
+	};
+	const handleClose = () => {
+    setAnchorEl(null);
+  };
+	const open = Boolean(anchorEl)
 
   return (
     <div className={classes.root}>
@@ -53,7 +65,22 @@ const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
             />
           </div>
           <IconButton>
-            <CustomAccountIcon />
+						<CustomAccountIcon onClick={handleClick}  />
+						<CustomPopover
+								open={open}
+								anchorEl={anchorEl}
+								onClose={handleClose}
+								anchorOrigin={{
+									vertical: 'bottom',
+									horizontal: 'center',
+								}}
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'center',
+								}}
+						>
+							<CustomTypoPopover>Log out</CustomTypoPopover>
+            </CustomPopover>
           </IconButton>
         </CustomToolbar>
       </CustomAppbar>
