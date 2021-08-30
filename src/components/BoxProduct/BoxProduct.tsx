@@ -1,4 +1,5 @@
 import { FC } from "react";
+import currency from "currency.js";
 import {
   Box,
   Button,
@@ -12,7 +13,6 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import { useTranslations } from "hooks";
 import { IProduct } from "models/types";
-import { formatPrice } from "utils/formatPrice";
 
 import { useStyles, NameOfFood, Price, CustomCardHeader } from "./styles";
 
@@ -23,7 +23,7 @@ interface IProps {
 const BoxProduct: FC<IProps> = ({ product }: IProps) => {
   const classes = useStyles();
   const { i18n } = useTranslations();
-  const price = formatPrice(product.price);
+  const price = currency(product.price).format();
 
   return (
     <Card className={classes.root}>
