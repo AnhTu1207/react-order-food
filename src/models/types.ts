@@ -13,6 +13,7 @@ export interface IProduct {
   nameOfFood: string;
   nameOfRestaurant: string;
   price: number;
+  foodDetail: string;
   imgUrlFood: string;
   avatarRestaurant: string;
 }
