@@ -2,11 +2,10 @@ import { FC } from "react";
 import { Grid } from "@material-ui/core";
 
 import { useTranslations } from "hooks";
-
 import { BoxProduct } from "components/Box";
-
 import { Title } from "./styles";
-import { CommunityMenuData } from "assets/temporaryData";
+
+import { CommunityMenuData } from "assets";
 
 const CommunityMenu: FC = () => {
   const { i18n } = useTranslations();
