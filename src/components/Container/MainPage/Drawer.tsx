@@ -3,7 +3,7 @@ import { SwipeableDrawer } from "@material-ui/core";
 import { useTranslations } from "hooks";
 
 import { Logo } from "components";
-import { DrawerContentWrapper, DrawerListItem, CustomDivider } from "./styles";
+import { DrawerContentWrapper, DrawerListItem, CustomDivider} from "./styles";
 
 interface IProps {
   open: boolean;
