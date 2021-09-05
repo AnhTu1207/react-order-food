@@ -1,16 +1,17 @@
 import { FC, useState } from "react";
-import { map } from "lodash";
+import {  map } from "lodash";
 
 import { Wrapper, ChipStyled, useStyles } from "./styles";
 
 import { TagsList } from "assets";
 
 const Tags: FC = () => {
-  const classes = useStyles();
-  const [isClick, setIsClick] = useState(null);
+	const classes = useStyles();
 
-  const handleOnClick = (id: any) => {
-    setIsClick(id)
+	const [isClick, setIsClick] = useState(0);
+
+  const handleOnClick = (index: number) => {
+    setIsClick(index)
   }
 
   return (
@@ -18,10 +19,10 @@ const Tags: FC = () => {
       {map(TagsList, (item, index) => (
         <ChipStyled
         label={item.name}
-        onClick={() => handleOnClick(index)}
+        onClick={() => handleOnClick(Number(index))}
         clickable
         key={index}
-        className={isClick == `${index}` ? classes.onActive : ""}
+        className={isClick == index ? classes.onActive : ""}
         />
       ))}
     </Wrapper>
