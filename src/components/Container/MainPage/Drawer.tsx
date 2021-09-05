@@ -3,7 +3,7 @@ import { SwipeableDrawer } from "@material-ui/core";
 import { useTranslations } from "hooks";
 
 import { Logo } from "components";
-import { DrawerContentWrapper, DrawerListItem, CustomDivider} from "./styles";
+import { DrawerContentWrapper, DrawerListItem, CustomDivider } from "./styles";
 
 interface IProps {
   open: boolean;
@@ -27,7 +27,6 @@ const Drawer: FC<IProps> = ({ open, onClose, onOpen }: IProps) => {
             <DrawerListItem onClick={() => {}} active={true}>
               {i18n.t("main_page_template.menu.home")}
             </DrawerListItem>
-            yt
             <DrawerListItem onClick={() => {}}>
               {i18n.t("main_page_template.menu.profile")}
             </DrawerListItem>
