@@ -8,7 +8,7 @@ import { TagsList } from "assets";
 const Tags: FC = () => {
 	const classes = useStyles();
 
-	const [isClick, setIsClick] = useState(0);
+	const [isClick, setIsClick] = useState(-1);
 
   const handleOnClick = (index: number) => {
     setIsClick(index)
