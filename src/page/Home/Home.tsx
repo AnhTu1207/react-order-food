@@ -4,10 +4,10 @@ import Helmet from "react-helmet";
 import { useTranslations } from "hooks";
 import { MainPageTemplate } from "components";
 import Tags from "./Tags";
+import Cart from "./Cart";
 
 const Home: FC = () => {
   const { i18n } = useTranslations();
-
   return (
     <>
       <Helmet>
@@ -15,7 +15,7 @@ const Home: FC = () => {
       </Helmet>
       <MainPageTemplate>
         <Tags />
-        123
+        <Cart/>
       </MainPageTemplate>
     </>
   );
