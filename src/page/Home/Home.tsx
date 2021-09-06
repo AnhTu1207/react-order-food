@@ -16,9 +16,8 @@ const Home: FC = () => {
       </Helmet>
       <MainPageTemplate>
         <Tags />
-        <CommunityMenu />
         <Cart/>
-
+        <CommunityMenu />
       </MainPageTemplate>
     </>
   );
