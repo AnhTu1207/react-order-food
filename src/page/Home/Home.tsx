@@ -5,6 +5,7 @@ import { useTranslations } from "hooks";
 import { MainPageTemplate } from "components";
 import Tags from "./Tags";
 import Cart from "./Cart";
+import CommunityMenu from "./CommunityMenu";
 
 const Home: FC = () => {
   const { i18n } = useTranslations();
@@ -15,7 +16,9 @@ const Home: FC = () => {
       </Helmet>
       <MainPageTemplate>
         <Tags />
+        <CommunityMenu />
         <Cart/>
+
       </MainPageTemplate>
     </>
   );

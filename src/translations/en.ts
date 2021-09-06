@@ -21,5 +21,7 @@ export default {
   },
   home_page: {
     title: "Home",
-  }
+    button_add: "Add",
+    community_menu_title: "Community Menu",
+  },
 };

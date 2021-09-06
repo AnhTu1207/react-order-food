@@ -7,3 +7,13 @@ export interface IRoute {
   requireAuth?: boolean;
   Component: React.ComponentType<any>;
 }
+
+export interface IProduct {
+  id: number;
+  nameOfFood: string;
+  nameOfRestaurant: string;
+  price: number;
+  foodDetail: string;
+  imgUrlFood: string;
+  avatarRestaurant: string;
+}
