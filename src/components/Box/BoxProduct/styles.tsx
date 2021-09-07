@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       padding: 5,
       [theme.breakpoints.down("xs")]: {
         flexDirection: "column",
-        height: 420,
+        height: 300,
       },
     },
     avatar: {
@@ -30,26 +30,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 8,
       flex: "1 1 20%",
       [theme.breakpoints.down("xs")]: {
-        width: "100%",
-        height: 330,
-      },
-    },
-    addBtn: {
-      background: "var(--color-primary)",
-      color: "#FFFF",
-      fontSize: "14px",
-      padding: "5px 25px",
-      marginTop: 10,
-      "&:hover": {
-        background: "var(--color-button-hover)",
-      },
-      [theme.breakpoints.down("md")]: {
-        fontSize: 16,
-        padding: "5px 30px",
-      },
-      [theme.breakpoints.down("xs")]: {
-        fontSize: 18,
-        padding: "4px 25px",
+        flexBasic: "50%",
       },
     },
     detail: {
@@ -62,8 +43,23 @@ export const useStyles = makeStyles((theme: Theme) =>
       "&& .MuiCardHeader-root": {
         padding: 0,
       },
+      [theme.breakpoints.down("md")]: {
+        flexBasic: "35%"
+      },
+      [theme.breakpoints.down("sm")]: {
+        flex: 0
+      },
       [theme.breakpoints.down("xs")]: {
         width: "80vw",
+      },
+    },
+    addBtn: {
+      background: "var(--color-primary)",
+      color: "#FFFF",
+      fontSize: "14px",
+      padding: "6px 25px",
+      "&:hover": {
+        background: "var(--color-button-hover)",
       },
     },
     detailBtn: {
@@ -76,16 +72,20 @@ export const useStyles = makeStyles((theme: Theme) =>
         transition: "0.5s",
         color: "#FFFF",
       },
-      [theme.breakpoints.down("md")]: {
-        padding: 10,
-      },
     },
     action: {
       flex: "1 1 20%",
       width: "20%",
-      display: "block",
-      margin: "auto",
-      textAlign: "center",
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      [theme.breakpoints.down("sm")]: {
+        flex: "0",
+        display: "flex",
+        width: "100%",
+        justifyContent: "space-around",
+        aligItems: "center"
+      },
     },
   })
 );
@@ -129,28 +129,14 @@ export const RestaurantName = styled(withTheme(Typography))((props) => ({
   whiteSpace: "nowrap",
   fontSize: 15,
   [props.theme.breakpoints.down("sm")]: {
-    fontSize: 24,
+    fontSize: 20,
   },
 }));
 
 export const CustomCardHeader = styled(withTheme(CardHeader))((props) => ({
   width: "100%",
   lineHeight: 1,
-  display: "inline-block",
-  // "&& .MuiCardHeader-title": {
-
-  //   lineHeight: "25px",
-  //   [props.theme.breakpoints.down("lg")]: {
-  //     width: "100%",
-  //   },
-  //   [props.theme.breakpoints.down("md")]: {
-  //     width: "15em",
-  //   },
-  //   [props.theme.breakpoints.down("sm")]: {
-  //     width: "100%",
-  //   },
-  //   [props.theme.breakpoints.down("xs")]: {
-  //     width: "13em",
-  //   },
-  // },
+  "&& .MuiCardHeader-content": {
+    width:"80%"
+  },
 }));
