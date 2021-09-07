@@ -20,6 +20,7 @@ import {
   Price,
   CustomCardHeader,
   FoodDetail,
+  RestaurantName,
 } from "./styles";
 
 interface IProps {
@@ -50,7 +51,7 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
               className={classes.avatar}
             ></Avatar>
           }
-          title={product.nameOfRestaurant}
+          title={<RestaurantName>{product.nameOfRestaurant}</RestaurantName>}
         />
       </Box>
 

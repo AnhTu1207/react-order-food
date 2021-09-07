@@ -28,7 +28,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       borderRadius: 8,
-      width: 150,
+      flex: "1 1 20%",
       [theme.breakpoints.down("xs")]: {
         width: "100%",
         height: 330,
@@ -39,6 +39,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: "#FFFF",
       fontSize: "14px",
       padding: "5px 25px",
+      marginTop: 10,
       "&:hover": {
         background: "var(--color-button-hover)",
       },
@@ -52,23 +53,14 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     detail: {
-      width: 300,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-around",
-      alignItems: "flex-start",
-      padding: "10px",
+      flex: "3 3 60%",
+      display: "block",
+      width: "60%",
+      padding: 10,
+      boxSizing: "border-box",
+      margin: "auto",
       "&& .MuiCardHeader-root": {
         padding: 0,
-      },
-      [theme.breakpoints.down("lg")]: {
-        width: 300,
-      },
-      [theme.breakpoints.down("md")]: {
-        width: 220,
-      },
-      [theme.breakpoints.down("sm")]: {
-        width: 380,
       },
       [theme.breakpoints.down("xs")]: {
         width: "80vw",
@@ -77,6 +69,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     detailBtn: {
       border: "1px solid var(--color-primary)",
       color: "var(--color-primary)",
+      boxSizing: "border-box",
       padding: 5,
       "&:hover": {
         background: "var(--color-button-hover)",
@@ -88,21 +81,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     action: {
-      flexBasis: "20%",
-      justifyContent: "flex-end",
-      [theme.breakpoints.down("md")]: {
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "space-around",
-        flexBasic: "20%",
-      },
-      [theme.breakpoints.down("md")]: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-around",
-        flexBasic: "20%",
-        padding: "0 5px",
-      },
+      flex: "1 1 20%",
+      width: "20%",
+      display: "block",
+      margin: "auto",
+      textAlign: "center",
     },
   })
 );
@@ -112,20 +95,17 @@ export const NameOfFood = styled(withTheme(Typography))((props) => ({
   fontSize: 20,
   overflow: "hidden",
   textOverflow: "ellipsis",
+  lineHeight: 1,
   width: "100%",
-  [props.theme.breakpoints.down("lg")]: {
-    fontSize: 20,
-  },
-  [props.theme.breakpoints.down("md")]: {
-    fontSize: 22,
-  },
   [props.theme.breakpoints.down("sm")]: {
     fontSize: 24,
   },
 }));
+
 export const Price = styled(withTheme(Typography))((props) => ({
   fontWeight: "bolder",
   fontSize: 16,
+  lineHeight: 2,
   [props.theme.breakpoints.down("md")]: {
     fontSize: 18,
   },
@@ -140,26 +120,37 @@ export const FoodDetail = styled(withTheme(Typography))((props) => ({
   overflow: "hidden",
   textOverflow: "ellipsis",
   width: "100%",
+  lineHeight: 2,
+}));
+
+export const RestaurantName = styled(withTheme(Typography))((props) => ({
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+  fontSize: 15,
+  [props.theme.breakpoints.down("sm")]: {
+    fontSize: 24,
+  },
 }));
 
 export const CustomCardHeader = styled(withTheme(CardHeader))((props) => ({
   width: "100%",
-  "&& .MuiCardHeader-title": {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    fontSize: 15,
-    [props.theme.breakpoints.down("lg")]: {
-      width: "100%",
-    },
-    [props.theme.breakpoints.down("md")]: {
-      width: "15em",
-    },
-    [props.theme.breakpoints.down("sm")]: {
-      width: "100%",
-    },
-    [props.theme.breakpoints.down("xs")]: {
-      width: "13em",
-    },
-  },
+  lineHeight: 1,
+  display: "inline-block",
+  // "&& .MuiCardHeader-title": {
+
+  //   lineHeight: "25px",
+  //   [props.theme.breakpoints.down("lg")]: {
+  //     width: "100%",
+  //   },
+  //   [props.theme.breakpoints.down("md")]: {
+  //     width: "15em",
+  //   },
+  //   [props.theme.breakpoints.down("sm")]: {
+  //     width: "100%",
+  //   },
+  //   [props.theme.breakpoints.down("xs")]: {
+  //     width: "13em",
+  //   },
+  // },
 }));
