@@ -20,7 +20,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         flexDirection: "column",
         height: 300,
       },
-    },
+    },  
     avatar: {
       border: "1px solid var(--color-primary)",
       width: 30,
@@ -86,6 +86,9 @@ export const useStyles = makeStyles((theme: Theme) =>
         justifyContent: "space-around",
         aligItems: "center"
       },
+      [theme.breakpoints.down("xs")]: {
+        borderTop: "1px solid #ebebeb"
+      },
     },
   })
 );
@@ -97,8 +100,8 @@ export const NameOfFood = styled(withTheme(Typography))((props) => ({
   textOverflow: "ellipsis",
   lineHeight: 1,
   width: "100%",
-  [props.theme.breakpoints.down("sm")]: {
-    fontSize: 24,
+  [props.theme.breakpoints.down("xs")]: {
+    lineHeight: 1,
   },
 }));
 
@@ -109,9 +112,6 @@ export const Price = styled(withTheme(Typography))((props) => ({
   [props.theme.breakpoints.down("md")]: {
     fontSize: 18,
   },
-  [props.theme.breakpoints.down("sm")]: {
-    fontSize: 20,
-  },
 }));
 
 export const FoodDetail = styled(withTheme(Typography))((props) => ({
@@ -121,6 +121,10 @@ export const FoodDetail = styled(withTheme(Typography))((props) => ({
   textOverflow: "ellipsis",
   width: "100%",
   lineHeight: 2,
+  [props.theme.breakpoints.down("xs")]: {
+    fontSize: 13,
+    lineHeight: 1,
+  },
 }));
 
 export const RestaurantName = styled(withTheme(Typography))((props) => ({
@@ -128,9 +132,6 @@ export const RestaurantName = styled(withTheme(Typography))((props) => ({
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
   fontSize: 15,
-  [props.theme.breakpoints.down("sm")]: {
-    fontSize: 20,
-  },
 }));
 
 export const CustomCardHeader = styled(withTheme(CardHeader))((props) => ({
