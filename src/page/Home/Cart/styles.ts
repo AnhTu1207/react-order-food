@@ -5,6 +5,9 @@ export const useStyle = makeStyles((theme:Theme)=>
     createStyles({
         cartButton: {
             background: "var(--color-primary)",
+            position: "fixed",
+            bottom: "5%",
+            right: "3%",
             "&:hover":{
                 background: "var(--color-button-hover)",
                 transition: "0.5s"
