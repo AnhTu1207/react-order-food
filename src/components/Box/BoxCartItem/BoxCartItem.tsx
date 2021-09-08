@@ -3,7 +3,6 @@ import currency from "currency.js";
 import { Avatar, Card, Typography } from "@material-ui/core";
 import { Add, DeleteOutline, Remove } from "@material-ui/icons";
 
-import { ICartItem } from "models/types";
 import {
   ActionBox,
   CustomCardHeader,
@@ -14,6 +13,7 @@ import {
   RestaurantName,
   useStyles,
 } from "./styles";
+import { ICartItem } from "models/types";
 
 interface IProps {
   cartItem: ICartItem;

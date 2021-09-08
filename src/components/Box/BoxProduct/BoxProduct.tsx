@@ -20,7 +20,6 @@ import {
   Price,
   CustomCardHeader,
   FoodDetail,
-  RestaurantName,
 } from "./styles";
 
 interface IProps {

@@ -39,7 +39,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: "#FFFF",
       fontSize: "14px",
       padding: "5px 25px",
-      flexBasis: "50%",
       "&:hover": {
         background: "var(--color-button-hover)",
       },
@@ -53,33 +52,31 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     detail: {
-      flexBasis: "60%",
-      display: "block",
-      overflow: "hidden",
+      width: 300,
+      display: "flex",
       flexDirection: "column",
       justifyContent: "space-around",
       alignItems: "flex-start",
       padding: "10px",
-      // "&& .MuiCardHeader-root": {
-      //   padding: 0,
-      // },
-      // [theme.breakpoints.down("lg")]: {
-      //   width: 300,
-      // },
-      // [theme.breakpoints.down("md")]: {
-      //   width: 220,
-      // },
-      // [theme.breakpoints.down("sm")]: {
-      //   width: 380,
-      // },
-      // [theme.breakpoints.down("xs")]: {
-      //   width: "80vw",
-      // },
+      "&& .MuiCardHeader-root": {
+        padding: 0,
+      },
+      [theme.breakpoints.down("lg")]: {
+        width: 300,
+      },
+      [theme.breakpoints.down("md")]: {
+        width: 220,
+      },
+      [theme.breakpoints.down("sm")]: {
+        width: 380,
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "80vw",
+      },
     },
     detailBtn: {
       border: "1px solid var(--color-primary)",
       color: "var(--color-primary)",
-      flexBasis: "50%",
       padding: 5,
       "&:hover": {
         background: "var(--color-button-hover)",
@@ -91,9 +88,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     action: {
-      flexBasis: "25%",
-      display: "block",
-      overflow: "auto",
+      flexBasis: "20%",
       justifyContent: "flex-end",
       [theme.breakpoints.down("md")]: {
         flexDirection: "column",
@@ -147,15 +142,24 @@ export const FoodDetail = styled(withTheme(Typography))((props) => ({
   width: "100%",
 }));
 
-export const RestaurantName = styled(withTheme(Typography))((props)=>({
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
-  fontSize: 15,
-  width: "100%"
-}))
-
 export const CustomCardHeader = styled(withTheme(CardHeader))((props) => ({
-  display: "block",
-  overflow:"hidden"
+  width: "100%",
+  "&& .MuiCardHeader-title": {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    fontSize: 15,
+    [props.theme.breakpoints.down("lg")]: {
+      width: "100%",
+    },
+    [props.theme.breakpoints.down("md")]: {
+      width: "15em",
+    },
+    [props.theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    [props.theme.breakpoints.down("xs")]: {
+      width: "13em",
+    },
+  },
 }));

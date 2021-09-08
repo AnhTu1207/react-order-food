@@ -41,3 +41,10 @@ export const CustomBadge = styled(Badge)({
 export const CustomDivider = styled(Divider)({
   width: "100%",
 });
+
+export const DrawerContentWrapper = styled("div")({
+  width: 250,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+});

@@ -1,3 +1,3 @@
 import BoxCartItem from "./BoxCartItem";
 
-export {BoxCartItem}
+export {BoxCartItem};

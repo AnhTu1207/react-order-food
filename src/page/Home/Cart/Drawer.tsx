@@ -1,11 +1,13 @@
+import { FC } from "react";
 import { SwipeableDrawer } from "@material-ui/core";
 import { BoxCartItem } from "components/Box/BoxCartItem";
+
 import {
   CustomDivider,
   DrawerContentWrapper,
-} from "components/Container/MainPage/styles";
-import { FC } from "react";
+} from "./styles";
 import { CustomCartIcon } from "./styles";
+
 import { CartItemsData } from "assets";
 interface IProps {
   open: boolean;
