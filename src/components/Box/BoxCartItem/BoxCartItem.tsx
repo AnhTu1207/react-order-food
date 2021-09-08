@@ -1,49 +1,56 @@
 import { FC } from "react";
 import currency from "currency.js";
-import { Avatar, Card, CardContent, Typography } from "@material-ui/core";
-import { Add, DeleteOutline, Remove} from '@material-ui/icons';
+import { Avatar, Card, Typography } from "@material-ui/core";
+import { Add, DeleteOutline, Remove } from '@material-ui/icons';
 
 import { ICartItem } from "models/types";
-import { ActionBox, CustomCardHeader, CustomIconButton, FoodName, Quantity, RestaurantName, useStyles } from "./styles";
+import { ActionBox, CustomCardHeader, CustomCartContent, CustomIconButton, FoodName, Quantity, RestaurantName, useStyles } from "./styles";
 
-interface IProps{
+interface IProps {
     cartItem: ICartItem
+    isCartDrawer: boolean
 }
 
-const BoxCartItem : FC<IProps> = ({cartItem}:IProps)=>{
+const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
     const classes = useStyles()
     const price = currency(cartItem.price).format()
     return (
-        <Card className={classes.root}>
+        <Card
+            className={classes.root}
+            style={isCartDrawer ? { width: 230 } : {}}
+        >
             <CustomCardHeader
-            className = {classes.restaurantBox}
-            avatar={
-                <Avatar 
-                className={classes.avataRestaurant}
-                alt={cartItem.restaurantName}
-                src={cartItem.avatarRestaurant}
-                />
-            }
-            title={
-                <RestaurantName noWrap>{cartItem.restaurantName}</RestaurantName>
-            }
-            />
-            <CardContent>
-                <CustomCardHeader
-                className={classes.foodBox}
+                className={classes.restaurantBox}
                 avatar={
                     <Avatar
-                    className={classes.imgFood}
-                    alt={cartItem.foodName}
-                    src={cartItem.imgUrlFood}
-                    /> 
+                        className={classes.avataRestaurant}
+                        alt={cartItem.restaurantName}
+                        src={cartItem.avatarRestaurant}
+                    />
                 }
                 title={
-                    <FoodName noWrap>{cartItem.foodName}</FoodName>
+                    <RestaurantName noWrap>{cartItem.restaurantName}</RestaurantName>
                 }
-                subheader={
-                    <Typography>{price}</Typography>
-                }
+            />
+            <CustomCartContent
+                style={isCartDrawer ? { display: "block" } : {}}
+
+            >
+                <CustomCardHeader
+                    className={classes.foodBox}
+                    avatar={
+                        <Avatar
+                            className={classes.imgFood}
+                            alt={cartItem.foodName}
+                            src={cartItem.imgUrlFood}
+                        />
+                    }
+                    title={
+                        <FoodName noWrap>{cartItem.foodName}</FoodName>
+                    }
+                    subheader={
+                        <Typography>{price}</Typography>
+                    }
                 />
 
                 <ActionBox>
@@ -51,14 +58,14 @@ const BoxCartItem : FC<IProps> = ({cartItem}:IProps)=>{
                         <DeleteOutline className={classes.icon} />
                     </CustomIconButton>
                     <CustomIconButton>
-                    <Remove className={classes.icon} />
+                        <Remove className={classes.icon} />
                     </CustomIconButton>
                     <Quantity>{cartItem.quantity}</Quantity>
                     <CustomIconButton>
-                    <Add className={classes.icon} />
+                        <Add className={classes.icon} />
                     </CustomIconButton>
                 </ActionBox>
-            </CardContent>
+            </CustomCartContent>
         </Card>
     )
 }

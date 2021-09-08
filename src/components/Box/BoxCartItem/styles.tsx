@@ -1,14 +1,11 @@
-import { makeStyles, Theme, createStyles, withTheme, Typography, CardHeader, IconButton, Box } from "@material-ui/core";
-import { styled } from "@material-ui/styles";
+import { withTheme, Typography, CardHeader, IconButton, Box, CardContent } from "@material-ui/core";
+import { styled, makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme:Theme)=>
     createStyles({
         root:{
             marginTop: 15,
-            width: 230,
-            "&& .MuiCardContent-root":{
-                borderBottom: "1px solid lightgray",
-            }
+            width: "100%",
         },
         imgFood:{
             width: 50,
@@ -16,7 +13,7 @@ export const useStyles = makeStyles((theme:Theme)=>
         },
         restaurantBox: {
             padding: 5,
-            borderBottom: "1px solid lightgray",
+            borderBottom: "1px solid #d8d8d8",
         },
         avataRestaurant:{
             width:30,
@@ -51,6 +48,21 @@ export const CustomCardHeader = styled(CardHeader)({
         width:"70%"
       },
 })
+
+export const CustomCartContent = styled(withTheme(CardContent))((props)=>({
+    borderBottom: "1px solid #d8d8d8",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    "&& .MuiCardHeader-root":{
+        [props.theme.breakpoints.down("md")]: {
+            width: "60%"
+        },
+    },
+    [props.theme.breakpoints.down("xs")]: {
+        display: "block",
+      },
+}))
 
 export const Quantity = styled(Typography)({
     display: "inline",

@@ -23,7 +23,7 @@ const Drawer :FC<IProps> = ({open, onClose,onOpen}: IProps) =>{
                 <CustomCartIcon/>
                 <CustomDivider/>
                 {CartItemsData.map((item,index)=>(
-            <BoxCartItem key={index} cartItem={item} />
+            <BoxCartItem key={index} cartItem={item} isCartDrawer={true} />
             ))}
             </DrawerContentWrapper>
             </SwipeableDrawer>
