@@ -1,4 +1,4 @@
-import { FC, useState, } from "react";
+import { FC, MouseEvent, useRef, useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
 
@@ -10,11 +10,10 @@ import {
   CustomToolbar,
   CustomMenuIcon,
   CustomSearchIcon,
-	CustomAccountIcon,
-	CustomPopover,
-	CustomTypoPopover,
-	CustomAppbar,
-	
+  CustomAccountIcon,
+  CustomPopover,
+  CustomTypoPopover,
+  CustomAppbar,
 } from "./styles";
 
 interface IProps {
@@ -22,16 +21,18 @@ interface IProps {
 }
 const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
   const classes = useStyles();
-	const { i18n } = useTranslations();
-	const [anchorEl, setAnchorEl] = useState(null)
-	const handleClick = (event:any) : void => {
-		setAnchorEl(event.currentTarget)
-	
-	};
-	const handleClose = () => {
+  const { i18n } = useTranslations();
+  const buttonRef = useRef(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(buttonRef.current);
+  };
+  const handleClose = () => {
     setAnchorEl(null);
   };
-	const open = Boolean(anchorEl)
+
+  const open = Boolean(anchorEl);
 
   return (
     <div className={classes.root}>
@@ -64,24 +65,26 @@ const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <IconButton>
-						<CustomAccountIcon onClick={handleClick}  />
-						<CustomPopover
-								open={open}
-								anchorEl={anchorEl}
-								onClose={handleClose}
-								anchorOrigin={{
-									vertical: 'bottom',
-									horizontal: 'center',
-								}}
-								transformOrigin={{
-									vertical: 'top',
-									horizontal: 'center',
-								}}
-						>
-							<CustomTypoPopover>Log out</CustomTypoPopover>
-            </CustomPopover>
+          <IconButton innerRef={buttonRef} onClick={handleClick}>
+            <CustomAccountIcon />
           </IconButton>
+          <CustomPopover
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+          >
+            <CustomTypoPopover>
+              {i18n.t("logout.popover_title")}
+            </CustomTypoPopover>
+          </CustomPopover>
         </CustomToolbar>
       </CustomAppbar>
     </div>

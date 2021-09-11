@@ -20,7 +20,7 @@ import {
 } from "./styles";
 
 const Login: FC = () => {
-  const { i18n } = useTranslations();
+	const { i18n } = useTranslations();
   const [isLoading, setLoading] = useState(false);
   const [isErr, setErr] = useState(false);
 

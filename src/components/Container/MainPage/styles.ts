@@ -108,7 +108,6 @@ export const CustomAccountIcon = styled(AccountCircle)({
 export const CustomPopover = styled(Popover)({
   color: "var(--color-primary)",
   width: "100%",
-  marginTop: "10px",
 });
 
 export const CustomTypoPopover = styled(Typography)({

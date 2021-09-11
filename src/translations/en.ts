@@ -21,5 +21,8 @@ export default {
   },
   home_page: {
     title: "Home",
-  }
+  },
+  logout: {
+    popover_title: "Log out",
+  },
 };
