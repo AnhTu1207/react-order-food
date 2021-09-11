@@ -36,16 +36,3 @@ export const ChipStyled = styled(Chip)({
   },
 });
 
-export const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    onActive:{
-      background: "var(--color-primary)",
-      color: "#FFF",
-            "&:focus": {
-    backgroundColor: "var(--color-primary)",
-    color: "#FFF",
-  },
-
-    }
-  })
-);

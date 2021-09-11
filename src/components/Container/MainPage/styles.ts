@@ -113,6 +113,7 @@ export const CustomPopover = styled(Popover)({
 
 export const CustomTypoPopover = styled(Typography)({
   color: "var(--color-primary)",
+  padding: "10px",
 });
 
 export const DrawerContentWrapper = styled("div")({
