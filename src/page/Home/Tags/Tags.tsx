@@ -22,7 +22,7 @@ const Tags: FC = () => {
         onClick={() => handleOnClick(Number(index))}
         clickable
         key={index}
-        className={isClick == index ? classes.onActive : ""}
+        className={isClick === index ? classes.onActive : ""}
         />
       ))}
     </Wrapper>
