@@ -99,7 +99,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.down("md")]: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         flexBasic: "20%",
         padding: "0 5px",
       },
