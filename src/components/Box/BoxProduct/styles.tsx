@@ -20,7 +20,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         flexDirection: "column",
         height: 300,
       },
-    },  
+    },
     avatar: {
       border: "1px solid var(--color-primary)",
       width: 30,
@@ -44,10 +44,10 @@ export const useStyles = makeStyles((theme: Theme) =>
         padding: 0,
       },
       [theme.breakpoints.down("md")]: {
-        flexBasic: "35%"
+        flexBasic: "35%",
       },
       [theme.breakpoints.down("sm")]: {
-        flex: 0
+        flex: 0,
       },
       [theme.breakpoints.down("xs")]: {
         width: "80vw",
@@ -83,11 +83,11 @@ export const useStyles = makeStyles((theme: Theme) =>
         flex: "0",
         display: "flex",
         width: "100%",
-        justifyContent: "space-around",
-        aligItems: "center"
+        justifyContent: "space-between",
+        aligItems: "center",
       },
       [theme.breakpoints.down("xs")]: {
-        borderTop: "1px solid #ebebeb"
+        borderTop: "1px solid #ebebeb",
       },
     },
   })
@@ -138,6 +138,6 @@ export const CustomCardHeader = styled(withTheme(CardHeader))((props) => ({
   width: "100%",
   lineHeight: 1,
   "&& .MuiCardHeader-content": {
-    width:"80%"
+    width: "80%",
   },
 }));
