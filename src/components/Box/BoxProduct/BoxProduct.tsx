@@ -21,6 +21,7 @@ import {
   CustomCardHeader,
   FoodDetail,
 } from "./styles";
+import DialogOption from "./DialogOptionFood";
 
 interface IProps {
   product: IProduct;
@@ -55,9 +56,7 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
       </Box>
 
       <CardActions className={classes.action}>
-        <IconButton className={classes.detailBtn} aria-label="settings">
-          <MoreHorizIcon />
-        </IconButton>
+        <DialogOption />
         <Button size="small" className={classes.addBtn}>
           {i18n.t("home_page.button_add")}
         </Button>

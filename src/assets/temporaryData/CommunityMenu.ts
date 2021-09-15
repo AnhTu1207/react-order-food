@@ -10,6 +10,28 @@ export const CommunityMenuData = [
       "https://images.foody.vn/res/g109/1085816/s120x120/0e725288-8bd8-4a4f-b31d-692cd90b-f8f74a10-210808091819.jpeg",
     avatarRestaurant:
       "https://images.foody.vn/res/g109/1085816/prof/s640x400/foody-upload-api-foody-mobile-cv-fb4dc6cf-210712142513.jpeg",
+    option: [
+      [
+        {
+          name: "bún thêm",
+          price: 900,
+        },
+        {
+          name: "mì thêm",
+          price: 1000,
+        },
+      ],
+      [
+        {
+          name: "sốt Hs",
+          price: 200,
+        },
+        {
+          name: "sốt đậu",
+          price: 300,
+        },
+      ],
+    ],
   },
   {
     id: 2,

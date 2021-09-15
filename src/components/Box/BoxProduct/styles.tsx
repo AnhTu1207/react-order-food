@@ -4,7 +4,15 @@ import {
   makeStyles,
   styled,
 } from "@material-ui/core/styles";
-import { CardHeader, Typography, withTheme } from "@material-ui/core";
+import {
+  CardHeader,
+  Typography,
+  withTheme,
+  withStyles,
+} from "@material-ui/core";
+
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -74,19 +82,6 @@ export const useStyles = makeStyles((theme: Theme) =>
         width: "80vw",
       },
     },
-    detailBtn: {
-      border: "1px solid var(--color-primary)",
-      color: "var(--color-primary)",
-      padding: 5,
-      "&:hover": {
-        background: "var(--color-button-hover)",
-        transition: "0.5s",
-        color: "#FFFF",
-      },
-      [theme.breakpoints.down("md")]: {
-        padding: 10,
-      },
-    },
     action: {
       flexBasis: "20%",
       justifyContent: "flex-end",
@@ -102,6 +97,39 @@ export const useStyles = makeStyles((theme: Theme) =>
         justifyContent: "space-around",
         flexBasic: "20%",
         padding: "0 5px",
+      },
+    },
+  })
+);
+
+export const dialogTitleStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      margin: 0,
+      padding: theme.spacing(2),
+    },
+    closeButton: {
+      position: "absolute",
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+      color: theme.palette.grey[500],
+    },
+  })
+);
+
+export const dialogOptionStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    openBtn: {
+      border: "1px solid var(--color-primary)",
+      color: "var(--color-primary)",
+      padding: 5,
+      "&:hover": {
+        background: "var(--color-button-hover)",
+        transition: "0.5s",
+        color: "#FFFF",
+      },
+      [theme.breakpoints.down("md")]: {
+        padding: 10,
       },
     },
   })
@@ -161,5 +189,18 @@ export const CustomCardHeader = styled(withTheme(CardHeader))((props) => ({
     [props.theme.breakpoints.down("xs")]: {
       width: "13em",
     },
+  },
+}));
+
+export const DialogContent = styled(withTheme(MuiDialogContent))((props) => ({
+  root: {
+    padding: props.theme.spacing(2),
+  },
+}));
+
+export const DialogActions = styled(withTheme(MuiDialogActions))((props) => ({
+  root: {
+    margin: 0,
+    padding: props.theme.spacing(1),
   },
 }));
