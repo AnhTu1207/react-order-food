@@ -98,7 +98,7 @@ export const NameOfFood = styled(withTheme(Typography))((props) => ({
   fontSize: 20,
   overflow: "hidden",
   textOverflow: "ellipsis",
-  lineHeight: 1,
+  lineHeight: 1.5,
   width: "100%",
   [props.theme.breakpoints.down("xs")]: {
     lineHeight: 1,
@@ -108,7 +108,7 @@ export const NameOfFood = styled(withTheme(Typography))((props) => ({
 export const Price = styled(withTheme(Typography))((props) => ({
   fontWeight: "bolder",
   fontSize: 16,
-  lineHeight: 2,
+  lineHeight: 1.5,
   [props.theme.breakpoints.down("md")]: {
     fontSize: 18,
   },
@@ -122,8 +122,7 @@ export const FoodDetail = styled(withTheme(Typography))((props) => ({
   width: "100%",
   lineHeight: 2,
   [props.theme.breakpoints.down("xs")]: {
-    fontSize: 13,
-    lineHeight: 1,
+    lineHeight: 2,
   },
 }));
 
