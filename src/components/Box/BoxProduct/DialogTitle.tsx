@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import { dialogTitleStyles } from "./styles";
 import { IconButton, Typography } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
+
+import { dialogTitleStyles, CustomMuiDialogTitle } from "./styles";
 
 interface IProps {
   id: string;
@@ -13,8 +13,8 @@ interface IProps {
 const DialogTitle: FC<IProps> = ({ id, onClose, children }: IProps) => {
   const classes = dialogTitleStyles();
   return (
-    <MuiDialogTitle>
-      <Typography>{children}</Typography>
+    <CustomMuiDialogTitle>
+      <Typography className={classes.dialogTitle}>{children}</Typography>
       {onClose ? (
         <IconButton
           aria-label="close"
@@ -24,7 +24,7 @@ const DialogTitle: FC<IProps> = ({ id, onClose, children }: IProps) => {
           <Close />
         </IconButton>
       ) : null}
-    </MuiDialogTitle>
+    </CustomMuiDialogTitle>
   );
 };
 

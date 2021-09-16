@@ -7,9 +7,7 @@ import {
   CardActions,
   CardMedia,
   Avatar,
-  IconButton,
 } from "@material-ui/core";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import { useTranslations } from "hooks";
 import { IProduct } from "models/types";
@@ -21,7 +19,7 @@ import {
   CustomCardHeader,
   FoodDetail,
 } from "./styles";
-import DialogOption from "./DialogOptionFood";
+import DialogOption from "./DialogOption";
 
 interface IProps {
   product: IProduct;
@@ -36,27 +34,27 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={product.imgUrlFood}
-        title={product.nameOfFood}
+        image={product.avatar}
+        title={product.name}
       />
       <Box className={classes.detail}>
-        <NameOfFood noWrap>{product.nameOfFood}</NameOfFood>
-        <FoodDetail noWrap>{product.foodDetail}</FoodDetail>
+        <NameOfFood noWrap>{product.name}</NameOfFood>
+        <FoodDetail noWrap>{product.detail}</FoodDetail>
         <Price noWrap>{price}</Price>
         <CustomCardHeader
           avatar={
             <Avatar
-              alt={product.nameOfRestaurant}
-              src={product.avatarRestaurant}
+              alt={product.store.name}
+              src={product.store.avatar}
               className={classes.avatar}
             ></Avatar>
           }
-          title={product.nameOfRestaurant}
+          title={product.store.name}
         />
       </Box>
 
       <CardActions className={classes.action}>
-        <DialogOption />
+        <DialogOption product={product} />
         <Button size="small" className={classes.addBtn}>
           {i18n.t("home_page.button_add")}
         </Button>

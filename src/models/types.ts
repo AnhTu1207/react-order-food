@@ -10,10 +10,12 @@ export interface IRoute {
 
 export interface IProduct {
   id: number;
-  nameOfFood: string;
-  nameOfRestaurant: string;
+  name: string;
+  avatar: string;
   price: number;
-  foodDetail: string;
-  imgUrlFood: string;
-  avatarRestaurant: string;
+  detail: string;
+  store: {
+    name: string;
+    avatar: string;
+  };
 }
