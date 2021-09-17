@@ -50,7 +50,11 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
         </DialogTitle>
 
         <DialogContent dividers>
-          <img className={classes.dialogImg} src={product.avatar} />
+          <img
+            className={classes.dialogImg}
+            src={product.avatar}
+            alt={product.name}
+          />
           <TypographyBold noWrap>{product.name}</TypographyBold>
           <TypographyBold>{currency(product.price).format()}</TypographyBold>
           <FoodDetail noWrap>{product.detail}</FoodDetail>
