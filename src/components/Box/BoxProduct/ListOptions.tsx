@@ -17,10 +17,10 @@ import {
   ListItemOptionTitle,
   ListItemPrice,
 } from "./styles";
-import { IOption } from "models/types";
+import { IFoodOption } from "models/types";
 
 interface IProps {
-  option: IOption;
+  option: IFoodOption;
 }
 
 const ListOptions: FC<IProps> = ({ option }: IProps) => {

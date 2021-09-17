@@ -8,7 +8,7 @@ export interface IRoute {
   Component: React.ComponentType<any>;
 }
 
-export interface IOption {
+export interface IFoodOption {
   id: number;
   label: string;
   list: IList[];
@@ -29,5 +29,5 @@ export interface IProduct {
     name: string;
     avatar: string;
   };
-  option: IOption[];
+  option: IFoodOption[];
 }

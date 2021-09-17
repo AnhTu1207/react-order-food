@@ -18,6 +18,7 @@ import {
   Price,
   CustomCardHeader,
   FoodDetail,
+  RestaurantName,
 } from "./styles";
 import DialogOption from "./DialogOption";
 
@@ -49,11 +50,17 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
               className={classes.avatar}
             ></Avatar>
           }
-          title={product.store.name}
+          title={<RestaurantName noWrap>{product.store.name}</RestaurantName>}
         />
       </Box>
 
-      <CardActions className={classes.action}>
+      <CardActions
+        className={
+          product.option.length > 0
+            ? classes.action
+            : classes.actionWithoutOptionBtn
+        }
+      >
         {product.option.length > 0 && <DialogOption product={product} />}
         <Button size="small" className={classes.addBtn}>
           {i18n.t("home_page.button_add")}
