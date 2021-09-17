@@ -17,6 +17,7 @@ import {
 } from "./styles";
 import ListOptions from "./ListOptions";
 import { IProduct } from "models/types";
+import { useTranslations } from "hooks";
 
 interface IProps {
   product: IProduct;
@@ -24,8 +25,8 @@ interface IProps {
 
 const DialogOption: FC<IProps> = ({ product }: IProps) => {
   const classes = dialogOptionStyles();
+  const { i18n } = useTranslations();
   const [open, setOpen] = React.useState(false);
-  const price = currency(product.price).format();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,21 +39,23 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
       <IconButton onClick={handleClickOpen} className={classes.openBtn}>
         <MoreHoriz />
       </IconButton>
+
       <CustomDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Menu Item
+          {i18n.t("home_page.menu_items")}
         </DialogTitle>
+
         <DialogContent dividers>
           <img className={classes.dialogImg} src={product.avatar} />
           <TypographyBold noWrap>{product.name}</TypographyBold>
-          <TypographyBold>{price}</TypographyBold>
+          <TypographyBold>{currency(product.price).format()}</TypographyBold>
           <FoodDetail noWrap>{product.detail}</FoodDetail>
           <CustomDivider />
-          <TypographyBold>Restaurant</TypographyBold>
+          <TypographyBold> {i18n.t("home_page.store")}</TypographyBold>
           <CustomCardHeader
             className={classes.restaurant}
             avatar={
@@ -64,8 +67,11 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
             }
             title={<RestaurantName noWrap>{product.store.name}</RestaurantName>}
           />
-          <ListOptions />
+          {product.option.map((option) => (
+            <ListOptions key={option.id} option={option} />
+          ))}
         </DialogContent>
+
         <DialogActions>
           <Box className={classes.boxQuantity}>
             <IconButton className={classes.decreaseBtn}>
@@ -76,6 +82,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
               <Add className={classes.increaseIcon} />
             </IconButton>
           </Box>
+
           <Button autoFocus onClick={handleClose} className={classes.addBtn}>
             ADD 1 TO CART $11.48
           </Button>

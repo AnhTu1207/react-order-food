@@ -12,6 +12,40 @@ export const CommunityMenuData = [
       avatar:
         "https://images.foody.vn/res/g109/1085816/prof/s640x400/foody-upload-api-foody-mobile-cv-fb4dc6cf-210712142513.jpeg",
     },
+    option: [
+      {
+        id: 1,
+        label: "Topping",
+        list: [
+          {
+            id: 1,
+            name: "Trân châu đen",
+            price: 90,
+          },
+          {
+            id: 2,
+            name: "Thạch trái cây",
+            price: 50,
+          },
+        ],
+      },
+      {
+        id: 2,
+        label: "Đường",
+        list: [
+          {
+            id: 1,
+            name: "50% đường",
+            price: 0,
+          },
+          {
+            id: 2,
+            name: "100% đường",
+            price: 0,
+          },
+        ],
+      },
+    ],
   },
   {
     id: 2,
@@ -26,6 +60,7 @@ export const CommunityMenuData = [
       avatar:
         "https://images.foody.vn/res/g109/1086178/prof/s640x400/file_restaurant_photo_kdri_16267-e566fcc3-210720095637.jpg",
     },
+    option: [],
   },
   {
     id: 3,
@@ -40,6 +75,7 @@ export const CommunityMenuData = [
       avatar:
         "https://images.foody.vn/res/g107/1065049/prof/s640x400/foody-upload-api-foody-mobile-rausach-210127135741.jpg",
     },
+    option: [],
   },
   {
     id: 4,
@@ -54,6 +90,7 @@ export const CommunityMenuData = [
       avatar:
         "https://images.foody.vn/res/g103/1020573/prof/s640x400/foody-upload-api-foody-mobile-11-200504140646.jpg",
     },
+    option: [],
   },
   {
     id: 5,
@@ -68,6 +105,7 @@ export const CommunityMenuData = [
       avatar:
         "https://images.foody.vn/res/g109/1089714/prof/s640x400/foody-upload-api-foody-mobile-an-abffc832-210727125819.jpeg",
     },
+    option: [],
   },
   {
     id: 6,
@@ -82,5 +120,6 @@ export const CommunityMenuData = [
       avatar:
         "https://images.foody.vn/res/g108/1071174/prof/s640x400/foody-upload-api-foody-mobile-foody-upload-api-foo-210329110642.jpg",
     },
+    option: [],
   },
 ];

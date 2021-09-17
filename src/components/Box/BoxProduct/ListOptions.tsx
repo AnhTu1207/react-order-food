@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import currency from "currency.js";
 import {
   Collapse,
   List,
@@ -16,10 +17,13 @@ import {
   ListItemOptionTitle,
   ListItemPrice,
 } from "./styles";
+import { IOption } from "models/types";
 
-interface IProps {}
+interface IProps {
+  option: IOption;
+}
 
-const ListOptions: FC<IProps> = ({}: IProps) => {
+const ListOptions: FC<IProps> = ({ option }: IProps) => {
   const [open, setOpen] = React.useState(true);
   const [checked, setChecked] = React.useState([0]);
 
@@ -42,43 +46,37 @@ const ListOptions: FC<IProps> = ({}: IProps) => {
   return (
     <div>
       <CustomListItem button onClick={handleClick}>
-        <ListItemOptionTitle primary="Inbox" />
+        <ListItemOptionTitle primary={option.label} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </CustomListItem>
+
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List>
-          {[0, 1, 2, 3].map((value) => {
-            const labelId = `checkbox-list-label-${value}`;
-
-            return (
-              <ListItem
-                key={value}
-                role={undefined}
-                dense
-                button
-                onClick={handleToggle(value)}
-              >
-                <CustomListItemIcon>
-                  <CustomCheckBox
-                    edge="start"
-                    checked={checked.indexOf(value) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ "aria-labelledby": labelId }}
-                  />
-                </CustomListItemIcon>
-                <ListItemOptionName
-                  id={labelId}
-                  primary={`Line itemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm ${
-                    value + 1
-                  }`}
+          {option.list.map((list, index) => (
+            <ListItem
+              key={list.id}
+              role={undefined}
+              dense
+              button
+              onClick={handleToggle(index)}
+            >
+              <CustomListItemIcon>
+                <CustomCheckBox
+                  edge="start"
+                  checked={checked.indexOf(index) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                  value={list.name}
                 />
-                <ListItemSecondaryAction>
-                  <ListItemPrice primary="$90.00" />
-                </ListItemSecondaryAction>
-              </ListItem>
-            );
-          })}
+              </CustomListItemIcon>
+
+              <ListItemOptionName primary={list.name} />
+
+              <ListItemSecondaryAction>
+                <ListItemPrice primary={`${currency(list.price).format()}`} />
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
         </List>
       </Collapse>
       <CustomDivider />

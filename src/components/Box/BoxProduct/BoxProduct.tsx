@@ -28,7 +28,6 @@ interface IProps {
 const BoxProduct: FC<IProps> = ({ product }: IProps) => {
   const classes = useStyles();
   const { i18n } = useTranslations();
-  const price = currency(product.price).format();
 
   return (
     <Card className={classes.root}>
@@ -37,10 +36,11 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
         image={product.avatar}
         title={product.name}
       />
+
       <Box className={classes.detail}>
         <NameOfFood noWrap>{product.name}</NameOfFood>
         <FoodDetail noWrap>{product.detail}</FoodDetail>
-        <Price noWrap>{price}</Price>
+        <Price noWrap>{currency(product.price).format()}</Price>
         <CustomCardHeader
           avatar={
             <Avatar
@@ -54,7 +54,7 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
       </Box>
 
       <CardActions className={classes.action}>
-        <DialogOption product={product} />
+        {product.option.length > 0 && <DialogOption product={product} />}
         <Button size="small" className={classes.addBtn}>
           {i18n.t("home_page.button_add")}
         </Button>

@@ -8,6 +8,17 @@ export interface IRoute {
   Component: React.ComponentType<any>;
 }
 
+export interface IOption {
+  id: number;
+  label: string;
+  list: IList[];
+}
+interface IList {
+  id: number;
+  name: string;
+  price: number;
+}
+
 export interface IProduct {
   id: number;
   name: string;
@@ -18,4 +29,5 @@ export interface IProduct {
     name: string;
     avatar: string;
   };
+  option: IOption[];
 }
