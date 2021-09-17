@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 
 import { useTranslations } from "hooks";
+import DialogOption from "./DialogOption";
 import { IProduct } from "models/types";
 
 import {
@@ -20,7 +21,6 @@ import {
   FoodDetail,
   RestaurantName,
 } from "./styles";
-import DialogOption from "./DialogOption";
 
 interface IProps {
   product: IProduct;

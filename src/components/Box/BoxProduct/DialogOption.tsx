@@ -4,6 +4,10 @@ import DialogTitle from "./DialogTitle";
 import React, { FC } from "react";
 import currency from "currency.js";
 
+import { useTranslations } from "hooks";
+import ListOptions from "./ListOptions";
+import { IProduct } from "models/types";
+
 import {
   DialogContent,
   DialogActions,
@@ -15,9 +19,6 @@ import {
   CustomCardHeader,
   RestaurantName,
 } from "./styles";
-import ListOptions from "./ListOptions";
-import { IProduct } from "models/types";
-import { useTranslations } from "hooks";
 
 interface IProps {
   product: IProduct;

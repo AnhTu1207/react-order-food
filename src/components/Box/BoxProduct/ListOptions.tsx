@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 
+import { IFoodOption } from "models/types";
 import {
   CustomCheckBox,
   CustomDivider,
@@ -17,7 +18,6 @@ import {
   ListItemOptionTitle,
   ListItemPrice,
 } from "./styles";
-import { IFoodOption } from "models/types";
 
 interface IProps {
   option: IFoodOption;
