@@ -23,5 +23,8 @@ export default {
     title: "Home",
     button_add: "Add",
     community_menu_title: "Community Menu",
+    contents_title: "Đơn hàng của bạn sẽ được bảo quản như thế nào?",
+    contents_detail:
+      "Order Portal sẽ bảo quản đơn hàng của bạn bằng túi & thùng để chống nắng, mưa, giữ nhiệt... trên đường đi một cách tốt nhất",
   },
 };

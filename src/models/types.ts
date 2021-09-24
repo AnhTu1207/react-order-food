@@ -17,3 +17,10 @@ export interface IProduct {
   imgUrlFood: string;
   avatarRestaurant: string;
 }
+
+export interface IContentHome {
+  id: number;
+  imgUrl: string;
+  decriptions: string;
+  decriptionsDetail: string;
+}
