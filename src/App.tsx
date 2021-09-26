@@ -1,15 +1,14 @@
-import { createBrowserHistory } from "history";
 import { axiosBaseConfig, setUpInterceptors } from "utils";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { MainRoute, AuthRoute } from "navigation";
 
-import "./App.css";
 import { PrivateRoute } from "components";
 
-const history = createBrowserHistory();
+import "./App.css";
+
 axiosBaseConfig();
-setUpInterceptors(history);
+setUpInterceptors();
 
 function App() {
   return (

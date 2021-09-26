@@ -2,8 +2,8 @@
 export default {
   login: {
     button_title: "Login",
-    email_input_placeholder: "Email",
-    password_input_placeholder: "Password",
+    email_input_placeholder: "email or username",
+    password_input_placeholder: "password",
     title: "Login",
     sub_text: "Don't have an account?",
     sign_up_link: "Sign up",

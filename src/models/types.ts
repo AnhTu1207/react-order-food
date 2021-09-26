@@ -17,3 +17,14 @@ export interface IProduct {
   imgUrlFood: string;
   avatarRestaurant: string;
 }
+
+export type User = {
+  id: string;
+  username: string;
+  email: string;
+  avatar: null | string;
+  fb_id: null | string;
+  createdAt: string;
+  updatedAt: string;
+  accessToken: string;
+};
