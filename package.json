@@ -20,6 +20,7 @@
     "@types/react-router-dom": "^5.1.8",
     "@types/react-swipeable-views": "^0.13.1",
     "axios": "^0.21.1",
+    "currency.js": "^2.0.4",
     "global": "^4.4.0",
     "heroku": "^7.56.1",
     "history": "^5.0.1",

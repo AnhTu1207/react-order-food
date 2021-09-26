@@ -1,4 +1,9 @@
-import { styled } from "@material-ui/core/styles";
+import {
+  createStyles,
+  Theme,
+  makeStyles,
+  styled,
+} from "@material-ui/core/styles";
 
 import { Chip } from "@material-ui/core";
 
@@ -13,8 +18,7 @@ export const Wrapper = styled("div")({
   },
   "&::-webkit-scrollbar-thumb": {
     background: "#e0e0e0",
-  }
-
+  },
 });
 
 export const ChipStyled = styled(Chip)({
@@ -29,5 +33,21 @@ export const ChipStyled = styled(Chip)({
     background: "var(--color-primary)",
     color: "#FFF",
   },
+  "&:focus": {
+    backgroundColor: "var(--color-primary)",
+    color: "#FFF",
+  },
 });
 
+export const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    onActive: {
+      background: "var(--color-primary)",
+      color: "#FFF",
+      "&:focus": {
+        backgroundColor: "var(--color-primary)",
+        color: "#FFF",
+      },
+    },
+  })
+);
