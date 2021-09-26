@@ -59,6 +59,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       "&& .MuiCardHeader-root": {
         padding: 0,
       },
+      [theme.breakpoints.down("md")]: {
+        flexBasic: "35%",
+      },
       [theme.breakpoints.down("sm")]: {
         flex: 0,
       },
