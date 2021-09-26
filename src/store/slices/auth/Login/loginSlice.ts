@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "store";
+import { axiosSetAuthToken } from "utils";
 import { login } from "api/auth";
 
 interface InitialState {
@@ -24,6 +25,7 @@ export const loginSlice = createSlice({
       if (action.payload) {
         state.token = action.payload.data.accessToken;
         state.userId = action.payload.data.id;
+        axiosSetAuthToken(action.payload.data.accessToken);
       }
     });
   },

@@ -51,10 +51,10 @@ export const InputField = styled(TextField)({
     width: "100%",
   },
   "& div:after": {
-    borderBottom: "1px solid #000",
+    borderBottom: "none",
   },
   "& div:before": {
-    borderBottom: "1px solid #000",
+    borderBottom: "none",
   },
 });
 

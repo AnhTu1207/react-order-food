@@ -19,6 +19,7 @@ function App() {
             exact={item.exact}
             render={(props) => <item.Component {...props} />}
             path={item.path}
+            key={item.path}
           />
         ))}
         {MainRoute.map((item) => (
@@ -26,6 +27,7 @@ function App() {
             exact={item.exact}
             path={item.path}
             render={(props) => <PrivateRoute><item.Component {...props} /></PrivateRoute>}
+            key={item.path}
           />
         ))}
       </Switch>
