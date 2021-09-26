@@ -100,7 +100,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         display: "flex",
         width: "100%",
         justifyContent: "space-between",
-        aligItems: "center",
+        alignItems: "center",
       },
       [theme.breakpoints.down("xs")]: {
         borderTop: "1px solid #ebebeb",
@@ -114,10 +114,13 @@ export const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       [theme.breakpoints.down("sm")]: {
         justifyContent: "flex-end",
-        aligItems: "center",
+        alignItems: "center",
       },
       [theme.breakpoints.down("xs")]: {
         borderTop: "1px solid #ebebeb",
+        flex: "0",
+        display: "flex",
+        width: "100%",
       },
     },
   })
@@ -160,6 +163,10 @@ export const dialogOptionStyles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.down("md")]: {
         padding: 10,
+      },
+      [theme.breakpoints.down("xs")]: {
+        padding: 5,
+        fontSize: 18,
       },
     },
     dialogImg: {
@@ -266,7 +273,7 @@ export const RestaurantName = styled(withTheme(Typography))((props) => ({
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
   fontSize: 15,
-  width: "80%",
+  width: "95%",
 }));
 
 export const FoodDetail = styled(withTheme(Typography))((props) => ({
