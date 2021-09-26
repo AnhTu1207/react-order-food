@@ -20,16 +20,16 @@ export const axiosRemoveAuthToken = () => {
   delete axios.defaults.headers.common.Authorization;
 };
 
-export const setUpInterceptors = (history: any) => {
+export const setUpInterceptors = () => {
   axios.interceptors.response.use(
     function (response) {
       return response;
     },
     function (error) {
       if (error.response.status === 401) {
-        history.push("/login");
         axiosRemoveAuthToken();
         sessionStorage.clear();
+        window.location.href = `${Config.APP_URL}/login`;
       }
       return Promise.reject(error);
     }

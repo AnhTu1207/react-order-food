@@ -3,7 +3,7 @@ import {
   Button,
   LinearProgress,
   Typography,
-  Input,
+  TextField,
   CircularProgress,
 } from "@material-ui/core";
 import { Alert } from '@material-ui/lab';
@@ -42,7 +42,7 @@ export const ProcessLine = styled(LinearProgress)({
   },
 });
 
-export const InputField = styled(Input)({
+export const InputField = styled(TextField)({
   display: "block",
   width: "100%",
   marginBottom: 18,
@@ -50,11 +50,11 @@ export const InputField = styled(Input)({
     display: "block",
     width: "100%",
   },
-  "&:after": {
-    borderBottom: "2px solid var(--color-button-hover)",
+  "& div:after": {
+    borderBottom: "1px solid #000",
   },
-  "&:before": {
-    borderBottom: "none",
+  "& div:before": {
+    borderBottom: "1px solid #000",
   },
 });
 
