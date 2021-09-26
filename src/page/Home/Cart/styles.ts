@@ -42,9 +42,12 @@ export const CustomDivider = styled(Divider)({
   width: "100%",
 });
 
-export const DrawerContentWrapper = styled("div")({
-  width: 250,
+export const DrawerContentWrapper = styled("div")((props) => ({
+  width: 400,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-});
+  [props.theme.breakpoints.down("xs")]: {
+    width: 250,
+  },
+}));

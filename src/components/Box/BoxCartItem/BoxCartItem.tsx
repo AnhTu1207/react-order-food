@@ -24,7 +24,9 @@ const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
   const classes = useStyles();
   const price = currency(cartItem.price).format();
   return (
-    <Card className={classes.root} style={isCartDrawer ? { width: 230 } : {}}>
+    <Card
+      className={isCartDrawer ? classes.rootWithPx : classes.rootWithFullWidth}
+    >
       <CustomCardHeader
         className={classes.restaurantBox}
         avatar={
@@ -38,7 +40,7 @@ const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
           <RestaurantName noWrap>{cartItem.restaurantName}</RestaurantName>
         }
       />
-      <CustomCartContent style={isCartDrawer ? { display: "block" } : {}}>
+      <CustomCartContent display={isCartDrawer ? "block" : "flex"}>
         <CustomCardHeader
           className={classes.foodBox}
           avatar={

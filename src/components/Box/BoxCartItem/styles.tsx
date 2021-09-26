@@ -15,7 +15,14 @@ import {
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    rootWithPx: {
+      marginTop: 15,
+      width: 380,
+      [theme.breakpoints.down("xs")]: {
+        width: 230,
+      },
+    },
+    rootWithFullWidth: {
       marginTop: 15,
       width: "100%",
     },
@@ -56,24 +63,31 @@ export const RestaurantName = styled(Typography)({
 export const CustomCardHeader = styled(CardHeader)({
   width: "100%",
   "&& .MuiCardHeader-content": {
-    width: "70%",
+    width: "80%",
   },
 });
 
-export const CustomCartContent = styled(withTheme(CardContent))((props) => ({
-  borderBottom: "1px solid #d8d8d8",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  "&& .MuiCardHeader-root": {
-    [props.theme.breakpoints.down("md")]: {
-      width: "60%",
+interface CartContentProps {
+  display: string;
+  theme: Theme;
+}
+
+export const CustomCartContent = styled(withTheme(CardContent))(
+  ({ ...props }: CartContentProps) => ({
+    borderBottom: "1px solid #d8d8d8",
+    justifyContent: "space-between",
+    alignItems: "center",
+    display: props.display,
+    "&& .MuiCardHeader-root": {
+      [props.theme.breakpoints.down("xs")]: {
+        width: "90%",
+      },
     },
-  },
-  [props.theme.breakpoints.down("xs")]: {
-    display: "block",
-  },
-}));
+    [props.theme.breakpoints.down("xs")]: {
+      display: "block",
+    },
+  })
+);
 
 export const Quantity = styled(Typography)({
   display: "inline",
