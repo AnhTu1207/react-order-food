@@ -51,7 +51,9 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
               className={classes.avatar}
             ></Avatar>
           }
-          title={<RestaurantName noWrap>{product.nameOfRestaurant}</RestaurantName>}
+          title={
+            <RestaurantName noWrap>{product.nameOfRestaurant}</RestaurantName>
+          }
         />
       </Box>
 

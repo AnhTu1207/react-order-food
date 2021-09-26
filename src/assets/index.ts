@@ -1,3 +1,3 @@
-import { TagsList, CommunityMenuData } from "./temporaryData";
+import { TagsList, CommunityMenuData, ContentHomeData } from "./temporaryData";
 
-export { TagsList, CommunityMenuData };
+export { TagsList, CommunityMenuData, ContentHomeData };

@@ -20,7 +20,7 @@ export interface IProduct {
 
 export interface IContentHome {
   id: number;
-  imgUrl: string;
+  imgUrlContent: string;
   decriptions: string;
   decriptionsDetail: string;
 }
