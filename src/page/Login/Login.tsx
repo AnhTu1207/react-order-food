@@ -45,7 +45,14 @@ const Login: FC = () => {
     },
     validationSchema: loginValidationSchema,
     onSubmit: (values) => {
-      sendLoginRequest(values);
+      if (values.username.includes("@")) {
+        sendLoginRequest({
+          email: values.username,
+          password: values.password,
+        });
+      } else {
+        sendLoginRequest(values);
+      }
     }
   });
 
