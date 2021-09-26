@@ -15,15 +15,13 @@ const DialogTitle: FC<IProps> = ({ id, onClose, children }: IProps) => {
   return (
     <CustomMuiDialogTitle>
       <Typography className={classes.dialogTitle}>{children}</Typography>
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={onClose}
-        >
-          <Close />
-        </IconButton>
-      ) : null}
+      <IconButton
+        aria-label="close"
+        className={classes.closeButton}
+        onClick={onClose}
+      >
+        <Close />
+      </IconButton>
     </CustomMuiDialogTitle>
   );
 };

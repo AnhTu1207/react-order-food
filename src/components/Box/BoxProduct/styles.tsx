@@ -34,7 +34,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       padding: 5,
       [theme.breakpoints.down("xs")]: {
         flexDirection: "column",
-        height: 300,
+        height: 380,
       },
     },
     avatar: {
@@ -58,9 +58,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       margin: "auto",
       "&& .MuiCardHeader-root": {
         padding: 0,
-      },
-      [theme.breakpoints.down("md")]: {
-        flexBasic: "35%",
       },
       [theme.breakpoints.down("sm")]: {
         flex: 0,
@@ -113,9 +110,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "flex-end",
       alignItems: "center",
       [theme.breakpoints.down("sm")]: {
-        flex: "0",
-        display: "flex",
-        width: "100%",
         justifyContent: "flex-end",
         aligItems: "center",
       },

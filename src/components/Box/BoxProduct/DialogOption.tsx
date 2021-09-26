@@ -89,7 +89,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
           </Box>
 
           <Button autoFocus onClick={handleClose} className={classes.addBtn}>
-            ADD 1 TO CART $11.48
+            {i18n.t("home_page.add_to_cart")}
           </Button>
         </DialogActions>
       </CustomDialog>

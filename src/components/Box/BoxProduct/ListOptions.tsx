@@ -27,7 +27,7 @@ const ListOptions: FC<IProps> = ({ option }: IProps) => {
   const [open, setOpen] = React.useState(true);
   const [checked, setChecked] = React.useState([0]);
 
-  const handleToggle = (value: any) => () => {
+  const handleToggle = (value: number) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
