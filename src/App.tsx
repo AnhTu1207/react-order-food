@@ -1,15 +1,14 @@
-import { createBrowserHistory } from "history";
 import { axiosBaseConfig, setUpInterceptors } from "utils";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { MainRoute, AuthRoute } from "navigation";
 
-import "./App.css";
 import { PrivateRoute } from "components";
 
-const history = createBrowserHistory();
+import "./App.css";
+
 axiosBaseConfig();
-setUpInterceptors(history);
+setUpInterceptors();
 
 function App() {
   return (
@@ -20,6 +19,7 @@ function App() {
             exact={item.exact}
             render={(props) => <item.Component {...props} />}
             path={item.path}
+            key={item.path}
           />
         ))}
         {MainRoute.map((item) => (
@@ -27,6 +27,7 @@ function App() {
             exact={item.exact}
             path={item.path}
             render={(props) => <PrivateRoute><item.Component {...props} /></PrivateRoute>}
+            key={item.path}
           />
         ))}
       </Switch>
