@@ -14,8 +14,8 @@ const ContentHome: FC<IProps> = ({ contenthome }: IProps) => {
         <Decriptions>{contenthome.decriptions}</Decriptions>
         <DecriptionsDetaial>{contenthome.decriptionsDetail}</DecriptionsDetaial>
         <Img>
-          {contenthome.imgUrlContent}
-          {/* <img src="https://shopeefood.vn/app/assets/img/Box-food-preservation-footer.png?82adfd2ec19091256d09a94dac77aaba" /> */}
+          {/* {contenthome.imgUrlContent} */}
+          <img src="https://shopeefood.vn/app/assets/img/Box-food-preservation-footer.png?82adfd2ec19091256d09a94dac77aaba" />
         </Img>
       </BoxContent>
     </div>

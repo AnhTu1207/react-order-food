@@ -2,7 +2,7 @@ import { Box, styled, Typography, withTheme } from "@material-ui/core";
 
 export const BoxContent = styled(Box)({
   width: "90%",
-  marginTop: "25px",
+  marginTop: "60px",
   marginLeft: "5%",
   backgroundColor: "#fff",
   boxShadow: " 0px 3px 8px rgba(0, 0, 0, 0.24)",

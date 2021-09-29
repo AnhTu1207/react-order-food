@@ -1,6 +1,5 @@
-import { Grid } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import { ContentHome } from "components/Content";
-// import { map } from "lodash";
 import { FC } from "react";
 import { BoxStyled } from "./style";
 
@@ -10,13 +9,13 @@ const CommunityContent: FC = () => {
   return (
     <div>
       <BoxStyled>
-        <Grid container spacing={6}>
+        <Box>
           {ContentHomeData.map((item, index) => (
             <Grid item key={index}>
               <ContentHome contenthome={item} />
             </Grid>
           ))}
-        </Grid>
+        </Box>
       </BoxStyled>
     </div>
   );
