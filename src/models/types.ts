@@ -8,14 +8,28 @@ export interface IRoute {
   Component: React.ComponentType<any>;
 }
 
+export interface IFoodOption {
+  id: number;
+  label: string;
+  list: IList[];
+}
+interface IList {
+  id: number;
+  name: string;
+  price: number;
+}
+
 export interface IProduct {
   id: number;
-  nameOfFood: string;
-  nameOfRestaurant: string;
+  name: string;
+  avatar: string;
   price: number;
-  foodDetail: string;
-  imgUrlFood: string;
-  avatarRestaurant: string;
+  detail: string;
+  store: {
+    name: string;
+    avatar: string;
+  };
+  option: IFoodOption[];
 }
 
 export type User = {
