@@ -44,6 +44,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       borderRadius: 8,
+      border: "1px",
       flex: "1 1 20%",
       [theme.breakpoints.down("xs")]: {
         flexBasic: "50%",
