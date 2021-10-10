@@ -12,7 +12,7 @@ export const Decriptions = styled(Typography)({
   fontSize: "22px",
   width: "90%",
   fontWeight: "bold",
-  lineHeight: "60px",
+  padding: "15px",
   marginLeft: "5%",
   letterSpacing: "1px",
 });
@@ -27,4 +27,7 @@ export const Img = styled(withTheme(Box))((props) => ({
   marginTop: "25px",
   width: "90%",
   marginLeft: "5%",
+  '@media (maxWidth: "720px")': {
+    width: "220px",
+  },
 }));

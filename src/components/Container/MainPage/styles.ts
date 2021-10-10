@@ -12,10 +12,14 @@ import {
   AppBar,
   withTheme,
   Paper,
+  Box,
+  Typography,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import InstagramIcon from "@material-ui/icons/Instagram";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -147,4 +151,63 @@ export const Content = styled(withTheme(Paper))((props) => ({
 
 export const CustomAppbar = styled(AppBar)({
   background: "#FFF",
+});
+
+export const CustomFooter = styled(Box)({
+  width: "83%",
+  marginLeft: "8.3%",
+  marginTop: "150px",
+});
+
+export const CustomFooter_Element = styled(Box)({
+  width: "19%",
+  paddingLeft: "5%",
+  // marginLeft: "4%",
+  // background: "#FFF",
+  fontSize: "18px",
+  fontWeight: "bold",
+  marginTop: "20px",
+  float: "left",
+});
+
+export const CustomTitle = styled(Box)({
+  marginTop: "60px",
+});
+
+export const Title_company = styled(Typography)({
+  fontSize: "15px",
+  color: "#4e88ff",
+  marginTop: "5px",
+});
+
+export const Title_Portal = styled(Typography)({
+  fontSize: "15px",
+  marginTop: "5px",
+  color: "#BDBDBD",
+});
+
+export const CustomFacebookIcon = styled(FacebookIcon)({
+  marginLeft: "24%",
+  marginTop: "5px",
+});
+
+export const CustomInstagramIcon = styled(InstagramIcon)({
+  marginLeft: "5%",
+});
+
+export const CustomTitleStyle = styled(Typography)({
+  textAlign: "right",
+  fontSize: "18px",
+  fontWeight: "bold",
+});
+
+export const Title_Portal_Style = styled(Typography)({
+  fontSize: "15px",
+  marginTop: "50px",
+  color: "#BDBDBD",
+  textAlign: "right",
+});
+
+export const ClearBox = styled(Box)({
+  clear: "both",
 });

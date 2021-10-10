@@ -23,8 +23,22 @@ export default {
     title: "Home",
     button_add: "Add",
     community_menu_title: "Community Menu",
-    contents_title: "Đơn hàng của bạn sẽ được bảo quản như thế nào?",
-    contents_detail:
-      "Order Portal sẽ bảo quản đơn hàng của bạn bằng túi & thùng để chống nắng, mưa, giữ nhiệt... trên đường đi một cách tốt nhất",
+  },
+  footer: {
+    title_company: "Công ty",
+    title_company_detail_1: "Giới thiệu",
+    title_company_detail_2: "Trung tâm trợ giúp",
+    title_company_detail_3: "Quy chế",
+    title_company_detail_4: "Điều khoản sử dụng",
+    title_company_detail_5: "Bảo mật thông tin",
+    title_company_detail_6: "Giải quyết khuyết nại",
+    title_app: "Ứng dụng của Order Portal",
+    title_portal: "© 2021 Order Portal",
+    title_address: "Địa chỉ công ty",
+    title_address_detail_1: "Công Ty Cổ Phần Foody",
+    title_address_detail_2:
+      "Lầu G, Tòa nhà Jabes 1,số 244 đường Cống Quỳnh, phường Phạm Ngũ Lão, Quận 1, TPHCM",
+
+    title_pay: "Phương thức thanh toán",
   },
 };
