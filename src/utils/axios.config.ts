@@ -18,6 +18,7 @@ export const axiosSetAuthToken = (token: string) => {
 
 export const axiosRemoveAuthToken = () => {
   delete axios.defaults.headers.common.Authorization;
+  sessionStorage.clear();
 };
 
 export const setUpInterceptors = (history: any) => {
