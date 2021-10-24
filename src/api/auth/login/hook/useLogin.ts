@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../request";
 import { LoginResponse, LoginResponseError } from "../responseTypes";
 import { LoginRequestBody } from "../requestTypes";
+import { AppDispatch } from "store";
 
 export interface HookInterface {
   successCallback?: (data: LoginResponse) => void;
@@ -24,7 +25,7 @@ export const useLogin: HookType = ({
   pendingCallback: componentPendingCallback,
 }) => {
   const [isLoading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const runRequest = useCallback(
     (data: LoginRequestBody) => {
