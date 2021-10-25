@@ -1,5 +1,6 @@
 import {
   Badge,
+  Button,
   createStyles,
   Divider,
   makeStyles,
@@ -50,4 +51,23 @@ export const DrawerContentWrapper = styled("div")((props) => ({
   [props.theme.breakpoints.down("xs")]: {
     width: 250,
   },
+}));
+
+export const CheckoutButton = styled(Button)({
+  backgroundColor: "var(--color-primary)",
+  color: "#fff",
+  marginTop: 20,
+  "&:hover": {
+    backgroundColor: "var(--color-button-hover)",
+    transition: "0.5s",
+  },
+});
+
+export const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-start",
 }));

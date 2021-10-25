@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useDispatch } from "react-redux";
 import currency from "currency.js";
 import {
   Box,
@@ -10,6 +11,7 @@ import {
 } from "@material-ui/core";
 
 import { useTranslations } from "hooks";
+import { addToCart } from "store/slices";
 import DialogOption from "./DialogOption";
 import { IProduct } from "models/types";
 
@@ -28,41 +30,51 @@ interface IProps {
 
 const BoxProduct: FC<IProps> = ({ product }: IProps) => {
   const classes = useStyles();
+  const { id, avatar, name, detail, option, price, store } = product;
+
   const { i18n } = useTranslations();
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    const action = addToCart({
+      id,
+      product,
+      quantity: 1,
+    });
+    dispatch(action);
+  };
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={product.avatar}
-        title={product.name}
-      />
+      <CardMedia className={classes.media} image={avatar} title={name} />
 
       <Box className={classes.detail}>
-        <NameOfFood noWrap>{product.name}</NameOfFood>
-        <FoodDetail noWrap>{product.detail}</FoodDetail>
-        <Price noWrap>{currency(product.price).format()}</Price>
+        <NameOfFood noWrap>{name}</NameOfFood>
+        <FoodDetail noWrap>{detail}</FoodDetail>
+        <Price noWrap>{currency(price).format()}</Price>
         <CustomCardHeader
           avatar={
             <Avatar
-              alt={product.store.name}
-              src={product.store.avatar}
+              alt={store.name}
+              src={store.avatar}
               className={classes.avatar}
             ></Avatar>
           }
-          title={<RestaurantName noWrap>{product.store.name}</RestaurantName>}
+          title={<RestaurantName noWrap>{store.name}</RestaurantName>}
         />
       </Box>
 
       <CardActions
         className={
-          product.option.length > 0
-            ? classes.action
-            : classes.actionWithoutOptionBtn
+          option.length > 0 ? classes.action : classes.actionWithoutOptionBtn
         }
       >
-        {product.option.length > 0 && <DialogOption product={product} />}
-        <Button size="small" className={classes.addBtn}>
+        {option.length > 0 && <DialogOption product={product} />}
+        <Button
+          size="small"
+          className={classes.addBtn}
+          onClick={handleAddToCart}
+        >
           {i18n.t("home_page.button_add")}
         </Button>
       </CardActions>

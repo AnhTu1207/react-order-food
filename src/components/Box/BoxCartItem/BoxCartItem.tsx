@@ -1,8 +1,10 @@
 import { FC } from "react";
+import { useDispatch } from "react-redux";
 import currency from "currency.js";
 import { Avatar, Card, Typography } from "@material-ui/core";
 import { Add, DeleteOutline, Remove } from "@material-ui/icons";
 
+import { removeFormCart, minusQuantity, plusQuantity } from "store/slices";
 import {
   ActionBox,
   CustomCardHeader,
@@ -22,7 +24,32 @@ interface IProps {
 
 const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
   const classes = useStyles();
-  const price = currency(cartItem.price).format();
+  const dispatch = useDispatch();
+  const { product, quantity, id } = cartItem;
+  const { avatar, name, price, store } = product;
+  const formatPrice = currency(price).format();
+
+  const handlePlusQuantity = () => {
+    const action = plusQuantity({
+      id,
+      quantity: 1,
+    });
+    dispatch(action);
+  };
+
+  const handleMinusQuantity = () => {
+    const action = minusQuantity({
+      id,
+      quantity: 1,
+    });
+    dispatch(action);
+  };
+
+  const handleRemoveFormCart = () => {
+    const action = removeFormCart({ id });
+    dispatch(action);
+  };
+
   return (
     <Card
       className={isCartDrawer ? classes.rootWithPx : classes.rootWithFullWidth}
@@ -32,37 +59,31 @@ const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
         avatar={
           <Avatar
             className={classes.avataRestaurant}
-            alt={cartItem.restaurantName}
-            src={cartItem.avatarRestaurant}
+            alt={store.name}
+            src={store.avatar}
           />
         }
-        title={
-          <RestaurantName noWrap>{cartItem.restaurantName}</RestaurantName>
-        }
+        title={<RestaurantName noWrap>{store.name}</RestaurantName>}
       />
       <CustomCartContent display={isCartDrawer ? "block" : "flex"}>
         <CustomCardHeader
           className={classes.foodBox}
           avatar={
-            <Avatar
-              className={classes.imgFood}
-              alt={cartItem.foodName}
-              src={cartItem.imgUrlFood}
-            />
+            <Avatar className={classes.imgFood} alt={name} src={avatar} />
           }
-          title={<FoodName noWrap>{cartItem.foodName}</FoodName>}
-          subheader={<Typography>{price}</Typography>}
+          title={<FoodName noWrap>{name}</FoodName>}
+          subheader={<Typography>{formatPrice}</Typography>}
         />
 
         <ActionBox>
-          <CustomIconButton>
+          <CustomIconButton onClick={handleRemoveFormCart}>
             <DeleteOutline className={classes.icon} />
           </CustomIconButton>
-          <CustomIconButton>
+          <CustomIconButton onClick={handleMinusQuantity}>
             <Remove className={classes.icon} />
           </CustomIconButton>
-          <Quantity>{cartItem.quantity}</Quantity>
-          <CustomIconButton>
+          <Quantity>{quantity}</Quantity>
+          <CustomIconButton onClick={handlePlusQuantity}>
             <Add className={classes.icon} />
           </CustomIconButton>
         </ActionBox>

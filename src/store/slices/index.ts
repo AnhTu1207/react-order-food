@@ -1,3 +1,8 @@
 import { loginSlice, loginSelector } from "./auth";
+import { cartSlice } from "./cart";
 
-export { loginSlice, loginSelector }
+const { actions } = cartSlice;
+
+export const { addToCart, minusQuantity, plusQuantity, removeFormCart } =
+  actions;
+export { loginSlice, loginSelector, cartSlice };

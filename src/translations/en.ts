@@ -26,5 +26,6 @@ export default {
     menu_items: "Menu Item",
     store: "Store",
     add_to_cart: "Add To Cart",
+    check_out: "Check Out",
   },
 };

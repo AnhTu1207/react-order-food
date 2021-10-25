@@ -32,14 +32,10 @@ export interface IProduct {
   option: IFoodOption[];
 }
 
-export interface ICartItem{
+export interface ICartItem {
   id: number;
-  foodName: string;
-  restaurantName: string;
-  price: number;
+  product: IProduct;
   quantity: number;
-  imgUrlFood: string;
-  avatarRestaurant: string;
 }
 export type User = {
   id: string;
