@@ -47,7 +47,7 @@ const Drawer: FC<IProps> = ({ open, onClose, onOpen }: IProps) => {
             <BoxCartItem key={index} cartItem={item} isCartDrawer={true} />
           ))}
           {cartItems.length > 0 && (
-            <CheckoutButton fullWidth>
+            <CheckoutButton size="large">
               {i18n.t("home_page.check_out")}
             </CheckoutButton>
           )}

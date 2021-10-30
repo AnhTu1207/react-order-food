@@ -57,7 +57,8 @@ export const DrawerContentWrapper = styled("div")((props) => ({
 export const CheckoutButton = styled(Button)({
   backgroundColor: "var(--color-primary)",
   color: "#fff",
-  marginTop: 20,
+  marginTop: 25,
+  width: "95%",
   "&:hover": {
     backgroundColor: "var(--color-button-hover)",
     transition: "0.5s",
