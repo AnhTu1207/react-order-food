@@ -3,11 +3,12 @@ import {
   Button,
   createStyles,
   Divider,
+  IconButton,
   makeStyles,
   styled,
   Theme,
 } from "@material-ui/core";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
+import { ShoppingBasket, ChevronRight } from "@material-ui/icons";
 
 export const useStyle = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,7 +50,7 @@ export const DrawerContentWrapper = styled("div")((props) => ({
   flexDirection: "column",
   alignItems: "center",
   [props.theme.breakpoints.down("xs")]: {
-    width: 250,
+    width: "100vw",
   },
 }));
 
@@ -71,3 +72,19 @@ export const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-start",
 }));
+
+export const CloseButtonDrawer = styled(IconButton)({
+  position: "absolute",
+  right: 5,
+  "&:hover": {
+    backgroundColor: "var(--color-button-hover)",
+    transition: "0.5s",
+  },
+});
+
+export const CustomChevronRightIcon = styled(ChevronRight)({
+  "&:hover": {
+    color: "#FFF",
+    transition: "0.5s",
+  },
+});

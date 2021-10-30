@@ -1,12 +1,13 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { Button, IconButton, SwipeableDrawer } from "@material-ui/core";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { SwipeableDrawer } from "@material-ui/core";
+
 import { BoxCartItem } from "components/Box/BoxCartItem";
 
 import {
   CheckoutButton,
+  CloseButtonDrawer,
+  CustomChevronRightIcon,
   CustomDivider,
   DrawerContentWrapper,
   DrawerHeader,
@@ -26,10 +27,6 @@ const Drawer: FC<IProps> = ({ open, onClose, onOpen }: IProps) => {
   const { i18n } = useTranslations();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
-  // const handleDrawerClose = () => {
-  //   setOpen(false);
-  // };
-
   return (
     <div>
       <SwipeableDrawer
@@ -41,13 +38,9 @@ const Drawer: FC<IProps> = ({ open, onClose, onOpen }: IProps) => {
         <DrawerContentWrapper>
           <DrawerHeader>
             <CustomCartIcon />
-            <IconButton>
-              {theme.direction === "rtl" ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
+            <CloseButtonDrawer onClick={onClose}>
+              <CustomChevronRightIcon />
+            </CloseButtonDrawer>
           </DrawerHeader>
           <CustomDivider />
           {cartItems.map((item, index) => (

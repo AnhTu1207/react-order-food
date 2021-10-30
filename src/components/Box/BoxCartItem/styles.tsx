@@ -19,7 +19,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginTop: 15,
       width: 380,
       [theme.breakpoints.down("xs")]: {
-        width: 230,
+        width: "95vw",
       },
     },
     rootWithFullWidth: {
