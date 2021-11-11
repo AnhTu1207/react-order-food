@@ -16,6 +16,7 @@ export const CommunityMenuData = [
       {
         id: 1,
         label: "Topping",
+        type: "checkbox",
         list: [
           {
             id: 1,
@@ -27,11 +28,17 @@ export const CommunityMenuData = [
             name: "Thạch trái cây",
             price: 50,
           },
+          {
+            id: 3,
+            name: "Thạch rau cau",
+            price: 50,
+          },
         ],
       },
       {
         id: 2,
         label: "Đường",
+        type: "radio",
         list: [
           {
             id: 1,
@@ -42,6 +49,40 @@ export const CommunityMenuData = [
             id: 2,
             name: "100% đường",
             price: 0,
+          },
+        ],
+      },
+      {
+        id: 3,
+        label: "Đá",
+        type: "radio",
+        list: [
+          {
+            id: 1,
+            name: "50% đá",
+            price: 0,
+          },
+          {
+            id: 2,
+            name: "100% đá",
+            price: 0,
+          },
+        ],
+      },
+      {
+        id: 4,
+        label: "Cheese",
+        type: "checkbox",
+        list: [
+          {
+            id: 1,
+            name: "Chesse sua",
+            price: 90,
+          },
+          {
+            id: 2,
+            name: "Chesse trai cay",
+            price: 50,
           },
         ],
       },

@@ -1,7 +1,7 @@
 import { Box, Button, Avatar, IconButton } from "@material-ui/core";
 import { MoreHoriz, Add, Remove } from "@material-ui/icons";
 import DialogTitle from "./DialogTitle";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import currency from "currency.js";
 
 import { useTranslations } from "hooks";
@@ -28,6 +28,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
   const classes = dialogOptionStyles();
   const { i18n } = useTranslations();
   const [open, setOpen] = React.useState(false);
+  const [options, setOptions] = useState();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,6 +36,8 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
   const handleClose = () => {
     setOpen(false);
   };
+  console.log(options);
+
   return (
     <div>
       <IconButton onClick={handleClickOpen} className={classes.openBtn}>
@@ -73,7 +76,13 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
             title={<RestaurantName noWrap>{product.store.name}</RestaurantName>}
           />
           {product.option.map((option) => (
-            <ListOptions key={option.id} option={option} />
+            <ListOptions
+              key={option.id}
+              option={option}
+              optionReturn={(value: any) => {
+                setOptions(value);
+              }}
+            />
           ))}
         </DialogContent>
 
@@ -82,7 +91,11 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
             <IconButton className={classes.decreaseBtn}>
               <Remove className={classes.decreaseIcon} />
             </IconButton>
-            <input type="string" className={classes.quantity} value={1} />
+            <input
+              type="string"
+              className={classes.quantity}
+              defaultValue={1}
+            />
             <IconButton className={classes.increaseBtn}>
               <Add className={classes.increaseIcon} />
             </IconButton>

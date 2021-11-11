@@ -16,6 +16,9 @@ import {
   ListItemText,
   Checkbox,
   CheckboxProps,
+  FormControl,
+  RadioProps,
+  Radio,
 } from "@material-ui/core";
 
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -368,3 +371,16 @@ export const CustomCheckBox = withStyles({
   },
   checked: {},
 })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
+
+export const CustomRadio = withStyles({
+  root: {
+    "&$checked": {
+      color: "var(--color-primary)",
+    },
+  },
+  checked: {},
+})((props: RadioProps) => <Radio color="default" {...props} />);
+
+export const CustomFormControl = styled(FormControl)({
+  width: "100%",
+});

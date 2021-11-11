@@ -11,6 +11,7 @@ export interface IRoute {
 export interface IFoodOption {
   id: number;
   label: string;
+  type: string;
   list: IList[];
 }
 interface IList {
