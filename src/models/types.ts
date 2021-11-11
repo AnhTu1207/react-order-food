@@ -47,3 +47,10 @@ export type User = {
   updatedAt: string;
   accessToken: string;
 };
+
+export interface UserInfo {
+  id: string;
+  fullname: string;
+  address: string;
+  phoneNumber: string;
+}
