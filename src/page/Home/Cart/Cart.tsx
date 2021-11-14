@@ -3,9 +3,7 @@ import { IconButton } from "@material-ui/core";
 import { ShoppingBasket } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 
-import { CustomBadge, useStyle } from "./styles";
 import Drawer from "./Drawer";
-
 import { RootState } from "store";
 
 import { CustomBadge, useStyle } from "./styles";
