@@ -10,7 +10,7 @@ interface LoginRequestParams extends HookInterface {
   data: LoginRequestBody;
 }
 
-export const login = createAsyncThunk(
+export const login = createAsyncThunk<LoginResponse, LoginRequestParams, {}>(
   "auth/login",
   async ({
     data,

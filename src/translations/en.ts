@@ -23,5 +23,8 @@ export default {
     title: "Home",
     button_add: "Add",
     community_menu_title: "Community Menu",
+    menu_items: "Menu Item",
+    store: "Store",
+    add_to_cart: "Add To Cart",
   },
 };

@@ -7,11 +7,10 @@ import {
   CardActions,
   CardMedia,
   Avatar,
-  IconButton,
 } from "@material-ui/core";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import { useTranslations } from "hooks";
+import DialogOption from "./DialogOption";
 import { IProduct } from "models/types";
 
 import {
@@ -30,35 +29,39 @@ interface IProps {
 const BoxProduct: FC<IProps> = ({ product }: IProps) => {
   const classes = useStyles();
   const { i18n } = useTranslations();
-  const price = currency(product.price).format();
 
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={product.imgUrlFood}
-        title={product.nameOfFood}
+        image={product.avatar}
+        title={product.name}
       />
+
       <Box className={classes.detail}>
-        <NameOfFood noWrap>{product.nameOfFood}</NameOfFood>
-        <FoodDetail noWrap>{product.foodDetail}</FoodDetail>
-        <Price noWrap>{price}</Price>
+        <NameOfFood noWrap>{product.name}</NameOfFood>
+        <FoodDetail noWrap>{product.detail}</FoodDetail>
+        <Price noWrap>{currency(product.price).format()}</Price>
         <CustomCardHeader
           avatar={
             <Avatar
-              alt={product.nameOfRestaurant}
-              src={product.avatarRestaurant}
+              alt={product.store.name}
+              src={product.store.avatar}
               className={classes.avatar}
             ></Avatar>
           }
-          title={<RestaurantName noWrap>{product.nameOfRestaurant}</RestaurantName>}
+          title={<RestaurantName noWrap>{product.store.name}</RestaurantName>}
         />
       </Box>
 
-      <CardActions className={classes.action}>
-        <IconButton className={classes.detailBtn} aria-label="settings">
-          <MoreHorizIcon />
-        </IconButton>
+      <CardActions
+        className={
+          product.option.length > 0
+            ? classes.action
+            : classes.actionWithoutOptionBtn
+        }
+      >
+        {product.option.length > 0 && <DialogOption product={product} />}
         <Button size="small" className={classes.addBtn}>
           {i18n.t("home_page.button_add")}
         </Button>
