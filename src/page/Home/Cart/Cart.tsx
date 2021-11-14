@@ -5,7 +5,10 @@ import { useSelector } from "react-redux";
 
 import { CustomBadge, useStyle } from "./styles";
 import Drawer from "./Drawer";
+
 import { RootState } from "store";
+
+import { CustomBadge, useStyle } from "./styles";
 
 const Cart: FC = () => {
   const classes = useStyle();
