@@ -14,75 +14,75 @@ export const CommunityMenuData = [
     },
     option: [
       {
-        id: 1,
+        id: 1342342423,
         label: "Topping",
         type: "checkbox",
         list: [
           {
-            id: 1,
+            id: 13424234,
             name: "Trân châu đen",
             price: 90,
           },
           {
-            id: 2,
+            id: 222342342,
             name: "Thạch trái cây",
             price: 50,
           },
           {
-            id: 3,
+            id: 3243234,
             name: "Thạch rau cau",
             price: 50,
           },
         ],
       },
       {
-        id: 2,
+        id: 42424,
+        label: "Cheese",
+        type: "checkbox",
+        list: [
+          {
+            id: 179789,
+            name: "Chesse sua",
+            price: 90,
+          },
+          {
+            id: 27979,
+            name: "Chesse trai cay",
+            price: 50,
+          },
+        ],
+      },
+      {
+        id: 267567,
         label: "Đường",
         type: "radio",
         list: [
           {
-            id: 1,
+            id: 158769,
             name: "50% đường",
             price: 0,
           },
           {
-            id: 2,
+            id: 24356547,
             name: "100% đường",
             price: 0,
           },
         ],
       },
       {
-        id: 3,
+        id: 347569,
         label: "Đá",
         type: "radio",
         list: [
           {
-            id: 1,
+            id: 168457,
             name: "50% đá",
             price: 0,
           },
           {
-            id: 2,
+            id: 2478345,
             name: "100% đá",
             price: 0,
-          },
-        ],
-      },
-      {
-        id: 4,
-        label: "Cheese",
-        type: "checkbox",
-        list: [
-          {
-            id: 1,
-            name: "Chesse sua",
-            price: 90,
-          },
-          {
-            id: 2,
-            name: "Chesse trai cay",
-            price: 50,
           },
         ],
       },
