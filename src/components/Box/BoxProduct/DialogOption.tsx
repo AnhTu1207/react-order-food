@@ -1,3 +1,5 @@
+import React, { FC, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   Box,
   Button,
@@ -17,8 +19,13 @@ import {
   ExpandLess,
   ExpandMore,
 } from "@material-ui/icons";
-import React, { FC, useEffect, useState } from "react";
 import currency from "currency.js";
+
+import { useTranslations } from "hooks";
+import DialogTitle from "./DialogTitle";
+import { addToCart } from "store/slices";
+
+import { IProduct } from "models/types";
 
 import {
   DialogContent,
@@ -37,55 +44,63 @@ import {
   CustomRadio,
   ListItemOptionTitle,
   ListItemPrice,
+  Quantity,
 } from "./styles";
-
-import { useTranslations } from "hooks";
-import DialogTitle from "./DialogTitle";
-import { IProduct, IFoodOption, IList } from "models/types";
-
 interface IProps {
   product: IProduct;
 }
+interface IListItem {
+  [key: string]: boolean;
+}
 
-interface ListItem {
-  index: number;
-  value: boolean;
+interface IRadioState {
+  [key: string]: number;
+}
+
+interface IOptionState {
+  [key: string]: boolean;
+}
+
+interface ICheckboxState {
+  [key: string]: any;
 }
 
 const DialogOption: FC<IProps> = ({ product }: IProps) => {
   const classes = dialogOptionStyles();
   const { i18n } = useTranslations();
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
-  const [openListItem, setOpenListItem] = useState<any>({});
+  const [openListItem, setOpenListItem] = useState<IListItem>();
+  const [radioState, setRadioState] = useState<IRadioState>();
+  const [checkboxState, setCheckboxState] = useState<ICheckboxState>();
+  const [quantity, setQuantity] = useState<number>(1);
 
-  const [radioState, setRadioState] = useState<any>({});
-  const [checkboxState, setCheckboxState] = useState<any>(false);
-  const [optionState, setOptionState] = useState<Array<IList>>();
-
+  //Set list item state for the first time
   useEffect(() => {
     product.options.forEach((option, index) => {
-      setOpenListItem((preState: any) => ({
+      setOpenListItem((preState) => ({
         ...preState,
         [index]: true,
       }));
     });
   }, []);
 
+  //Set radio state and checkbox state for the first time
   useEffect(() => {
-    product.options.forEach((option, index) => {
+    product.options.forEach((option) => {
       if (option.type === "radio") {
-        setRadioState((preState: any) => ({
+        setRadioState((preState) => ({
           ...preState,
           [option.id]: option.list[0].id,
         }));
       }
 
       if (option.type === "checkbox") {
-        const result = option.list.map((item, index) => {
+        const result = option.list.map((item) => {
           return { [item.id]: false };
         });
-        setCheckboxState((preState: any) => ({
+        setCheckboxState((preState) => ({
           ...preState,
           [option.id]: result,
         }));
@@ -93,31 +108,101 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
     });
   }, []);
 
-  console.log(openListItem);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleRadioChange = (e: any, optionId: any) => {
-    const value = parseInt(e.target.value);
-    setRadioState((preState: any) => ({
+  const handleRadioChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    optionId: number
+  ) => {
+    const value = parseInt(event.target.value);
+    setRadioState((preState) => ({
       ...preState,
       [optionId]: value,
     }));
   };
 
-  const handleCheckboxChange = (index: any, optionId: any, e: any) => {
-    const listId = e.target.value;
+  const handleCheckboxChange = (
+    index: number,
+    optionId: number,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const listId = parseInt(e.target.value);
     const checked = e.target.checked;
 
-    const newCheckboxState = [...checkboxState[optionId]];
+    const newCheckboxState = [...checkboxState?.[optionId]];
     newCheckboxState[index][listId] = checked;
 
-    setCheckboxState((preState: any) => ({
+    setCheckboxState((preState) => ({
       ...preState,
       [optionId]: newCheckboxState,
     }));
+  };
+
+  const handleListItemChange = (index: number) => {
+    setOpenListItem((preState) => ({
+      ...preState,
+      [index]: !openListItem?.[index],
+    }));
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handlePlusQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+  const handleMinusQuantity = () => {
+    if (quantity <= 1) {
+      return;
+    }
+    setQuantity(quantity - 1);
+  };
+
+  const handleAddToCart = () => {
+    var optionState = [];
+    //RadioState
+    for (let optionId in radioState) {
+      const option = getListById(radioState[optionId], parseInt(optionId));
+      optionState.push(option);
+    }
+    // CheckboxState
+    for (let optionId in checkboxState) {
+      const checkedOption = checkboxState[optionId].filter(
+        (item: IOptionState) => {
+          return Object.values(item).every((v) => v === true);
+        }
+      );
+      checkedOption.forEach((o: IOptionState) => {
+        for (let listId in o) {
+          const option = getListById(parseInt(listId), parseInt(optionId));
+          optionState.push(option);
+        }
+      });
+    }
+
+    //Add To Cart
+    const action = addToCart({
+      id: product.id,
+      product,
+      quantity,
+      option: optionState,
+    });
+    dispatch(action);
+
+    setOpen(false);
+  };
+
+  const getListById = (listId: number, optionId: number) => {
+    var newList;
+    const newOption = product.options.filter(
+      (option) => option.id === optionId
+    );
+
+    for (let list of newOption[0].list) {
+      if (list.id === listId) {
+        newList = list;
+      }
+    }
+    return newList;
   };
 
   return (
@@ -166,29 +251,24 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
             <div>
               <CustomListItem
                 button
-                onClick={() => {
-                  setOpenListItem((preState: any) => ({
-                    ...preState,
-                    [index]: !openListItem[index],
-                  }));
-                }}
+                onClick={() => handleListItemChange(index)}
               >
                 <ListItemOptionTitle primary={option.label} />
-                {openListItem[index] ? <ExpandLess /> : <ExpandMore />}
+                {openListItem?.[index] ? <ExpandLess /> : <ExpandMore />}
               </CustomListItem>
 
-              <Collapse in={openListItem[index]} timeout="auto" unmountOnExit>
+              <Collapse in={openListItem?.[index]} timeout="auto" unmountOnExit>
                 <List>
                   <CustomFormControl>
                     {option.type === "radio" && (
                       <RadioGroup
                         name={option.label}
-                        value={radioState[option.id]}
-                        onChange={(e) => {
-                          handleRadioChange(e, option.id);
+                        value={radioState?.[option.id]}
+                        onChange={(event) => {
+                          handleRadioChange(event, option.id);
                         }}
                       >
-                        {option.list.map((list, index) => (
+                        {option.list.map((list) => (
                           <ListItem key={list.id}>
                             <CustomListItemIcon>
                               <FormControlLabel
@@ -217,8 +297,12 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
                                 value={list.id}
                                 control={
                                   <CustomCheckBox
-                                    onChange={(e) =>
-                                      handleCheckboxChange(index, option.id, e)
+                                    onChange={(event) =>
+                                      handleCheckboxChange(
+                                        index,
+                                        option.id,
+                                        event
+                                      )
                                     }
                                     name={list.name}
                                     value={list.id}
@@ -247,20 +331,26 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
 
         <DialogActions>
           <Box className={classes.boxQuantity}>
-            <IconButton className={classes.decreaseBtn}>
+            <IconButton
+              className={classes.decreaseBtn}
+              onClick={handleMinusQuantity}
+            >
               <Remove className={classes.decreaseIcon} />
             </IconButton>
-            <input
-              type="string"
-              className={classes.quantity}
-              defaultValue={1}
-            />
-            <IconButton className={classes.increaseBtn}>
+            <Quantity>{quantity}</Quantity>
+            <IconButton
+              className={classes.increaseBtn}
+              onClick={handlePlusQuantity}
+            >
               <Add className={classes.increaseIcon} />
             </IconButton>
           </Box>
 
-          <Button autoFocus onClick={handleClose} className={classes.addBtn}>
+          <Button
+            autoFocus
+            onClick={handleAddToCart}
+            className={classes.addBtn}
+          >
             {i18n.t("home_page.add_to_cart")}
           </Button>
         </DialogActions>

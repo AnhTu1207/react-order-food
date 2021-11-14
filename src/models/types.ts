@@ -37,6 +37,7 @@ export interface ICartItem {
   id: number;
   product: IProduct;
   quantity: number;
+  options: IFoodOption[];
 }
 export type User = {
   id: string;

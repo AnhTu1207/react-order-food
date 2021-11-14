@@ -242,7 +242,7 @@ export const dialogOptionStyles = makeStyles((theme: Theme) =>
       },
     },
     boxQuantity: {
-      width: "30%",
+      width: "25%",
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -383,4 +383,10 @@ export const CustomRadio = withStyles({
 
 export const CustomFormControl = styled(FormControl)({
   width: "100%",
+});
+
+export const Quantity = styled(Typography)({
+  display: "inline",
+  fontSize: 16,
+  textAlign: "center",
 });
