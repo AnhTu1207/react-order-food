@@ -30,7 +30,7 @@ interface IProps {
 
 const BoxProduct: FC<IProps> = ({ product }: IProps) => {
   const classes = useStyles();
-  const { id, avatar, name, detail, option, price, store } = product;
+  const { id, avatar, name, detail, options, price, store } = product;
 
   const { i18n } = useTranslations();
   const dispatch = useDispatch();
@@ -66,10 +66,10 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
 
       <CardActions
         className={
-          option.length > 0 ? classes.action : classes.actionWithoutOptionBtn
+          options.length > 0 ? classes.action : classes.actionWithoutOptionBtn
         }
       >
-        {option.length > 0 && <DialogOption product={product} />}
+        {options.length > 0 && <DialogOption product={product} />}
         <Button
           size="small"
           className={classes.addBtn}

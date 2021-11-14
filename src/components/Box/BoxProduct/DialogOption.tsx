@@ -41,15 +41,15 @@ import {
 
 import { useTranslations } from "hooks";
 import DialogTitle from "./DialogTitle";
-import { IProduct } from "models/types";
+import { IProduct, IFoodOption, IList } from "models/types";
 
 interface IProps {
   product: IProduct;
 }
-interface IList {
-  id: number;
-  name: string;
-  price: number;
+
+interface ListItem {
+  index: number;
+  value: boolean;
 }
 
 const DialogOption: FC<IProps> = ({ product }: IProps) => {
@@ -64,7 +64,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
   const [optionState, setOptionState] = useState<Array<IList>>();
 
   useEffect(() => {
-    product.option.forEach((o, index) => {
+    product.options.forEach((option, index) => {
       setOpenListItem((preState: any) => ({
         ...preState,
         [index]: true,
@@ -73,25 +73,27 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
   }, []);
 
   useEffect(() => {
-    product.option.forEach((o, index) => {
-      if (o.type === "radio") {
+    product.options.forEach((option, index) => {
+      if (option.type === "radio") {
         setRadioState((preState: any) => ({
           ...preState,
-          [o.id]: o.list[0].id,
+          [option.id]: option.list[0].id,
         }));
       }
 
-      if (o.type === "checkbox") {
-        const result = o.list.map((l, index) => {
-          return { [index]: true };
+      if (option.type === "checkbox") {
+        const result = option.list.map((item, index) => {
+          return { [item.id]: false };
         });
         setCheckboxState((preState: any) => ({
           ...preState,
-          [o.id]: result,
+          [option.id]: result,
         }));
       }
     });
   }, []);
+
+  console.log(openListItem);
 
   const handleClose = () => {
     setOpen(false);
@@ -105,22 +107,17 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
     }));
   };
 
-  const handleCheckboxChange = (index: any, optionId: any, listId: any) => {
-    const result = checkboxState[optionId].map((item: any, i: any) => {
-      if (i === index) {
-        return (item[index] = !item[index]);
-      }
-    });
-    console.log(result);
+  const handleCheckboxChange = (index: any, optionId: any, e: any) => {
+    const listId = e.target.value;
+    const checked = e.target.checked;
 
-    // console.log(listId);
+    const newCheckboxState = [...checkboxState[optionId]];
+    newCheckboxState[index][listId] = checked;
 
-    // console.log(checkboxState[optionId]);
-
-    // setCheckboxState({
-    //   ...checkboxState,
-    //   [optionId]: [index:{[index]: !index}],
-    // });
+    setCheckboxState((preState: any) => ({
+      ...preState,
+      [optionId]: newCheckboxState,
+    }));
   };
 
   return (
@@ -165,7 +162,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
             }
             title={<RestaurantName noWrap>{product.store.name}</RestaurantName>}
           />
-          {product.option.map((option, index) => (
+          {product.options.map((option, index) => (
             <div>
               <CustomListItem
                 button
@@ -220,16 +217,8 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
                                 value={list.id}
                                 control={
                                   <CustomCheckBox
-                                    checked={
-                                      checkboxState[list.id] &&
-                                      checkboxState[list.id][index][index]
-                                    }
-                                    onChange={() =>
-                                      handleCheckboxChange(
-                                        index,
-                                        option.id,
-                                        list.id
-                                      )
+                                    onChange={(e) =>
+                                      handleCheckboxChange(index, option.id, e)
                                     }
                                     name={list.name}
                                     value={list.id}

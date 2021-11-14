@@ -14,7 +14,7 @@ export interface IFoodOption {
   type: string;
   list: IList[];
 }
-interface IList {
+export interface IList {
   id: number;
   name: string;
   price: number;
@@ -30,7 +30,7 @@ export interface IProduct {
     name: string;
     avatar: string;
   };
-  option: IFoodOption[];
+  options: IFoodOption[];
 }
 
 export interface ICartItem {
