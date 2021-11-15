@@ -26,36 +26,44 @@ interface IProps {
 const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { product, quantity, id, cartOptions } = cartItem;
-  const { avatar, name, store } = product;
-
-  const [price, setPrice] = useState<number>(product.price);
-  const formatPrice = currency(price * quantity).format();
+  const { storeId, storeName, storeAvatar, products } = cartItem;
+  const [priceState, setPriceState] = useState<Array<number>>([]);
 
   useEffect(() => {
-    cartOptions?.forEach((option) => {
-      setPrice((prePrice) => prePrice + option.price);
+    products.forEach((product) => {
+      var optionPrice = 0;
+      if (product.cartOptions) {
+        product.cartOptions.forEach((option) => {
+          optionPrice += option.price;
+        });
+      }
+      setPriceState((preState) => ({
+        ...preState,
+        [product.id]: product.price + optionPrice,
+      }));
     });
   }, []);
 
-  const handlePlusQuantity = () => {
+  const handlePlusQuantity = (productId: number) => {
     const action = plusQuantity({
-      id,
+      storeId,
+      productId,
       quantity: 1,
     });
     dispatch(action);
   };
 
-  const handleMinusQuantity = () => {
+  const handleMinusQuantity = (productId: number) => {
     const action = minusQuantity({
-      id,
+      storeId,
+      productId,
       quantity: 1,
     });
     dispatch(action);
   };
 
-  const handleRemoveFormCart = () => {
-    const action = removeFormCart({ id });
+  const handleRemoveFormCart = (productId: number) => {
+    const action = removeFormCart({ storeId, productId });
     dispatch(action);
   };
 
@@ -68,41 +76,58 @@ const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
         avatar={
           <Avatar
             className={classes.avataRestaurant}
-            alt={store.name}
-            src={store.avatar}
+            alt={storeName}
+            src={storeAvatar}
           />
         }
-        title={<RestaurantName noWrap>{store.name}</RestaurantName>}
+        title={<RestaurantName noWrap>{storeName}</RestaurantName>}
       />
-      <CustomCartContent display={isCartDrawer ? "block" : "flex"}>
-        <CustomCardHeader
-          className={classes.foodBox}
-          avatar={
-            <Avatar className={classes.imgFood} alt={name} src={avatar} />
-          }
-          title={<FoodName noWrap>{name}</FoodName>}
-          subheader={<Typography>{formatPrice}</Typography>}
-        />
-        <OptionName noWrap>
-          {cartOptions
-            ?.map((option) => <>{option.name}</>)
-            .reduce((prev, curr) => (
-              <>{[prev, ",  ", curr]}</>
-            ))}
-        </OptionName>
-        <ActionBox>
-          <CustomIconButton onClick={handleRemoveFormCart}>
-            <DeleteOutline className={classes.icon} />
-          </CustomIconButton>
-          <CustomIconButton onClick={handleMinusQuantity}>
-            <Remove className={classes.icon} />
-          </CustomIconButton>
-          <Quantity>{quantity}</Quantity>
-          <CustomIconButton onClick={handlePlusQuantity}>
-            <Add className={classes.icon} />
-          </CustomIconButton>
-        </ActionBox>
-      </CustomCartContent>
+      {products?.map((product, index) => (
+        <CustomCartContent
+          display={isCartDrawer ? "block" : "flex"}
+          key={index}
+        >
+          <CustomCardHeader
+            className={classes.foodBox}
+            avatar={
+              <Avatar
+                className={classes.imgFood}
+                alt={product.name}
+                src={product.avatar}
+              />
+            }
+            title={<FoodName noWrap>{product.name}</FoodName>}
+            subheader={
+              <Typography>
+                {}
+                {currency(priceState[product.id] * product.quantity).format()}
+              </Typography>
+            }
+          />
+          {product.cartOptions && (
+            <OptionName noWrap>
+              {product.cartOptions
+                ?.map((option) => <>{option.name}</>)
+                .reduce((prev, curr) => (
+                  <>{[prev, ",  ", curr]}</>
+                ))}
+            </OptionName>
+          )}
+
+          <ActionBox>
+            <CustomIconButton onClick={() => handleRemoveFormCart(product.id)}>
+              <DeleteOutline className={classes.icon} />
+            </CustomIconButton>
+            <CustomIconButton onClick={() => handleMinusQuantity(product.id)}>
+              <Remove className={classes.icon} />
+            </CustomIconButton>
+            <Quantity>{product.quantity}</Quantity>
+            <CustomIconButton onClick={() => handlePlusQuantity(product.id)}>
+              <Add className={classes.icon} />
+            </CustomIconButton>
+          </ActionBox>
+        </CustomCartContent>
+      ))}
     </Card>
   );
 };

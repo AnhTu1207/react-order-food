@@ -114,5 +114,5 @@ export const ActionBox = styled(Box)({
 
 export const OptionName = styled(Typography)({
   fontSize: 13,
-  margin: "7px 0 10px 10px",
+  margin: "10px 0 5px 10px",
 });

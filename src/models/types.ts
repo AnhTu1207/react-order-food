@@ -35,10 +35,18 @@ export interface IProduct {
 }
 
 export interface ICartItem {
-  id: number;
-  product: IProduct;
-  quantity: number;
-  cartOptions: IList[];
+  storeId: number;
+  storeName: string;
+  storeAvatar: string;
+  products: {
+    id: number;
+    name: string;
+    avatar: string;
+    price: number;
+    detail: string;
+    quantity: number;
+    cartOptions: IList[];
+  }[];
 }
 
 export type User = {

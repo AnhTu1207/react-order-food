@@ -37,9 +37,17 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
 
   const handleAddToCart = () => {
     const action = addToCart({
-      id,
-      product,
-      quantity: 1,
+      storeId: store.id,
+      storeName: store.name,
+      storeAvatar: store.avatar,
+      products: {
+        id,
+        name,
+        avatar,
+        price,
+        detail,
+        quantity: 1,
+      },
     });
     dispatch(action);
   };

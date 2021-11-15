@@ -180,11 +180,20 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
     }
 
     //Add To Cart
+    const { id, name, avatar, detail, price, store } = product;
     const action = addToCart({
-      id: product.id,
-      product,
-      quantity,
-      cartOptions: optionState,
+      storeId: store.id,
+      storeName: store.name,
+      storeAvatar: store.avatar,
+      products: {
+        id,
+        name,
+        avatar,
+        price,
+        detail,
+        quantity,
+        cartOptions: optionState,
+      },
     });
     dispatch(action);
 
@@ -248,7 +257,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
             title={<RestaurantName noWrap>{product.store.name}</RestaurantName>}
           />
           {product.options.map((option, index) => (
-            <div>
+            <div key={index}>
               <CustomListItem
                 button
                 onClick={() => handleListItemChange(index)}

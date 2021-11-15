@@ -98,7 +98,7 @@ export const CommunityMenuData = [
     detail:
       "Day la mon an co suc hap dan doi voi tat ca cong dong hvsfe f wfaasf",
     store: {
-      id: 2,
+      id: 1,
       name: "Lạp Xưởng Tươi - Nghĩa Cai Lậy",
       avatar:
         "https://images.foody.vn/res/g109/1086178/prof/s640x400/file_restaurant_photo_kdri_16267-e566fcc3-210720095637.jpg",
