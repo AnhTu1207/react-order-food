@@ -111,3 +111,8 @@ export const ActionBox = styled(Box)({
   alignItems: "center",
   marginTop: 5,
 });
+
+export const OptionName = styled(Typography)({
+  fontSize: 13,
+  margin: "7px 0 10px 10px",
+});

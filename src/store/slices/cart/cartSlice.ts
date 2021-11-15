@@ -15,10 +15,18 @@ export const cartSlice = createSlice({
   name: "cart",
   reducers: {
     addToCart(state, action) {
-      const newItem = action.payload;
+      let newItem = action.payload;
       const index = state.cartItems.findIndex((x) => x.id === newItem.id);
       if (index >= 0) {
-        state.cartItems[index].quantity += newItem.quantity;
+        if (
+          JSON.stringify(newItem.cartOptions) ===
+          JSON.stringify(state.cartItems[index].cartOptions)
+        ) {
+          state.cartItems[index].quantity += newItem.quantity;
+        } else {
+          newItem.id = newItem.id + Math.random();
+          state.cartItems.push(newItem);
+        }
       } else {
         state.cartItems.push(newItem);
       }

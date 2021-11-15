@@ -27,6 +27,7 @@ export interface IProduct {
   price: number;
   detail: string;
   store: {
+    id: number;
     name: string;
     avatar: string;
   };
@@ -37,8 +38,9 @@ export interface ICartItem {
   id: number;
   product: IProduct;
   quantity: number;
-  options: IFoodOption[];
+  cartOptions: IList[];
 }
+
 export type User = {
   id: string;
   username: string;

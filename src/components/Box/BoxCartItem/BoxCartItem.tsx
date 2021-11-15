@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import currency from "currency.js";
 import { Avatar, Card, Typography } from "@material-ui/core";
@@ -14,6 +14,7 @@ import {
   Quantity,
   RestaurantName,
   useStyles,
+  OptionName,
 } from "./styles";
 import { ICartItem } from "models/types";
 
@@ -25,9 +26,17 @@ interface IProps {
 const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { product, quantity, id } = cartItem;
-  const { avatar, name, price, store } = product;
-  const formatPrice = currency(price).format();
+  const { product, quantity, id, cartOptions } = cartItem;
+  const { avatar, name, store } = product;
+
+  const [price, setPrice] = useState<number>(product.price);
+  const formatPrice = currency(price * quantity).format();
+
+  useEffect(() => {
+    cartOptions?.forEach((option) => {
+      setPrice((prePrice) => prePrice + option.price);
+    });
+  }, []);
 
   const handlePlusQuantity = () => {
     const action = plusQuantity({
@@ -74,7 +83,13 @@ const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
           title={<FoodName noWrap>{name}</FoodName>}
           subheader={<Typography>{formatPrice}</Typography>}
         />
-
+        <OptionName noWrap>
+          {cartOptions
+            ?.map((option) => <>{option.name}</>)
+            .reduce((prev, curr) => (
+              <>{[prev, ",  ", curr]}</>
+            ))}
+        </OptionName>
         <ActionBox>
           <CustomIconButton onClick={handleRemoveFormCart}>
             <DeleteOutline className={classes.icon} />

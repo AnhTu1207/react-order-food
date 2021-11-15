@@ -106,7 +106,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
         }));
       }
     });
-  }, []);
+  }, [open]);
 
   const handleRadioChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -184,7 +184,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
       id: product.id,
       product,
       quantity,
-      option: optionState,
+      cartOptions: optionState,
     });
     dispatch(action);
 
