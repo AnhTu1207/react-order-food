@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import { DialogActions, DialogContent } from "@material-ui/core";
 
+import { useTranslations } from "hooks";
+import { UserInfo } from "models/types";
+
 import {
   CustomDialog,
   CustomDialogContentText,
@@ -9,10 +12,6 @@ import {
   ErrorText,
   InputField,
 } from "./styles";
-
-import { useTranslations } from "hooks";
-import { UserInfo } from "models/types";
-
 import { UserInfoData } from "assets";
 
 interface IProps {
