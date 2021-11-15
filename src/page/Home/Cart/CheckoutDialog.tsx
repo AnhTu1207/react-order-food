@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { DialogActions, DialogContent } from "@material-ui/core";
 
 import { useTranslations } from "hooks";
-import { UserInfo } from "models/types";
 
+import { UserInfo } from "models/types";
 import {
   CustomDialog,
   CustomDialogContentText,
