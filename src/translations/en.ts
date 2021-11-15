@@ -27,5 +27,23 @@ export default {
     store: "Store",
     add_to_cart: "Add To Cart",
     check_out: "Check Out",
+    address_confirm_dialog: {
+      title: "Address Confirm",
+      description: "Please confirm the address for accurate delivery",
+      label: {
+        phone_number: "Phone Number",
+        address: "Address",
+        full_name: "Full Name",
+      },
+      button: {
+        cancel: "Cancel",
+        confirm: "confirm",
+      },
+      errors: {
+        phone_number: "Invalid phone number",
+        full_name: "Full Name must be more than 5 characters",
+        address: "Address must be more than 20 characters",
+      },
+    },
   },
 };

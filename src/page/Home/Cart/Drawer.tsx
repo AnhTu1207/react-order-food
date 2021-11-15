@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import { SwipeableDrawer } from "@material-ui/core";
 
+import { RootState } from "store";
 import { useTranslations } from "hooks";
 import { BoxCartItem } from "components/Box/BoxCartItem";
-import { RootState } from "store";
+import CheckoutDialog from "./CheckoutDialog";
 
 import {
   CheckoutButton,
@@ -25,6 +26,7 @@ interface IProps {
 const Drawer: FC<IProps> = ({ open, onClose, onOpen }: IProps) => {
   const { i18n } = useTranslations();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const [openDialog, setOpenDialog] = useState(false);
 
   return (
     <div>
@@ -46,9 +48,16 @@ const Drawer: FC<IProps> = ({ open, onClose, onOpen }: IProps) => {
             <BoxCartItem key={index} cartItem={item} isCartDrawer={true} />
           ))}
           {cartItems.length > 0 && (
-            <CheckoutButton size="large">
-              {i18n.t("home_page.check_out")}
-            </CheckoutButton>
+            <>
+              <CheckoutButton size="large" onClick={() => setOpenDialog(true)}>
+                {i18n.t("home_page.check_out")}
+              </CheckoutButton>
+              <CheckoutDialog
+                open={openDialog}
+                onClose={() => setOpenDialog(false)}
+                onOpen={() => {}}
+              />
+            </>
           )}
         </DrawerContentWrapper>
       </SwipeableDrawer>
