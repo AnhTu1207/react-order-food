@@ -10,8 +10,9 @@ import {
   Avatar,
 } from "@material-ui/core";
 
-import { useTranslations } from "hooks";
 import { addToCart } from "store/slices";
+
+import { useTranslations } from "hooks";
 import DialogOption from "./DialogOption";
 import { IProduct } from "models/types";
 

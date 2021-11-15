@@ -2,7 +2,9 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import { SwipeableDrawer } from "@material-ui/core";
 
+import { useTranslations } from "hooks";
 import { BoxCartItem } from "components/Box/BoxCartItem";
+import { RootState } from "store";
 
 import {
   CheckoutButton,
@@ -11,11 +13,8 @@ import {
   CustomDivider,
   DrawerContentWrapper,
   DrawerHeader,
+  CustomCartIcon,
 } from "./styles";
-
-import { RootState } from "store";
-import { CustomCartIcon } from "./styles";
-import { useTranslations } from "hooks";
 
 interface IProps {
   open: boolean;
