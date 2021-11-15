@@ -25,8 +25,6 @@ import { useTranslations } from "hooks";
 import DialogTitle from "./DialogTitle";
 import { addToCart } from "store/slices";
 
-import { IProduct } from "models/types";
-
 import {
   DialogContent,
   DialogActions,
@@ -46,6 +44,8 @@ import {
   ListItemPrice,
   Quantity,
 } from "./styles";
+import { IProduct } from "models/types";
+
 interface IProps {
   product: IProduct;
 }

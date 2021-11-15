@@ -11,11 +11,10 @@ import {
 } from "@material-ui/core";
 
 import { addToCart } from "store/slices";
-
 import { useTranslations } from "hooks";
 import DialogOption from "./DialogOption";
-import { IProduct } from "models/types";
 
+import { IProduct } from "models/types";
 import {
   useStyles,
   NameOfFood,
