@@ -4,6 +4,7 @@ import { SwipeableDrawer } from "@material-ui/core";
 
 import { RootState } from "store";
 import { useTranslations } from "hooks";
+
 import { BoxCartItem } from "components/Box/BoxCartItem";
 import CheckoutDialog from "./CheckoutDialog";
 

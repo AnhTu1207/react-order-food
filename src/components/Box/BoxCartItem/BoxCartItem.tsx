@@ -5,6 +5,8 @@ import { Avatar, Card, Typography } from "@material-ui/core";
 import { Add, DeleteOutline, Remove } from "@material-ui/icons";
 
 import { removeFormCart, minusQuantity, plusQuantity } from "store/slices";
+import { ICartItem } from "models/types";
+
 import {
   ActionBox,
   CustomCardHeader,
@@ -16,7 +18,6 @@ import {
   useStyles,
   OptionName,
 } from "./styles";
-import { ICartItem } from "models/types";
 
 interface IProps {
   cartItem: ICartItem;
