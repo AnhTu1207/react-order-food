@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { useSelector } from "react-redux";
-import { SwipeableDrawer } from "@material-ui/core";
+import { SwipeableDrawer, Typography } from "@material-ui/core";
 
 import { RootState } from "store";
 import { useTranslations } from "hooks";
@@ -45,11 +45,11 @@ const Drawer: FC<IProps> = ({ open, onClose, onOpen }: IProps) => {
             </CloseButtonDrawer>
           </DrawerHeader>
           <CustomDivider />
-          {cartItems.map((item, index) => (
-            <BoxCartItem key={index} cartItem={item} isCartDrawer={true} />
-          ))}
-          {cartItems.length > 0 && (
+          {cartItems.length > 0 ? (
             <>
+              {cartItems.map((item, index) => (
+                <BoxCartItem key={index} cartItem={item} isCartDrawer={true} />
+              ))}
               <CheckoutButton size="large" onClick={() => setOpenDialog(true)}>
                 {i18n.t("home_page.check_out")}
               </CheckoutButton>
@@ -59,6 +59,8 @@ const Drawer: FC<IProps> = ({ open, onClose, onOpen }: IProps) => {
                 onOpen={() => {}}
               />
             </>
+          ) : (
+            <Typography>Cart is empty</Typography>
           )}
         </DrawerContentWrapper>
       </SwipeableDrawer>

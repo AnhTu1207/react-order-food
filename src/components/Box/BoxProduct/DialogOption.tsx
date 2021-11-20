@@ -63,7 +63,7 @@ interface IOptionState {
 }
 
 interface ICheckboxState {
-  [key: string]: any;
+  [key: string]: IOptionState[];
 }
 
 const DialogOption: FC<IProps> = ({ product }: IProps) => {
@@ -128,7 +128,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
     const listId = parseInt(e.target.value);
     const checked = e.target.checked;
 
-    const newCheckboxState = [...checkboxState?.[optionId]];
+    const newCheckboxState = [...(checkboxState?.[optionId] as IOptionState[])];
     newCheckboxState[index][listId] = checked;
 
     setCheckboxState((preState) => ({
@@ -151,6 +151,7 @@ const DialogOption: FC<IProps> = ({ product }: IProps) => {
   const handlePlusQuantity = () => {
     setQuantity(quantity + 1);
   };
+
   const handleMinusQuantity = () => {
     if (quantity <= 1) {
       return;
