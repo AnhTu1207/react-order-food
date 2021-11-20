@@ -39,11 +39,6 @@ export default {
         cancel: "Cancel",
         confirm: "confirm",
       },
-      errors: {
-        phone_number: "Invalid phone number",
-        full_name: "Full Name must be more than 5 characters",
-        address: "Address must be more than 20 characters",
-      },
     },
   },
 };

@@ -1,17 +1,17 @@
-import { useForm } from "react-hook-form";
+import { useFormik } from "formik";
 import { DialogActions, DialogContent } from "@material-ui/core";
 
 import { useTranslations } from "hooks";
+import { addressConfirmValidationSchema } from "schemas";
 
-import { UserInfo } from "models/types";
 import {
   CustomDialog,
   CustomDialogContentText,
   CustomDialogTitle,
   DialogButton,
-  ErrorText,
   InputField,
 } from "./styles";
+
 import { UserInfoData } from "assets";
 
 interface IProps {
@@ -23,21 +23,18 @@ interface IProps {
 function CheckoutDialog({ open, onOpen, onClose }: IProps) {
   const { i18n } = useTranslations();
   const { fullName, address, phoneNumber } = UserInfoData;
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
+
+  const formik = useFormik({
+    initialValues: {
       fullName: fullName,
       address: address,
       phoneNumber: phoneNumber,
     },
+    validationSchema: addressConfirmValidationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
   });
-
-  const onSubmit = (data: UserInfo) => {
-    console.log(data);
-  };
 
   return (
     <>
@@ -50,7 +47,7 @@ function CheckoutDialog({ open, onOpen, onClose }: IProps) {
             {i18n.t("home_page.address_confirm_dialog.description")}
           </CustomDialogContentText>
           {UserInfoData && (
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={formik.handleSubmit} id="address-confirm">
               <InputField
                 margin="dense"
                 id="fullName"
@@ -60,16 +57,11 @@ function CheckoutDialog({ open, onOpen, onClose }: IProps) {
                 label={i18n.t(
                   "home_page.address_confirm_dialog.label.full_name"
                 )}
-                {...register("fullName", {
-                  minLength: 3,
-                  required: true,
-                })}
+                onChange={formik.handleChange}
+                error={formik.touched.fullName && !!formik.errors.fullName}
+                helperText={formik.touched.fullName && formik.errors.fullName}
+                value={formik.values.fullName}
               />
-              {errors.fullName && (
-                <ErrorText color="error">
-                  {i18n.t("home_page.address_confirm_dialog.errors.full_name")}
-                </ErrorText>
-              )}
               <InputField
                 margin="dense"
                 id="phoneNumber"
@@ -79,19 +71,15 @@ function CheckoutDialog({ open, onOpen, onClose }: IProps) {
                 type="string"
                 fullWidth
                 variant="standard"
-                {...register("phoneNumber", {
-                  required: true,
-                  pattern:
-                    /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/,
-                })}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.phoneNumber && !!formik.errors.phoneNumber
+                }
+                helperText={
+                  formik.touched.phoneNumber && formik.errors.phoneNumber
+                }
+                value={formik.values.phoneNumber}
               />
-              {errors.phoneNumber && (
-                <ErrorText color="error">
-                  {i18n.t(
-                    "home_page.address_confirm_dialog.errors.phone_number"
-                  )}
-                </ErrorText>
-              )}
               <InputField
                 margin="dense"
                 id="address"
@@ -99,16 +87,11 @@ function CheckoutDialog({ open, onOpen, onClose }: IProps) {
                 type="string"
                 fullWidth
                 variant="standard"
-                {...register("address", {
-                  required: true,
-                  minLength: 20,
-                })}
+                onChange={formik.handleChange}
+                error={formik.touched.address && !!formik.errors.address}
+                helperText={formik.touched.address && formik.errors.address}
+                value={formik.values.address}
               />
-              {errors.address && (
-                <ErrorText color="error">
-                  {i18n.t("home_page.address_confirm_dialog.errors.address")}
-                </ErrorText>
-              )}
             </form>
           )}
         </DialogContent>
@@ -116,7 +99,7 @@ function CheckoutDialog({ open, onOpen, onClose }: IProps) {
           <DialogButton onClick={onClose}>
             {i18n.t("home_page.address_confirm_dialog.button.cancel")}
           </DialogButton>
-          <DialogButton onClick={handleSubmit(onSubmit)}>
+          <DialogButton form="address-confirm" type="submit">
             {i18n.t("home_page.address_confirm_dialog.button.confirm")}
           </DialogButton>
         </DialogActions>

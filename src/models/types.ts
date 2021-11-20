@@ -62,7 +62,7 @@ export type User = {
 
 export interface UserInfo {
   id: string;
-  fullname: string;
+  fullName: string;
   address: string;
   phoneNumber: string;
 }
