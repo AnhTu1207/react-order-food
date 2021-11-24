@@ -26,5 +26,19 @@ export default {
     menu_items: "Menu Item",
     store: "Store",
     add_to_cart: "Add To Cart",
+    check_out: "Check Out",
+    address_confirm_dialog: {
+      title: "Address Confirm",
+      description: "Please confirm the address for accurate delivery",
+      label: {
+        phone_number: "Phone Number",
+        address: "Address",
+        full_name: "Full Name",
+      },
+      button: {
+        cancel: "Cancel",
+        confirm: "confirm",
+      },
+    },
   },
 };
