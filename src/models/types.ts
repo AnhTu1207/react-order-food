@@ -66,10 +66,3 @@ export interface UserInfo {
   address: string;
   phoneNumber: string;
 }
-
-export interface IContentHome {
-  id: number;
-  imgUrlContent: string;
-  decriptions: string;
-  decriptionsDetail: string;
-}
