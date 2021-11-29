@@ -7,6 +7,7 @@ import Tags from "./Tags";
 import Cart from "./Cart";
 import CommunityMenu from "./CommunityMenu";
 
+
 const Home: FC = () => {
   const { i18n } = useTranslations();
   return (
