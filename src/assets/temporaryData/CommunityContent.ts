@@ -5,7 +5,7 @@ export const ContentHomeData = [
     decriptionsDetail:
       "Order Portal sẽ bảo quản đơn hàng của bạn bằng túi & thùng để chống nắng, mưa, giữ nhiệt... trên đường đi một cách tốt nhất",
     imgUrlContent:
-      "https://shopeefood.vn/app/assets/img/Box-food-preservation-footer.png?82adfd2ec19091256d09a94dac77aaba",
+      "https://www.jmenu.com/editable/templates/default/images/how-to2.png",
   },
   {
     id: 2,

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BoxContent, Decriptions, DecriptionsDetaial, Img } from "./style";
+import { BoxContent, Decriptions, DecriptionsDetaial } from "./style";
 
 import { IContentHome } from "models/types";
 
@@ -13,10 +13,12 @@ const ContentHome: FC<IProps> = ({ contenthome }: IProps) => {
       <BoxContent>
         <Decriptions>{contenthome.decriptions}</Decriptions>
         <DecriptionsDetaial>{contenthome.decriptionsDetail}</DecriptionsDetaial>
-        <Img>
-          {/* {contenthome.imgUrlContent} */}
-          <img src="https://shopeefood.vn/app/assets/img/Box-food-preservation-footer.png?82adfd2ec19091256d09a94dac77aaba" />
-        </Img>
+        <img
+          style={{ width: "100%" }}
+          src={
+            "https://www.jmenu.com/editable/templates/default/images/how-to2.png"
+          }
+        />
       </BoxContent>
     </div>
   );

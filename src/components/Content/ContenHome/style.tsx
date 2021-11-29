@@ -22,12 +22,3 @@ export const DecriptionsDetaial = styled(Typography)({
   width: "90%",
   marginLeft: "5%",
 });
-
-export const Img = styled(withTheme(Box))((props) => ({
-  marginTop: "25px",
-  width: "90%",
-  marginLeft: "5%",
-  '@media (maxWidth: "720px")': {
-    width: "220px",
-  },
-}));
