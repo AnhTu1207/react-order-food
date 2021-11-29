@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useDispatch } from "react-redux";
 import currency from "currency.js";
 import {
   Box,
@@ -7,12 +8,13 @@ import {
   CardActions,
   CardMedia,
   Avatar,
-  IconButton,
 } from "@material-ui/core";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
-import { useTranslations } from "hooks";
+import { addToCart } from "store/slices";
 import { IProduct } from "models/types";
+import { useTranslations } from "hooks";
+
+import DialogOption from "./DialogOption";
 
 import {
   useStyles,
@@ -29,39 +31,59 @@ interface IProps {
 
 const BoxProduct: FC<IProps> = ({ product }: IProps) => {
   const classes = useStyles();
+  const { id, avatar, name, detail, options, price, store } = product;
+
   const { i18n } = useTranslations();
-  const price = currency(product.price).format();
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    const action = addToCart({
+      storeId: store.id,
+      storeName: store.name,
+      storeAvatar: store.avatar,
+      products: {
+        id,
+        name,
+        avatar,
+        price,
+        detail,
+        quantity: 1,
+      },
+    });
+    dispatch(action);
+  };
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={product.imgUrlFood}
-        title={product.nameOfFood}
-      />
+      <CardMedia className={classes.media} image={avatar} title={name} />
+
       <Box className={classes.detail}>
-        <NameOfFood noWrap>{product.nameOfFood}</NameOfFood>
-        <FoodDetail noWrap>{product.foodDetail}</FoodDetail>
-        <Price noWrap>{price}</Price>
+        <NameOfFood noWrap>{name}</NameOfFood>
+        <FoodDetail noWrap>{detail}</FoodDetail>
+        <Price noWrap>{currency(price).format()}</Price>
         <CustomCardHeader
           avatar={
             <Avatar
-              alt={product.nameOfRestaurant}
-              src={product.avatarRestaurant}
+              alt={store.name}
+              src={store.avatar}
               className={classes.avatar}
             ></Avatar>
           }
-          title={
-            <RestaurantName noWrap>{product.nameOfRestaurant}</RestaurantName>
-          }
+          title={<RestaurantName noWrap>{store.name}</RestaurantName>}
         />
       </Box>
 
-      <CardActions className={classes.action}>
-        <IconButton className={classes.detailBtn} aria-label="settings">
-          <MoreHorizIcon />
-        </IconButton>
-        <Button size="small" className={classes.addBtn}>
+      <CardActions
+        className={
+          options.length > 0 ? classes.action : classes.actionWithoutOptionBtn
+        }
+      >
+        {options.length > 0 && <DialogOption product={product} />}
+        <Button
+          size="small"
+          className={classes.addBtn}
+          onClick={handleAddToCart}
+        >
           {i18n.t("home_page.button_add")}
         </Button>
       </CardActions>

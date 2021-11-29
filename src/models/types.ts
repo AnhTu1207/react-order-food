@@ -8,14 +8,63 @@ export interface IRoute {
   Component: React.ComponentType<any>;
 }
 
+export interface IFoodOption {
+  id: number;
+  label: string;
+  type: string;
+  list: IList[];
+}
+export interface IList {
+  id: number;
+  name: string;
+  price: number;
+}
+
 export interface IProduct {
   id: number;
-  nameOfFood: string;
-  nameOfRestaurant: string;
+  name: string;
+  avatar: string;
   price: number;
-  foodDetail: string;
-  imgUrlFood: string;
-  avatarRestaurant: string;
+  detail: string;
+  store: {
+    id: number;
+    name: string;
+    avatar: string;
+  };
+  options: IFoodOption[];
+}
+
+export interface ICartItem {
+  storeId: number;
+  storeName: string;
+  storeAvatar: string;
+  products: {
+    id: number;
+    name: string;
+    avatar: string;
+    price: number;
+    detail: string;
+    quantity: number;
+    cartOptions: IList[];
+  }[];
+}
+
+export type User = {
+  id: string;
+  username: string;
+  email: string;
+  avatar: null | string;
+  fb_id: null | string;
+  createdAt: string;
+  updatedAt: string;
+  accessToken: string;
+};
+
+export interface UserInfo {
+  id: string;
+  fullName: string;
+  address: string;
+  phoneNumber: string;
 }
 
 export interface IContentHome {

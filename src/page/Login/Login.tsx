@@ -2,8 +2,11 @@ import { FC, useState } from "react";
 import Helmet from "react-helmet";
 import Snackbar from "@material-ui/core/Snackbar";
 import { useHistory } from "react-router-dom";
-import { useTranslations } from "hooks";
+import { useFormik } from "formik";
 
+import { useTranslations } from "hooks";
+import { useLogin } from "api/auth";
+import { loginValidationSchema } from "schemas";
 import { Logo } from "components";
 import {
   Wrapper,
@@ -21,22 +24,38 @@ import {
 
 const Login: FC = () => {
   const { i18n } = useTranslations();
-  const [isLoading, setLoading] = useState(false);
   const [isErr, setErr] = useState(false);
-
   const history = useHistory();
-
-  const handleOnLogin = () => {
-    setLoading(true);
-
-    // TODO: call request handle login
-    setTimeout(() => {
-      setLoading(false);
-      setErr(true);
-      sessionStorage.setItem("access_token", "token");
+  
+  const { runRequest: sendLoginRequest, isLoading: isLoadingLogin } = useLogin({
+    successCallback: (data) => {
+      sessionStorage.setItem("user_token", data.data.accessToken);
+      sessionStorage.setItem("user_id", data.data.id);
       history.replace("/");
-    }, 2000);
-  };
+    },
+    failureCallback: () => {
+      setErr(true);
+    }
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema: loginValidationSchema,
+    onSubmit: (values) => {
+      if (values.username.includes("@")) {
+        sendLoginRequest({
+          email: values.username,
+          password: values.password,
+        });
+      } else {
+        sendLoginRequest(values);
+      }
+    }
+  });
+
 
   return (
     <>
@@ -56,23 +75,33 @@ const Login: FC = () => {
       <Wrapper>
         <Logo margin="0 0 16px 0" />
         <LoginWrapper>
-          {isLoading && <ProcessLine />}
-          <form autoComplete="off">
+          {isLoadingLogin && <ProcessLine />}
+          <form autoComplete="off" onSubmit={formik.handleSubmit}>
             <FormWrapper>
               <InputField
                 placeholder={i18n.t("login.email_input_placeholder")}
-                disabled={isLoading}
+                disabled={isLoadingLogin}
+                onChange={formik.handleChange}
+                name="username"
+                error={formik.touched.username && !!formik.errors.username}
+                helperText={formik.touched.username && formik.errors.username}
+                value={formik.values.username}
               />
               <InputField
                 placeholder={i18n.t("login.password_input_placeholder")}
-                disabled={isLoading}
+                disabled={isLoadingLogin}
                 type="password"
+                name="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+                error={formik.touched.password && !!formik.errors.password}
+                helperText={formik.touched.password && formik.errors.password}
               />
               <ButtonWrapper>
-                {isLoading ? (
+                {isLoadingLogin ? (
                   <CircleLoading size={25} />
                 ) : (
-                  <LoginButton onClick={handleOnLogin}>
+                  <LoginButton type="submit">
                     {i18n.t("login.button_title")}
                   </LoginButton>
                 )}
