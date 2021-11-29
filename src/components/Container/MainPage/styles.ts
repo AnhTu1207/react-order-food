@@ -12,14 +12,10 @@ import {
   AppBar,
   withTheme,
   Paper,
-  Box,
-  Typography,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import InstagramIcon from "@material-ui/icons/Instagram";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({

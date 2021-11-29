@@ -1,5 +1,6 @@
 import { TagsList } from "./TagsList";
 import { CommunityMenuData } from "./CommunityMenu";
-import { ContentHomeData } from "./CommunityContent";
+import { CartItemsData } from "./CartItem";
+import { UserInfoData } from "./User";
 
-export { TagsList, CommunityMenuData, ContentHomeData };
+export { TagsList, CommunityMenuData, CartItemsData, UserInfoData };
