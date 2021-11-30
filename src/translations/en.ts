@@ -41,4 +41,8 @@ export default {
       },
     },
   },
+  order_page: {
+    title: "Order",
+    order_status: "Order Status",
+  },
 };
