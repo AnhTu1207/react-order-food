@@ -8,7 +8,6 @@ import { Logo } from "components";
 import {
   useStyles,
   CustomToolbar,
-  CustomMenuIcon,
   CustomSearchIcon,
   CustomAccountIcon,
   CustomAppbar,
@@ -25,15 +24,6 @@ const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
     <div className={classes.root}>
       <CustomAppbar position="sticky">
         <CustomToolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-            onClick={onClickMenu}
-          >
-            <CustomMenuIcon />
-          </IconButton>
           <div className={classes.logo}>
             <Logo margin="4px 0 0 0" />
           </div>
