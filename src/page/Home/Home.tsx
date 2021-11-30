@@ -6,6 +6,7 @@ import { MainPageTemplate } from "components";
 import Tags from "./Tags";
 import Cart from "./Cart";
 import CommunityMenu from "./CommunityMenu";
+import CommunityContent from "./CommunityContent";
 
 
 const Home: FC = () => {
@@ -19,6 +20,7 @@ const Home: FC = () => {
         <Tags />
         <Cart />
         <CommunityMenu />
+        <CommunityContent />
       </MainPageTemplate>
     </>
   );
