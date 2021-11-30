@@ -11,9 +11,10 @@ export interface IRoute {
 export interface IFoodOption {
   id: number;
   label: string;
+  type: string;
   list: IList[];
 }
-interface IList {
+export interface IList {
   id: number;
   name: string;
   price: number;
@@ -26,10 +27,26 @@ export interface IProduct {
   price: number;
   detail: string;
   store: {
+    id: number;
     name: string;
     avatar: string;
   };
-  option: IFoodOption[];
+  options: IFoodOption[];
+}
+
+export interface ICartItem {
+  storeId: number;
+  storeName: string;
+  storeAvatar: string;
+  products: {
+    id: number;
+    name: string;
+    avatar: string;
+    price: number;
+    detail: string;
+    quantity: number;
+    cartOptions: IList[];
+  }[];
 }
 
 export type User = {
@@ -42,3 +59,17 @@ export type User = {
   updatedAt: string;
   accessToken: string;
 };
+
+export interface UserInfo {
+  id: string;
+  fullName: string;
+  address: string;
+  phoneNumber: string;
+}
+
+export interface IContentHome {
+  id: number;
+  imgUrlContent: string;
+  decriptions: string;
+  decriptionsDetail: string;
+}
