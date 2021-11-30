@@ -27,9 +27,10 @@ import {
 
 interface IProps {
   product: IProduct;
+  hideButton?: boolean;
 }
 
-const BoxProduct: FC<IProps> = ({ product }: IProps) => {
+const BoxProduct: FC<IProps> = ({ product, hideButton }: IProps) => {
   const classes = useStyles();
   const { id, avatar, name, detail, options, price, store } = product;
 
@@ -72,21 +73,28 @@ const BoxProduct: FC<IProps> = ({ product }: IProps) => {
           title={<RestaurantName noWrap>{store.name}</RestaurantName>}
         />
       </Box>
-
-      <CardActions
-        className={
-          options.length > 0 ? classes.action : classes.actionWithoutOptionBtn
-        }
-      >
-        {options.length > 0 && <DialogOption product={product} />}
-        <Button
-          size="small"
-          className={classes.addBtn}
-          onClick={handleAddToCart}
-        >
-          {i18n.t("home_page.button_add")}
-        </Button>
-      </CardActions>
+      {hideButton ? (
+        <></>
+      ) : (
+        <>
+          <CardActions
+            className={
+              options.length > 0
+                ? classes.action
+                : classes.actionWithoutOptionBtn
+            }
+          >
+            {options.length > 0 && <DialogOption product={product} />}
+            <Button
+              size="small"
+              className={classes.addBtn}
+              onClick={handleAddToCart}
+            >
+              {i18n.t("home_page.button_add")}
+            </Button>
+          </CardActions>
+        </>
+      )}
     </Card>
   );
 };
