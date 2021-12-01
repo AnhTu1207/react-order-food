@@ -5,6 +5,7 @@ import {
   UserInfoData,
   OrderItem,
   ContentHomeData,
+  ProductDetailData,
   Stores,
 } from "./temporaryData";
 
@@ -15,5 +16,6 @@ export {
   UserInfoData,
   OrderItem,
   ContentHomeData,
+  ProductDetailData,
   Stores,
 };

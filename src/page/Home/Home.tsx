@@ -9,6 +9,7 @@ import CommunityMenu from "./CommunityMenu";
 import CommunityContent from "./CommunityContent";
 import PopularStore from "./PopularStore";
 
+
 const Home: FC = () => {
   const { i18n } = useTranslations();
   return (
