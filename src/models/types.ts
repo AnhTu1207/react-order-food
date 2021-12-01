@@ -73,3 +73,10 @@ export interface IContentHome {
   decriptions: string;
   decriptionsDetail: string;
 }
+
+export interface IStore {
+  id: number;
+  name: string;
+  avatar: string;
+  address: string;
+}

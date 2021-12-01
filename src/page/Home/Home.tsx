@@ -7,6 +7,7 @@ import Tags from "./Tags";
 import Cart from "./Cart";
 import CommunityMenu from "./CommunityMenu";
 import CommunityContent from "./CommunityContent";
+import PopularStore from "./PopularStore";
 
 const Home: FC = () => {
   const { i18n } = useTranslations();
@@ -19,6 +20,7 @@ const Home: FC = () => {
         <Tags />
         <Cart />
         <CommunityMenu />
+        <PopularStore />
         <CommunityContent />
       </MainPageTemplate>
     </>

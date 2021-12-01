@@ -42,7 +42,7 @@ const BoxOrderItem: FC = () => {
                           (prev, curr) => (
                             <>{[prev, ",  ", curr]}</>
                           ),
-                          <></>
+                          <>..</>
                         )}
                     </OptionName>
                   )
