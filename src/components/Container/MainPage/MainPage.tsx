@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import Footer from "./Footer";
 
 import Header from "./Header";
 import { Wrapper, Content } from "./styles";
@@ -12,6 +13,7 @@ const MainPageTemplate: FC<IProps> = ({ children }: IProps) => {
     <Wrapper>
       <Header onClickMenu={() => {}} />
       <Content elevation={0}>{children}</Content>
+      <Footer></Footer>
     </Wrapper>
   );
 };
