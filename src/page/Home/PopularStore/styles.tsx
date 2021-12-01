@@ -1,8 +1,7 @@
-import { Typography } from "@material-ui/core";
-import { styled } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core";
 
-export const Title = styled(Typography)({
-  fontWeight: 600,
-  fontSize: 25,
-  margin: "42px 0px 16px 0",
+export default makeStyles({
+  wrapper: {
+    paddingTop: 60,
+  }
 });

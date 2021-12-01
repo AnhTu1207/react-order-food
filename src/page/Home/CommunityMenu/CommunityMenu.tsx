@@ -2,14 +2,11 @@ import { FC, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { map } from "lodash";
 
-import { useTranslations } from "hooks";
 import { useGetFoods } from "api/food";
 
 import { BoxProduct, Spinner } from "components";
-import { Title } from "./styles";
 
 const CommunityMenu: FC = () => {
-  const { i18n } = useTranslations();
   const {
     isLoading: fetchingFoods,
     runRequest: fetchFoods,
@@ -23,7 +20,6 @@ const CommunityMenu: FC = () => {
 
   return (
     <div>
-      <Title>{i18n.t("home_page.community_menu_title")}</Title>
       {fetchingFoods ? (
         <div>
           <Spinner color="var(--color-primary)" center />
