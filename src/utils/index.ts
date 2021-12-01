@@ -13,3 +13,5 @@ export {
   setUpInterceptors,
   isMobile,
 };
+
+export * from "./price";

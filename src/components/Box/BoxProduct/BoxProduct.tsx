@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
-import currency from "currency.js";
 import {
   Box,
   Button,
@@ -10,11 +9,10 @@ import {
   Avatar,
 } from "@material-ui/core";
 
-import { addToCart } from "store/slices";
-import { IProduct } from "models/types";
 import { useTranslations } from "hooks";
-
-import DialogOption from "./DialogOption";
+import { addToCart } from "store/slices";
+import { Food } from "models/types";
+import { getVndPrice } from "utils";
 
 import {
   useStyles,
@@ -26,20 +24,20 @@ import {
 } from "./styles";
 
 interface IProps {
-  product: IProduct;
+  product: Food;
   hideButton?: boolean;
 }
 
 const BoxProduct: FC<IProps> = ({ product, hideButton }: IProps) => {
   const classes = useStyles();
-  const { id, avatar, name, detail, options, price, store } = product;
+  const { id, avatar, name, detail, price, store, store_id } = product;
 
   const { i18n } = useTranslations();
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     const action = addToCart({
-      storeId: store.id,
+      storeId: store_id,
       storeName: store.name,
       storeAvatar: store.avatar,
       products: {
@@ -56,17 +54,25 @@ const BoxProduct: FC<IProps> = ({ product, hideButton }: IProps) => {
 
   return (
     <Card className={classes.root}>
-      <CardMedia className={classes.media} image={avatar} title={name} />
+      {!avatar ? (
+        <div className={classes.imgPlaceHolder} />
+      ) : (
+        <CardMedia
+          className={classes.media}
+          image={avatar || ""}
+          title={name}
+        />
+      )}
 
       <Box className={classes.detail}>
         <NameOfFood noWrap>{name}</NameOfFood>
         <FoodDetail noWrap>{detail}</FoodDetail>
-        <Price noWrap>{currency(price).format()}</Price>
+        <Price noWrap>{getVndPrice(price)}</Price>
         <CustomCardHeader
           avatar={
             <Avatar
               alt={store.name}
-              src={store.avatar}
+              src={store.avatar || ""}
               className={classes.avatar}
             ></Avatar>
           }
@@ -77,14 +83,7 @@ const BoxProduct: FC<IProps> = ({ product, hideButton }: IProps) => {
         <></>
       ) : (
         <>
-          <CardActions
-            className={
-              options.length > 0
-                ? classes.action
-                : classes.actionWithoutOptionBtn
-            }
-          >
-            {options.length > 0 && <DialogOption product={product} />}
+          <CardActions className={classes.actionWithoutOptionBtn}>
             <Button
               size="small"
               className={classes.addBtn}

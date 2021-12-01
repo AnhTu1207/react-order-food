@@ -89,3 +89,35 @@ export interface IStore {
   avatar: string;
   address: string;
 }
+
+export type Category = {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Food = {
+  id: string;
+  name: string;
+  avatar: null | string;
+  price: number;
+  detail: null | string;
+  store_id: string;
+  category_id: string;
+  createdAt: string;
+  updatedAt: string;
+  category: {
+    name: string;
+  };
+  store: {
+    name: string;
+    avatar: null | string;
+  };
+};
+
+export enum CommunityContentId  {
+  PROGRESS = 1,
+  INTRO = 2,
+  PARTNER = 3
+}

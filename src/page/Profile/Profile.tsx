@@ -1,14 +1,11 @@
 import { FC } from "react";
-import { map } from "lodash";
 import { TextField, Button, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 import { MainPageTemplate } from "components";
-import { BoxProduct } from "components/Box";
 
 import styles from "./styles";
 
-import { CommunityMenuData } from "assets";
 
 const Profile: FC = () => {
   const classes = styles();
@@ -33,13 +30,6 @@ const Profile: FC = () => {
       <Typography className={classes.history} variant="h4">
         History
       </Typography>
-      <div>
-        {map(CommunityMenuData, (item) => (
-          <div className={classes.productWrapper}>
-            <BoxProduct product={item} key={item.id} hideButton />
-          </div>
-        ))}
-      </div>
     </MainPageTemplate>
   );
 };
