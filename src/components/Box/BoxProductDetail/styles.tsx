@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "flex-start",
       height: 150,
-      background: "none",
+      // background: "none",
       border: "1px solid #808080",
       borderRadius: 8,
       padding: 5,
@@ -23,17 +23,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       padding: "6px 25px",
       "&:hover": {
         background: "var(--color-button-hover)",
-      },
-    },
-    detailBtn: {
-      border: "1px solid var(--color-primary)",
-      color: "var(--color-primary)",
-      boxSizing: "border-box",
-      padding: 5,
-      "&:hover": {
-        background: "var(--color-button-hover)",
-        transition: "0.5s",
-        color: "#FFFF",
       },
     },
   })
