@@ -1,6 +1,7 @@
 import { FC } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
+import { useHistory } from "react-router-dom";
 
 import { useTranslations } from "hooks";
 import { Logo } from "components";
@@ -8,7 +9,6 @@ import { Logo } from "components";
 import {
   useStyles,
   CustomToolbar,
-  CustomMenuIcon,
   CustomSearchIcon,
   CustomAccountIcon,
   CustomAppbar,
@@ -20,21 +20,13 @@ interface IProps {
 const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
   const classes = useStyles();
   const { i18n } = useTranslations();
+  const history = useHistory();
 
   return (
     <div className={classes.root}>
       <CustomAppbar position="sticky">
         <CustomToolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-            onClick={onClickMenu}
-          >
-            <CustomMenuIcon />
-          </IconButton>
-          <div className={classes.logo}>
+          <div className={classes.logo} onClick={() => history.push("/")}>
             <Logo margin="4px 0 0 0" />
           </div>
           <div className={classes.search}>
@@ -52,7 +44,7 @@ const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <IconButton>
+          <IconButton onClick={() => history.push("/profile")}>
             <CustomAccountIcon />
           </IconButton>
         </CustomToolbar>

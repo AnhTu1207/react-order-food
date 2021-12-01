@@ -83,3 +83,9 @@ export interface IProductDetail {
   description: string;
   time: string;
 }
+export interface IStore {
+  id: number;
+  name: string;
+  avatar: string;
+  address: string;
+}

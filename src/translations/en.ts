@@ -23,10 +23,12 @@ export default {
     title: "Home",
     button_add: "Add",
     community_menu_title: "Community Menu",
+    popular_store: "Popular Store",
     menu_items: "Menu Item",
     store: "Store",
     add_to_cart: "Add To Cart",
     check_out: "Check Out",
+    sale_off_menu: "10% Off Menu",
     address_confirm_dialog: {
       title: "Address Confirm",
       description: "Please confirm the address for accurate delivery",
@@ -40,5 +42,9 @@ export default {
         confirm: "confirm",
       },
     },
+  },
+  order_page: {
+    title: "Order",
+    order_status: "Order Status",
   },
 };

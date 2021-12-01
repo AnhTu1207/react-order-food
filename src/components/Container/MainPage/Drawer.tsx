@@ -31,12 +31,6 @@ const Drawer: FC<IProps> = ({ open, onClose, onOpen }: IProps) => {
               {i18n.t("main_page_template.menu.profile")}
             </DrawerListItem>
             <DrawerListItem onClick={() => {}}>
-              {i18n.t("main_page_template.menu.history")}
-            </DrawerListItem>
-            <DrawerListItem onClick={() => {}}>
-              {i18n.t("main_page_template.menu.about_us")}
-            </DrawerListItem>
-            <DrawerListItem onClick={() => {}}>
               {i18n.t("main_page_template.menu.contact")}
             </DrawerListItem>
           </DrawerContentWrapper>

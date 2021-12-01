@@ -3,8 +3,13 @@ import {
   CommunityMenuData,
   CartItemsData,
   UserInfoData,
+  OrderItem,
   ContentHomeData,
+<<<<<<< HEAD
   ProductDetailData,
+=======
+  Stores,
+>>>>>>> main
 } from "./temporaryData";
 
 export {
@@ -12,6 +17,11 @@ export {
   CommunityMenuData,
   CartItemsData,
   UserInfoData,
+  OrderItem,
   ContentHomeData,
+<<<<<<< HEAD
   ProductDetailData,
+=======
+  Stores,
+>>>>>>> main
 };

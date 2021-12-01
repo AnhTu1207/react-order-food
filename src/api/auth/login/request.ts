@@ -30,11 +30,9 @@ export const login = createAsyncThunk<LoginResponse, LoginRequestParams, {}>(
       return response.data;
     } catch (e) {
         const err = e as AxiosError<LoginResponseError>;
-
         if (!err.response) {
             throw e;
         }
-
         failureCallback?.(err.response);
         return rejectWithValue(err);
     }
