@@ -4,6 +4,7 @@ import {
   CartItemsData,
   UserInfoData,
   ContentHomeData,
+  ProductDetailData,
 } from "./temporaryData";
 
 export {
@@ -12,4 +13,5 @@ export {
   CartItemsData,
   UserInfoData,
   ContentHomeData,
+  ProductDetailData,
 };
