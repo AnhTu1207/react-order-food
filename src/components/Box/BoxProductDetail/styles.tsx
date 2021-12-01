@@ -20,7 +20,8 @@ export const useStyles = makeStyles((theme: Theme) =>
       background: "var(--color-primary)",
       color: "#FFFF",
       fontSize: "14px",
-      padding: "6px 25px",
+      marginTop: "15px",
+      padding: "6px 50px",
       "&:hover": {
         background: "var(--color-button-hover)",
       },
@@ -35,15 +36,12 @@ export const CustomProductDetail = styled(Box)({
 
 export const CustomProductDetailLeft = styled(Box)({
   width: "30%",
-  // height: "10vh",
   float: "left",
-  // marginLeft: "2%",
+  padding: "20px",
 });
 
 export const CustomProductDetailRight = styled(Box)({
   width: "35%",
-  // height: "10vh",
-  // backgroundColor: "pink",
   marginLeft: "50%",
   textAlign: "center",
 });
@@ -89,6 +87,5 @@ export const Time = styled(Typography)({
 });
 
 export const AddCart = styled(Button)({
-  // color: "gray",
   background: "var(--color-primary)",
 });

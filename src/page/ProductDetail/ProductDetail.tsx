@@ -1,20 +1,27 @@
 import { FC } from "react";
-import { Grid } from "@material-ui/core";
-import { BoxProductDetailPage, Wrapper } from "./styles";
+import { BoxProductDetailPage, Wrapper, Suggest } from "./styles";
 import { BoxProductDetail } from "components/Box";
-
+import Cart from "page/Home/Cart";
 import { ProductDetailData } from "assets";
+import { MainPageTemplate } from "components";
+import CommunityMenu from "page/Home/CommunityMenu";
 
 const ProductDetail: FC = () => {
   return (
     <div>
-      <Wrapper>
-        <BoxProductDetailPage>
-          {ProductDetailData.map((item, index) => (
-            <BoxProductDetail productdetail={item} />
-          ))}
-        </BoxProductDetailPage>
-      </Wrapper>
+      <MainPageTemplate>
+        <Wrapper>
+          <BoxProductDetailPage>
+            {ProductDetailData.map((item, index) => (
+              <BoxProductDetail productdetail={item} />
+            ))}
+          </BoxProductDetailPage>
+          <Cart></Cart>
+          <Suggest>
+            <CommunityMenu></CommunityMenu>
+          </Suggest>
+        </Wrapper>
+      </MainPageTemplate>
     </div>
   );
 };

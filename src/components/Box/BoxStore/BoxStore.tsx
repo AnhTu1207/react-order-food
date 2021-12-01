@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { LocalOffer } from "@material-ui/icons";
 
+import { useHistory } from "react-router-dom";
 import { useTranslations } from "hooks";
 import { IStore } from "models/types";
 
@@ -21,6 +22,7 @@ interface IProps {
 const BoxStore: FC<IProps> = ({ store }: IProps) => {
   const classes = useStyles();
   const { i18n } = useTranslations();
+  const history = useHistory();
 
   return (
     <>
@@ -33,8 +35,8 @@ const BoxStore: FC<IProps> = ({ store }: IProps) => {
             image={store.avatar}
             title={store.name}
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" noWrap>
+          <CardContent onClick={() => history.push("/productdetail")}>
+            <Typography gutterBottom variant="h6" component="h2" noWrap>
               {store.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" noWrap>

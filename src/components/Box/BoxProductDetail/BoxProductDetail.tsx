@@ -23,7 +23,9 @@ interface IProps {
 }
 const BoxProductDetail: FC<IProps> = ({ productdetail }: IProps) => {
   const classes = useStyles();
+
   const { i18n } = useTranslations();
+
   return (
     <div>
       <CustomProductDetail>
