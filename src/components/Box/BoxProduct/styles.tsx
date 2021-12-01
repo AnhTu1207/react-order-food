@@ -52,6 +52,14 @@ export const useStyles = makeStyles((theme: Theme) =>
         flexBasic: "50%",
       },
     },
+    imgPlaceHolder: {
+      borderRadius: 8,
+      flex: "1 1 20%",
+      background: '#bdbdbd',
+      [theme.breakpoints.down("xs")]: {
+        flexBasic: "50%",
+      },
+    },
     detail: {
       flex: "3 3 60%",
       display: "block",
@@ -266,6 +274,7 @@ export const Price = styled(withTheme(Typography))((props) => ({
   fontWeight: "bolder",
   fontSize: 16,
   lineHeight: 1.5,
+  marginBottom: 4,
   [props.theme.breakpoints.down("md")]: {
     fontSize: 18,
   },

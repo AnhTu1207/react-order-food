@@ -156,21 +156,23 @@ export const CustomAppbar = styled(AppBar)({
 export const CustomFooter = styled(Box)({
   marginTop: "150px",
   backgroundColor: "#ffffff",
-  boxShadow: " 0px 3px 8px rgba(0, 0, 0, 0.24)",
+  boxShadow: "0px 3px 8px rgba(0, 0, 0, 0.24)",
+  paddingBottom: 20
 });
 
 export const CustomFooterStyle = styled(Box)({
-  width: "90%",
-  marginLeft: "5%",
+  width: "85%",
+  margin: "0 auto",
+  display: "flex",
+  justifyContent: "space-between",
+  padding: "25px 16px 0"
 });
 
 export const CustomFooter_Element = styled(Box)({
   width: "19%",
-  paddingLeft: "5%",
   fontSize: "18px",
   fontWeight: "bold",
   marginTop: "20px",
-  float: "left",
 });
 
 export const CustomTitle = styled(Box)({
@@ -203,23 +205,19 @@ export const CustomTitleStyle = styled(Typography)({
   textAlign: "right",
   fontSize: "18px",
   fontWeight: "bold",
+  marginBottom: 10
 });
 
 export const Title_Portal_Style = styled(Typography)({
   fontSize: "15px",
-  marginTop: "50px",
   color: "#BDBDBD",
-  textAlign: "right",
-});
-
-export const ClearBox = styled(Box)({
-  clear: "both",
+  textAlign: "right"
 });
 
 export const Logo_Footer = styled(Box)({
   color: "var(--color-primary)",
   fontSize: "24px",
-  textAlign: "center",
+  textAlign: "right",
   width: "50%",
   marginLeft: "12%",
 });

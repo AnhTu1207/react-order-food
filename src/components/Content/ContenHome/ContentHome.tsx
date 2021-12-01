@@ -1,7 +1,8 @@
 import { FC } from "react";
-import { BoxContent, Decriptions, DecriptionsDetaial } from "./style";
 
 import { IContentHome } from "models/types";
+
+import { BoxContent, Decriptions, DecriptionsDetaial } from "./style";
 
 interface IProps {
   contenthome: IContentHome;

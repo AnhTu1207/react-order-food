@@ -1,0 +1,1 @@
+export const getFoodsUrl: string = "/api/food";
