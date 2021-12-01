@@ -152,3 +152,74 @@ export const Content = styled(withTheme(Paper))((props) => ({
 export const CustomAppbar = styled(AppBar)({
   background: "#FFF",
 });
+
+export const CustomFooter = styled(Box)({
+  marginTop: "150px",
+  backgroundColor: "#ffffff",
+  boxShadow: " 0px 3px 8px rgba(0, 0, 0, 0.24)",
+});
+
+export const CustomFooterStyle = styled(Box)({
+  width: "90%",
+  marginLeft: "5%",
+});
+
+export const CustomFooter_Element = styled(Box)({
+  width: "19%",
+  paddingLeft: "5%",
+  fontSize: "18px",
+  fontWeight: "bold",
+  marginTop: "20px",
+  float: "left",
+});
+
+export const CustomTitle = styled(Box)({
+  marginTop: "60px",
+});
+
+export const Title_company = styled(Typography)({
+  fontSize: "15px",
+  color: "#4e88ff",
+  marginTop: "5px",
+});
+
+export const Title_Portal = styled(Typography)({
+  fontSize: "15px",
+  marginTop: "5px",
+  color: "#BDBDBD",
+  marginRight: "10px",
+});
+
+export const CustomFacebookIcon = styled(FacebookIcon)({
+  marginLeft: "24%",
+  marginTop: "5px",
+});
+
+export const CustomInstagramIcon = styled(InstagramIcon)({
+  marginLeft: "5%",
+});
+
+export const CustomTitleStyle = styled(Typography)({
+  textAlign: "right",
+  fontSize: "18px",
+  fontWeight: "bold",
+});
+
+export const Title_Portal_Style = styled(Typography)({
+  fontSize: "15px",
+  marginTop: "50px",
+  color: "#BDBDBD",
+  textAlign: "right",
+});
+
+export const ClearBox = styled(Box)({
+  clear: "both",
+});
+
+export const Logo_Footer = styled(Box)({
+  color: "var(--color-primary)",
+  fontSize: "24px",
+  textAlign: "center",
+  width: "50%",
+  marginLeft: "12%",
+});
