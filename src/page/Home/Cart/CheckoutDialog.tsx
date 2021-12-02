@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import { DialogActions, DialogContent } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 import { useTranslations } from "hooks";
 import { addressConfirmValidationSchema } from "schemas";
@@ -23,6 +24,7 @@ interface IProps {
 function CheckoutDialog({ open, onOpen, onClose }: IProps) {
   const { i18n } = useTranslations();
   const { fullName, address, phoneNumber } = UserInfoData;
+  const history = useHistory();
 
   const formik = useFormik({
     initialValues: {
@@ -99,7 +101,7 @@ function CheckoutDialog({ open, onOpen, onClose }: IProps) {
           <DialogButton onClick={onClose}>
             {i18n.t("home_page.address_confirm_dialog.button.cancel")}
           </DialogButton>
-          <DialogButton form="address-confirm" type="submit">
+          <DialogButton form="address-confirm" type="button" onClick={() => history.push("/order")}>
             {i18n.t("home_page.address_confirm_dialog.button.confirm")}
           </DialogButton>
         </DialogActions>

@@ -47,17 +47,21 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       borderRadius: 8,
-      flex: "1 1 20%",
+      width: 180,
+      height: "100%",
       [theme.breakpoints.down("xs")]: {
         flexBasic: "50%",
+        width: "100%"
       },
     },
     imgPlaceHolder: {
       borderRadius: 8,
-      flex: "1 1 20%",
+      width: 180,
+      height: "100%",
       background: '#bdbdbd',
       [theme.breakpoints.down("xs")]: {
         flexBasic: "50%",
+        width: "100%"
       },
     },
     detail: {
@@ -285,6 +289,8 @@ export const RestaurantName = styled(withTheme(Typography))((props) => ({
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
   fontSize: 15,
+  color: "#000",
+  textDecoration: "none",
   width: "95%",
 }));
 

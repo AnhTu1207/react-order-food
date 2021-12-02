@@ -80,4 +80,14 @@ export default {
   verify_page: {
     title: "Verify",
   },
+  check_out: {
+    total: "Total",
+    cod: "COD",
+    zalo_pay: "Zalo pay",
+    momo: "Momo",
+    payment_method: "Payment method"
+  },
+  tags: {
+    home_page: "Trang chủ"
+  }
 };

@@ -23,8 +23,22 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+enum PaymentStatus {
+  PAYMENT = "Payment",
+  FINDING_DRIVER = "Finding driver",
+  COOKING_FOODS = "Cooking foods",
+  DELIVERING = "Delivering",
+  DONE = "Done",
+}
+
 function getSteps() {
-  return ["Finding driver", "Cooking foods", "Delivering", "Done"];
+  return [
+    PaymentStatus.PAYMENT,
+    PaymentStatus.FINDING_DRIVER,
+    PaymentStatus.COOKING_FOODS,
+    PaymentStatus.DELIVERING,
+    PaymentStatus.DONE,
+  ];
 }
 
 // function getStepContent(stepIndex: number) {

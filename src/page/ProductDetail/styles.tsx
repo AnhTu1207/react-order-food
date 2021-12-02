@@ -7,13 +7,11 @@ export const Wrapper = styled("div")({
   paddingTop: "50px",
 });
 
-export const BoxProductDetailPage = styled(Box)({
-  width: "100%",
-  backgroundColor: "#ffffff",
-  boxShadow: " 0px 3px 8px rgba(0, 0, 0, 0.24)",
-  minHeight: "45vh",
-});
-
 export const Suggest = styled(Box)({
   marginTop: "50px",
+});
+
+export const CloseWrapper = styled("div")({
+  textAlign: "center",
+  paddingTop: 50
 });

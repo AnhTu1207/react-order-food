@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Box,
   Button,
@@ -30,7 +31,16 @@ interface IProps {
 
 const BoxProduct: FC<IProps> = ({ product, hideButton }: IProps) => {
   const classes = useStyles();
-  const { id, avatar, name, detail, price, store, store_id } = product;
+  const {
+    id,
+    avatar,
+    name,
+    detail,
+    price,
+    store,
+    store_id,
+    avatar_placeholder,
+  } = product;
 
   const { i18n } = useTranslations();
   const dispatch = useDispatch();
@@ -54,15 +64,11 @@ const BoxProduct: FC<IProps> = ({ product, hideButton }: IProps) => {
 
   return (
     <Card className={classes.root}>
-      {!avatar ? (
-        <div className={classes.imgPlaceHolder} />
-      ) : (
-        <CardMedia
-          className={classes.media}
-          image={avatar || ""}
-          title={name}
-        />
-      )}
+      <CardMedia
+        className={classes.media}
+        image={avatar || avatar_placeholder}
+        title={name}
+      />
 
       <Box className={classes.detail}>
         <NameOfFood noWrap>{name}</NameOfFood>
@@ -76,7 +82,11 @@ const BoxProduct: FC<IProps> = ({ product, hideButton }: IProps) => {
               className={classes.avatar}
             ></Avatar>
           }
-          title={<RestaurantName noWrap>{store.name}</RestaurantName>}
+          title={
+            <Link to={`/store/${store_id}`}>
+              <RestaurantName noWrap>{store.name}</RestaurantName>
+            </Link>
+          }
         />
       </Box>
       {hideButton ? (

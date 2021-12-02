@@ -2,8 +2,9 @@ import React from "react";
 import Helmet from "react-helmet";
 
 import { useTranslations } from "hooks";
-import { MainPageTemplate } from "components";
+
 import BoxOrderStatus from "./BoxOrderStatus";
+import { MainPageTemplate } from "components";
 
 interface IProps {}
 

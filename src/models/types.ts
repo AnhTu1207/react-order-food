@@ -107,6 +107,7 @@ export type Food = {
   category_id: string;
   createdAt: string;
   updatedAt: string;
+  avatar_placeholder: string;
   category: {
     name: string;
   };
@@ -116,8 +117,23 @@ export type Food = {
   };
 };
 
-export enum CommunityContentId  {
+export enum CommunityContentId {
   PROGRESS = 1,
   INTRO = 2,
-  PARTNER = 3
+  PARTNER = 3,
 }
+
+export type Store = {
+  id: string;
+  name: string;
+  address: string;
+  latitude: string;
+  longitude: string;
+  email: string;
+  avatar: null | string;
+  is_verified: boolean;
+  open: boolean;
+  createdAt: string;
+  updatedAt: string;
+  avatar_placeholder: string;
+};

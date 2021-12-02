@@ -5,6 +5,7 @@ import {
   IconButton,
   Box,
   CardContent,
+  Select
 } from "@material-ui/core";
 import {
   styled,
@@ -19,6 +20,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginTop: 15,
       width: "100%",
     },
+    paymentWrapper: {
+      display: 'flex',
+      alignItems: 'center'
+    },
     imgFood: {
       width: 70,
       height: 70,
@@ -30,6 +35,21 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: "var(--color-primary)",
       fontSize: 15,
     },
+    button: {
+      background: "var(--color-primary)",
+      color: "#FFF"
+    },
+    paymentMethod: {
+      marginRight: 10,
+      borderBottom: "none"
+    },
+    right: {
+      display: 'flex',
+      alignItems: 'center'
+    },
+    paymentTitle: {
+      marginRight: 10,
+    }
   })
 );
 
@@ -89,4 +109,8 @@ export const ActionBox = styled(Box)({
 export const OptionName = styled(Typography)({
   fontSize: 13,
   margin: "5px 0 5px 5px",
+});
+
+export const SelecteStyled = styled(Select)({
+  borderBottom: "none"
 });

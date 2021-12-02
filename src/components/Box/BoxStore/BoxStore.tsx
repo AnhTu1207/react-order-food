@@ -2,40 +2,36 @@ import { FC } from "react";
 import {
   Card,
   CardActionArea,
-  CardActions,
   CardContent,
   CardMedia,
   Typography,
 } from "@material-ui/core";
-import { LocalOffer } from "@material-ui/icons";
-
 import { useHistory } from "react-router-dom";
-import { useTranslations } from "hooks";
-import { IStore } from "models/types";
 
-import { CustomButton, useStyles } from "./styles";
+import { Store } from "models/types";
+
+import { useStyles } from "./styles";
 
 interface IProps {
-  store: IStore;
+  store: Store;
 }
 
 const BoxStore: FC<IProps> = ({ store }: IProps) => {
   const classes = useStyles();
-  const { i18n } = useTranslations();
   const history = useHistory();
 
   return (
     <>
       <Card
         className={classes.root}
-        onClick={() => history.push("/productdetail")}
+        onClick={() => history.push(`/store/${store.id}`)}
       >
         <CardActionArea>
           <CardMedia
             component="img"
             alt={store.name}
             height="140"
-            image={store.avatar}
+            image={store.avatar || store.avatar_placeholder}
             title={store.name}
           />
           <CardContent>
@@ -47,11 +43,6 @@ const BoxStore: FC<IProps> = ({ store }: IProps) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <CustomButton startIcon={<LocalOffer />}>
-            {i18n.t("home_page.sale_off_menu")}
-          </CustomButton>
-        </CardActions>
       </Card>
     </>
   );

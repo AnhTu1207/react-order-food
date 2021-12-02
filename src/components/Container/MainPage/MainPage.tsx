@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import Footer from "./Footer";
 
 import Header from "./Header";
@@ -9,6 +9,12 @@ interface IProps {
 }
 
 const MainPageTemplate: FC<IProps> = ({ children }: IProps) => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Wrapper>
       <Header onClickMenu={() => {}} />

@@ -1,59 +1,31 @@
 import { FC } from "react";
-import {
-  useStyles,
-  CustomProductDetail,
-  CustomProductDetailLeft,
-  CustomProductDetailRight,
-  TitleProductDetail,
-  AddressProductDetail,
-  PriceProductDetail,
-  Line,
-  Description,
-  StartIcon,
-  Time,
-  AddCart,
-} from "./styles";
+import { Typography } from "@material-ui/core";
+import { LocationOn } from "@material-ui/icons";
 
-import { IProductDetail } from "models/types";
-import { Button } from "@material-ui/core";
 import { useTranslations } from "hooks";
+import { Store } from "models/types";
+
+import { useStyles } from "./styles";
 
 interface IProps {
-  productdetail: IProductDetail;
+  store?: Store;
 }
-const BoxProductDetail: FC<IProps> = ({ productdetail }: IProps) => {
+const BoxProductDetail: FC<IProps> = ({ store }: IProps) => {
   const classes = useStyles();
 
   const { i18n } = useTranslations();
 
   return (
-    <div>
-      <CustomProductDetail>
-        <CustomProductDetailLeft>
-          <img
-            style={{ width: "100%", height: "250px" }}
-            src={
-              "https://nhanghitaynguyen.com/wp-content/uploads/2021/01/quan-lau-bo-47.jpg"
-            }
-          />
-        </CustomProductDetailLeft>
-        <CustomProductDetailRight>
-          <TitleProductDetail>{productdetail.name}</TitleProductDetail>
-          <AddressProductDetail>{productdetail.address}</AddressProductDetail>
-          <PriceProductDetail>{productdetail.price}</PriceProductDetail>
-          <Line></Line>
-          <Description>{productdetail.description}</Description>
-          <StartIcon></StartIcon>
-          <StartIcon></StartIcon>
-          <StartIcon></StartIcon>
-          <StartIcon></StartIcon>
-          <Time>{productdetail.time}</Time>
-          <Button size="small" className={classes.addBtnCart}>
-            {i18n.t("home_page.button_add")}
-          </Button>
-          {/* <AddCart>add</AddCart> */}
-        </CustomProductDetailRight>
-      </CustomProductDetail>
+    <div className={classes.wrapper}>
+      <img
+        src={store?.avatar || store?.avatar_placeholder || ""}
+        alt=""
+        className={classes.storeImg}
+      />
+      <Typography className={classes.storeName}>{store?.name}</Typography>
+      <Typography className={classes.address}>
+        <LocationOn className={classes.icon} /> {store?.address}
+      </Typography>
     </div>
   );
 };

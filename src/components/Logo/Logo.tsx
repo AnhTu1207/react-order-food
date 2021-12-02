@@ -6,7 +6,7 @@ interface IProps {
   margin?: string;
 }
 const Logo: FC<IProps> = ({ margin }: IProps) => (
-  <LogoStyled src="./logo.svg" margin={margin} />
+  <LogoStyled src="/logo.svg" margin={margin} />
 );
 
 export default Logo;

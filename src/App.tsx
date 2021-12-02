@@ -26,7 +26,11 @@ function App() {
           <Route
             exact={item.exact}
             path={item.path}
-            render={(props) => <PrivateRoute><item.Component {...props} /></PrivateRoute>}
+            render={(props) => (
+              <PrivateRoute>
+                <item.Component {...props} />
+              </PrivateRoute>
+            )}
             key={item.path}
           />
         ))}

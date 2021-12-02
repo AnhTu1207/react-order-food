@@ -1,5 +1,5 @@
 import { IRoute } from "models/types";
-import { Home, Profile, Order, ProductDetail } from "page";
+import { Home, Profile, Order, ProductDetail, Category } from "page";
 
 export const MainRoute: IRoute[] = [
   {
@@ -10,13 +10,18 @@ export const MainRoute: IRoute[] = [
   {
     Component: ProductDetail,
     exact: true,
-    path: "/productdetail",
+    path: "/store/:storeId",
     hasLogin: true,
   },
   {
     exact: true,
     path: "/order",
     Component: Order,
+  },
+  {
+    exact: true,
+    path: '/category/:categoryId',
+    Component: Category,
   },
   {
     exact: true,
