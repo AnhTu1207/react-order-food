@@ -4,3 +4,4 @@ export { default as ProductDetail } from "./ProductDetail";
 export { default as Order } from "./Order";
 export { default as Profile } from "./Profile";
 export { default as Signup } from "./Signup";
+export { default as Verify } from "./Verify";

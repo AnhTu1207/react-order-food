@@ -1,6 +1,5 @@
 import { IRoute } from "models/types";
-import { Login, Signup } from "page";
-import { ProductDetail } from "page";
+import { Login, Signup, Verify } from "page";
 
 export const AuthRoute: IRoute[] = [
   {
@@ -15,9 +14,8 @@ export const AuthRoute: IRoute[] = [
     path: "/signup",
   },
   {
-    Component: ProductDetail,
+    Component: Verify,
     exact: true,
-    path: "/productdetail",
-    hasLogin: true,
+    path: "/verify",
   },
 ];

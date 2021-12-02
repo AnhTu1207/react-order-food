@@ -77,4 +77,7 @@ export default {
     title_pay: "Phương thức thanh toán",
     logo_portal: "ORDER PORTAL",
   },
+  verify_page: {
+    title: "Verify",
+  },
 };
