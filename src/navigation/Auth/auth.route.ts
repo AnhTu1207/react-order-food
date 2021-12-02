@@ -1,5 +1,5 @@
 import { IRoute } from "models/types";
-import { Login, Signup, Verify } from "page";
+import { Login, Signup, Verify, NotFound } from "page";
 
 export const AuthRoute: IRoute[] = [
   {
@@ -17,5 +17,10 @@ export const AuthRoute: IRoute[] = [
     Component: Verify,
     exact: true,
     path: "/verify",
+  },
+  {
+    Component: NotFound,
+    exact: true,
+    path: "/notfound",
   },
 ];
