@@ -7,3 +7,4 @@ export { default as Signup } from "./Signup";
 export { default as NotFound } from "./NotFound";
 export { default as Verify } from "./Verify";
 export { default as ChangePassword } from "./ChangePassword";
+export { default as EditProfile } from "./EditProfile";

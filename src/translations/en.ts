@@ -92,4 +92,13 @@ export default {
     title: "Change Password",
     message_error: "Wrong old password!",
   },
+  edit_profile_page: {
+    button_title: "Edit Profile",
+    email_input_placeholder: "Email",
+    name_input_placeholder: "Name",
+    phone_input_placeholder: "Phone Number",
+    address_input_placeholder: "Address",
+    title: "Edit Profile",
+    message_error: "Update profile failed!",
+  },
 };

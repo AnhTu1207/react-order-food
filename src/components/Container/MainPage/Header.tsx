@@ -110,7 +110,12 @@ const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
                 />
               </ListItem>
 
-              <ListItem button>
+              <ListItem
+                button
+                onClick={() => {
+                  history.push("/edit-profile");
+                }}
+              >
                 <ListItemIcon>
                   <EditOutlined className={classes.icons} />
                 </ListItemIcon>
