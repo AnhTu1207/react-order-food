@@ -77,6 +77,9 @@ export const useStyles = makeStyles((theme: Theme) =>
         },
       },
     },
+    icons: {
+      color: "var(--color-primary)",
+    },
   })
 );
 
@@ -157,7 +160,7 @@ export const CustomFooter = styled(Box)({
   marginTop: "150px",
   backgroundColor: "#ffffff",
   boxShadow: "0px 3px 8px rgba(0, 0, 0, 0.24)",
-  paddingBottom: 20
+  paddingBottom: 20,
 });
 
 export const CustomFooterStyle = styled(Box)({
@@ -165,7 +168,7 @@ export const CustomFooterStyle = styled(Box)({
   margin: "0 auto",
   display: "flex",
   justifyContent: "space-between",
-  padding: "25px 16px 0"
+  padding: "25px 16px 0",
 });
 
 export const CustomFooter_Element = styled(Box)({
@@ -205,13 +208,13 @@ export const CustomTitleStyle = styled(Typography)({
   textAlign: "right",
   fontSize: "18px",
   fontWeight: "bold",
-  marginBottom: 10
+  marginBottom: 10,
 });
 
 export const Title_Portal_Style = styled(Typography)({
   fontSize: "15px",
   color: "#BDBDBD",
-  textAlign: "right"
+  textAlign: "right",
 });
 
 export const Logo_Footer = styled(Box)({

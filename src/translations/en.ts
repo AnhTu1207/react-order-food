@@ -30,6 +30,11 @@ export default {
       contact: "Contact",
     },
     input_search_placeholder: "Search",
+    order_history: "Order History",
+    current_order: "Current Order",
+    edit_profile: "Edit Profile",
+    change_password: "Change Password",
+    logout: "Logout",
   },
   home_page: {
     title: "Home",
