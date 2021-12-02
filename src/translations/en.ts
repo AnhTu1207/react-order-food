@@ -30,6 +30,11 @@ export default {
       contact: "Contact",
     },
     input_search_placeholder: "Search",
+    order_history: "Order History",
+    current_order: "Current Order",
+    edit_profile: "Edit Profile",
+    change_password: "Change Password",
+    logout: "Logout",
   },
   home_page: {
     title: "Home",
@@ -89,5 +94,21 @@ export default {
   },
   tags: {
     home_page: "Trang chủ"
-  }
+  },
+  change_pass_page: {
+    button_title: "Change Password",
+    old_password_input_placeholder: "Old Password",
+    new_password_input_placeholder: "New Password",
+    title: "Change Password",
+    message_error: "Wrong old password!",
+  },
+  edit_profile_page: {
+    button_title: "Edit Profile",
+    email_input_placeholder: "Email",
+    name_input_placeholder: "Name",
+    phone_input_placeholder: "Phone Number",
+    address_input_placeholder: "Address",
+    title: "Edit Profile",
+    message_error: "Update profile failed!",
+  },
 };

@@ -9,12 +9,12 @@ import {
 import { Alert } from "@material-ui/lab";
 
 export const Wrapper = styled("div")({
-  width: "100vw",
-  height: "100vh",
   display: "flex",
+  marginTop: 130,
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
+  margin: "auto",
 });
 
 export const LoginWrapper = styled("div")({
@@ -59,18 +59,8 @@ export const InputField = styled(TextField)({
 });
 
 export const FormWrapper = styled("div")({
-  padding: "30px 20px",
+  padding: "30px",
   paddingBottom: "20px",
-});
-
-export const Subtext = styled(Typography)({
-  color: "#000",
-  fontSize: 14,
-  textAlign: "center",
-});
-
-export const LinkSignUp = styled("span")({
-  color: "var(--color-primary)",
 });
 
 export const CircleLoading = styled(CircularProgress)({

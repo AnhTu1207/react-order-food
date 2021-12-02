@@ -1,7 +1,25 @@
 import { IRoute } from "models/types";
-import { Home, Profile, Order, ProductDetail, Category } from "page";
+import {
+  Home,
+  Profile,
+  Order,
+  ProductDetail,
+  ChangePassword,
+  EditProfile,
+  Category
+} from "page";
 
 export const MainRoute: IRoute[] = [
+  {
+    exact: true,
+    path: "/edit-profile",
+    Component: EditProfile,
+  },
+  {
+    exact: true,
+    path: "/change-pass",
+    Component: ChangePassword,
+  },
   {
     exact: true,
     path: "/profile",
@@ -11,7 +29,6 @@ export const MainRoute: IRoute[] = [
     Component: ProductDetail,
     exact: true,
     path: "/store/:storeId",
-    hasLogin: true,
   },
   {
     exact: true,
