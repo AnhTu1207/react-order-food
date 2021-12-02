@@ -16,7 +16,7 @@ export const AuthRoute: IRoute[] = [
   {
     Component: Verify,
     exact: true,
-    path: "/verify",
+    path: "/verify/:token",
   },
   {
     Component: NotFound,

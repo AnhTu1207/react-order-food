@@ -24,13 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return [
-    "Processing",
-    "Finding driver",
-    "Cooking foods",
-    "Delivering",
-    "Done",
-  ];
+  return ["Finding driver", "Cooking foods", "Delivering", "Done"];
 }
 
 // function getStepContent(stepIndex: number) {

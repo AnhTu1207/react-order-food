@@ -20,8 +20,8 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
     },
     imgFood: {
-      width: 50,
-      height: 50,
+      width: 70,
+      height: 70,
     },
     foodBox: {
       padding: 0,
@@ -35,6 +35,7 @@ export const useStyles = makeStyles((theme: Theme) =>
 
 export const FoodName = styled(Typography)({
   fontWeight: 500,
+  fontSize: 17,
 });
 
 export const CustomCardHeader = styled(CardHeader)({
@@ -87,5 +88,5 @@ export const ActionBox = styled(Box)({
 
 export const OptionName = styled(Typography)({
   fontSize: 13,
-  margin: "10px 0 5px 10px",
+  margin: "5px 0 5px 5px",
 });

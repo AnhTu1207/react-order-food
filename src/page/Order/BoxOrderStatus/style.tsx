@@ -1,4 +1,4 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, withTheme } from "@material-ui/core";
 import {
   createStyles,
   Theme,
@@ -20,6 +20,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       borderBottom: "1px solid #d8d8d8",
       height: 200,
       marginBottom: 10,
+      [theme.breakpoints.down("sm")]: {
+        flexDirection: "column",
+        alignItems: "flex-start",
+        height: 400,
+      },
     },
     storeAvatar: {
       width: "40%",
@@ -37,6 +42,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
+      width: "100%",
     },
   })
 );
@@ -48,20 +54,29 @@ export const CardHeader = styled(Box)({
   borderBottom: "1px solid #d8d8d8",
 });
 
-export const BoxInfoStore = styled(Box)({
+export const BoxInfoStore = styled(withTheme(Box))((props) => ({
   width: "50%",
   display: "flex",
   justifyContent: "space-betweens",
   height: "100%",
-});
+  [props.theme.breakpoints.down("sm")]: {
+    width: "72%",
+    height: "50%",
+    marginRight: 10,
+  },
+}));
 
-export const BoxGoogleMap = styled(Box)({
+export const BoxGoogleMap = styled(withTheme(Box))((props) => ({
   display: "flex",
   justifyContent: "space-betweens",
   alignItems: "flex-start",
   width: "35%",
   height: "100%",
-});
+  [props.theme.breakpoints.down("sm")]: {
+    width: "100%",
+    height: "40%",
+  },
+}));
 
 export const InfoText = styled(Typography)({
   fontSize: 15,
