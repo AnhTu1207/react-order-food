@@ -85,4 +85,11 @@ export default {
   verify_page: {
     title: "Verify",
   },
+  change_pass_page: {
+    button_title: "Change Password",
+    old_password_input_placeholder: "Old Password",
+    new_password_input_placeholder: "New Password",
+    title: "Change Password",
+    message_error: "Wrong old password!",
+  },
 };

@@ -144,7 +144,7 @@ export const CustomDivider = styled(Divider)({
 export const Content = styled(withTheme(Paper))((props) => ({
   width: "85%",
   margin: "0 auto",
-  minHeight: "100vh",
+  minHeight: "60vh",
   padding: "25px 16px 0 16px",
   background: "#f4f4f4",
   [props.theme.breakpoints.down("sm")]: {
