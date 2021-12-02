@@ -1,4 +1,8 @@
-import { loginValidationSchema } from "./auth";
+import { loginValidationSchema, signupValidationSchema } from "./auth";
 import { addressConfirmValidationSchema } from "./cart";
 
-export { loginValidationSchema, addressConfirmValidationSchema };
+export {
+  loginValidationSchema,
+  addressConfirmValidationSchema,
+  signupValidationSchema,
+};

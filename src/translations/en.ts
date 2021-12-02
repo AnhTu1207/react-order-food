@@ -2,12 +2,24 @@
 export default {
   login: {
     button_title: "Login",
-    email_input_placeholder: "email or username",
-    password_input_placeholder: "password",
+    email_input_placeholder: "Email or username",
+    password_input_placeholder: "Password",
     title: "Login",
     sub_text: "Don't have an account?",
     sign_up_link: "Sign up",
     message_error: "Wrong username or password!",
+  },
+  signup: {
+    button_title: "Sign up",
+    name_input_placeholder: "Name",
+    email_input_placeholder: "Email",
+    phone_input_placeholder: "Phone Number",
+    address_input_placeholder: "Address",
+    user_name_input_placeholder: "Username",
+    password_input_placeholder: "Password",
+    title: "Sign up",
+    sub_text: "Have an account?",
+    login_link: "Login",
   },
   main_page_template: {
     menu: {

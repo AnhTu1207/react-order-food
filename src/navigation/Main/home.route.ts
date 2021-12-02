@@ -9,12 +9,12 @@ export const MainRoute: IRoute[] = [
   },
   {
     exact: true,
-    path: "/",
-    Component: Home,
+    path: "/order",
+    Component: Order,
   },
   {
     exact: true,
-    path: "/order/:id",
-    Component: Order,
+    path: "/",
+    Component: Home,
   },
 ];

@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 
 import { useTranslations } from "hooks";
 import { useLogin } from "api/auth";
-import { loginValidationSchema } from "schemas";
+import { signupValidationSchema } from "schemas";
 import { Logo } from "components";
 import {
   Wrapper,
@@ -22,7 +22,7 @@ import {
   ButtonWrapper,
 } from "./styles";
 
-const Login: FC = () => {
+const Signup: FC = () => {
   const { i18n } = useTranslations();
   const [isErr, setErr] = useState(false);
   const history = useHistory();
@@ -42,24 +42,21 @@ const Login: FC = () => {
     initialValues: {
       username: "",
       password: "",
+      email: "",
+      name: "",
+      phone: "",
+      address: "",
     },
-    validationSchema: loginValidationSchema,
+    validationSchema: signupValidationSchema,
     onSubmit: (values) => {
-      if (values.username.includes("@")) {
-        sendLoginRequest({
-          email: values.username,
-          password: values.password,
-        });
-      } else {
-        sendLoginRequest(values);
-      }
+      console.log(values);
     },
   });
 
   return (
     <>
       <Helmet>
-        <title>{i18n.t("login.title")}</title>
+        <title>{i18n.t("signup.title")}</title>
       </Helmet>
       <Snackbar
         open={isErr}
@@ -78,7 +75,43 @@ const Login: FC = () => {
           <form autoComplete="off" onSubmit={formik.handleSubmit}>
             <FormWrapper>
               <InputField
-                placeholder={i18n.t("login.email_input_placeholder")}
+                placeholder={i18n.t("signup.name_input_placeholder")}
+                disabled={isLoadingLogin}
+                onChange={formik.handleChange}
+                name="name"
+                error={formik.touched.name && !!formik.errors.name}
+                helperText={formik.touched.name && formik.errors.name}
+                value={formik.values.name}
+              />
+              <InputField
+                placeholder={i18n.t("signup.email_input_placeholder")}
+                disabled={isLoadingLogin}
+                onChange={formik.handleChange}
+                name="email"
+                error={formik.touched.email && !!formik.errors.email}
+                helperText={formik.touched.email && formik.errors.email}
+                value={formik.values.email}
+              />
+              <InputField
+                placeholder={i18n.t("signup.phone_input_placeholder")}
+                disabled={isLoadingLogin}
+                onChange={formik.handleChange}
+                name="phone"
+                error={formik.touched.phone && !!formik.errors.phone}
+                helperText={formik.touched.phone && formik.errors.phone}
+                value={formik.values.phone}
+              />
+              <InputField
+                placeholder={i18n.t("signup.address_input_placeholder")}
+                disabled={isLoadingLogin}
+                onChange={formik.handleChange}
+                name="address"
+                error={formik.touched.address && !!formik.errors.address}
+                helperText={formik.touched.address && formik.errors.address}
+                value={formik.values.address}
+              />
+              <InputField
+                placeholder={i18n.t("signup.user_name_input_placeholder")}
                 disabled={isLoadingLogin}
                 onChange={formik.handleChange}
                 name="username"
@@ -87,7 +120,7 @@ const Login: FC = () => {
                 value={formik.values.username}
               />
               <InputField
-                placeholder={i18n.t("login.password_input_placeholder")}
+                placeholder={i18n.t("signup.password_input_placeholder")}
                 disabled={isLoadingLogin}
                 type="password"
                 name="password"
@@ -101,14 +134,14 @@ const Login: FC = () => {
                   <CircleLoading size={25} />
                 ) : (
                   <LoginButton type="submit">
-                    {i18n.t("login.button_title")}
+                    {i18n.t("signup.button_title")}
                   </LoginButton>
                 )}
               </ButtonWrapper>
               <Subtext>
-                {i18n.t("login.sub_text")}{" "}
-                <LinkSignUp onClick={() => history.replace("/signup")}>
-                  {i18n.t("login.sign_up_link")}
+                {i18n.t("signup.sub_text")}{" "}
+                <LinkSignUp onClick={() => history.replace("/login")}>
+                  {i18n.t("signup.login_link")}
                 </LinkSignUp>
               </Subtext>
             </FormWrapper>
@@ -119,4 +152,4 @@ const Login: FC = () => {
   );
 };
 
-export default Login;
+export default Signup;
