@@ -26,7 +26,10 @@ const BoxStore: FC<IProps> = ({ store }: IProps) => {
 
   return (
     <>
-      <Card className={classes.root}>
+      <Card
+        className={classes.root}
+        onClick={() => history.push("/productdetail")}
+      >
         <CardActionArea>
           <CardMedia
             component="img"
@@ -35,7 +38,7 @@ const BoxStore: FC<IProps> = ({ store }: IProps) => {
             image={store.avatar}
             title={store.name}
           />
-          <CardContent onClick={() => history.push("/productdetail")}>
+          <CardContent>
             <Typography gutterBottom variant="h6" component="h2" noWrap>
               {store.name}
             </Typography>

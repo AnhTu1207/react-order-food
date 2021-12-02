@@ -22,6 +22,7 @@ export const useStyle = makeStyles((theme: Theme) =>
       position: "fixed",
       bottom: "5%",
       right: "3%",
+      zIndex: 1000,
       "&:hover": {
         background: "var(--color-button-hover)",
         transition: "0.5s",

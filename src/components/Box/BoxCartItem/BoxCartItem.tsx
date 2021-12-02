@@ -6,6 +6,7 @@ import { Add, DeleteOutline, Remove } from "@material-ui/icons";
 
 import { removeFormCart, minusQuantity, plusQuantity } from "store/slices";
 import { ICartItem } from "models/types";
+import { getVndPrice } from "utils";
 
 import {
   ActionBox,
@@ -100,8 +101,7 @@ const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
             title={<FoodName noWrap>{product.name}</FoodName>}
             subheader={
               <Typography>
-                {}
-                {currency(priceState[product.id] * product.quantity).format()}
+                {getVndPrice(priceState[product.id] * product.quantity)}
               </Typography>
             }
           />
