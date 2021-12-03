@@ -1,49 +1,49 @@
-import { FC } from "react";
-import { Button } from "@material-ui/core";
-import { styled } from "@material-ui/styles";
-import { useHistory } from "react-router-dom";
+import { FC, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import Helmet from "react-helmet";
 
 import { useTranslations } from "hooks";
+import { useVerify } from "api/auth";
 
-const RedirectButton = styled(Button)({
-  background: "#f26722",
-  color: "#FFF",
-  fontSize: 18,
-  padding: "8px 16px",
-  display: "block",
-  position: "absolute",
-  right: "10%",
-  bottom: "10%",
-  "&:hover": {
-    background: "var(--color-button-hover)",
-  },
-});
+import { Spinner } from "components";
+import { Container, RedirectButton } from "./styles";
 
-const Container = styled("div")({
-  height: "100vh",
-  width: "100%",
-  backgroundImage: 'url("/Verify.png")',
-  backgroundRepeat: "no-repeat",
-  backgroundPositionX: "center",
-  backgroundPositionY: "30%",
-  position: "relative",
-});
+type Params = {
+  token: string;
+};
 
 const Verify: FC = () => {
   const history = useHistory();
   const { i18n } = useTranslations();
+  const { token } = useParams<Params>();
+
+  const { isLoading: loadingVerify, runRequest: verify } = useVerify({
+    failureCallback: () => {
+      alert("Can not verify");
+    },
+  });
+
+  useEffect(() => {
+    verify(token);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
       <Helmet>
         <title>{i18n.t("verify_page.title")}</title>
       </Helmet>
-      <Container>
-        <RedirectButton onClick={() => history.replace("/login")}>
-          Redirect
-        </RedirectButton>
-      </Container>
+      {loadingVerify ? (
+        <Spinner color="var(--color-primary)" center />
+      ) : (
+        <>
+          <Container>
+            <RedirectButton onClick={() => history.replace("/login")}>
+              Redirect
+            </RedirectButton>
+          </Container>
+        </>
+      )}
     </>
   );
 };

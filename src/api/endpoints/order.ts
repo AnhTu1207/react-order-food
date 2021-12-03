@@ -1,0 +1,1 @@
+export const createOrderUrl: string = `/api/order`;

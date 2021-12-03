@@ -5,8 +5,9 @@ import { useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { useTranslations } from "hooks";
-import { useLogin } from "api/auth";
+import { useSignup } from "api/auth";
 import { signupValidationSchema } from "schemas";
+
 import { Logo } from "components";
 import {
   Wrapper,
@@ -27,11 +28,9 @@ const Signup: FC = () => {
   const [isErr, setErr] = useState(false);
   const history = useHistory();
 
-  const { runRequest: sendLoginRequest, isLoading: isLoadingLogin } = useLogin({
-    successCallback: (data) => {
-      sessionStorage.setItem("user_token", data.data.accessToken);
-      sessionStorage.setItem("user_id", data.data.id);
-      history.replace("/");
+  const { runRequest: signup, isLoading: isLoadingSignup } = useSignup({
+    successCallback: () => {
+      alert("Please verify your email!");
     },
     failureCallback: () => {
       setErr(true);
@@ -49,7 +48,7 @@ const Signup: FC = () => {
     },
     validationSchema: signupValidationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      signup(values);
     },
   });
 
@@ -71,12 +70,12 @@ const Signup: FC = () => {
       <Wrapper>
         <Logo margin="0 0 16px 0" />
         <LoginWrapper>
-          {isLoadingLogin && <ProcessLine />}
+          {isLoadingSignup && <ProcessLine />}
           <form autoComplete="off" onSubmit={formik.handleSubmit}>
             <FormWrapper>
               <InputField
                 placeholder={i18n.t("signup.name_input_placeholder")}
-                disabled={isLoadingLogin}
+                disabled={isLoadingSignup}
                 onChange={formik.handleChange}
                 name="name"
                 error={formik.touched.name && !!formik.errors.name}
@@ -85,7 +84,7 @@ const Signup: FC = () => {
               />
               <InputField
                 placeholder={i18n.t("signup.email_input_placeholder")}
-                disabled={isLoadingLogin}
+                disabled={isLoadingSignup}
                 onChange={formik.handleChange}
                 name="email"
                 error={formik.touched.email && !!formik.errors.email}
@@ -94,7 +93,7 @@ const Signup: FC = () => {
               />
               <InputField
                 placeholder={i18n.t("signup.phone_input_placeholder")}
-                disabled={isLoadingLogin}
+                disabled={isLoadingSignup}
                 onChange={formik.handleChange}
                 name="phone"
                 error={formik.touched.phone && !!formik.errors.phone}
@@ -103,7 +102,7 @@ const Signup: FC = () => {
               />
               <InputField
                 placeholder={i18n.t("signup.address_input_placeholder")}
-                disabled={isLoadingLogin}
+                disabled={isLoadingSignup}
                 onChange={formik.handleChange}
                 name="address"
                 error={formik.touched.address && !!formik.errors.address}
@@ -112,7 +111,7 @@ const Signup: FC = () => {
               />
               <InputField
                 placeholder={i18n.t("signup.user_name_input_placeholder")}
-                disabled={isLoadingLogin}
+                disabled={isLoadingSignup}
                 onChange={formik.handleChange}
                 name="username"
                 error={formik.touched.username && !!formik.errors.username}
@@ -121,7 +120,7 @@ const Signup: FC = () => {
               />
               <InputField
                 placeholder={i18n.t("signup.password_input_placeholder")}
-                disabled={isLoadingLogin}
+                disabled={isLoadingSignup}
                 type="password"
                 name="password"
                 onChange={formik.handleChange}
@@ -130,7 +129,7 @@ const Signup: FC = () => {
                 helperText={formik.touched.password && formik.errors.password}
               />
               <ButtonWrapper>
-                {isLoadingLogin ? (
+                {isLoadingSignup ? (
                   <CircleLoading size={25} />
                 ) : (
                   <LoginButton type="submit">

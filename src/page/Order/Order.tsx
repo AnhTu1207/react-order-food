@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Helmet from "react-helmet";
 
 import { useTranslations } from "hooks";
@@ -6,7 +6,9 @@ import { useTranslations } from "hooks";
 import BoxOrderStatus from "./BoxOrderStatus";
 import { MainPageTemplate } from "components";
 
-interface IProps {}
+interface IProps {};
+
+
 
 function Order(props: IProps) {
   const { i18n } = useTranslations();

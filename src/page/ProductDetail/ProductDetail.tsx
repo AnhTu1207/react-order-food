@@ -37,7 +37,7 @@ const ProductDetail: FC = () => {
             <>
               <BoxProductDetail store={store?.data} />
               <Cart />
-              {store?.data?.open ? (
+              {store?.data?.status ? (
                 <>
                   <Suggest>
                     <CommunityMenu></CommunityMenu>

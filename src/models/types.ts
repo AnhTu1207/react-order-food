@@ -136,4 +136,5 @@ export type Store = {
   createdAt: string;
   updatedAt: string;
   avatar_placeholder: string;
+  status: boolean;
 };

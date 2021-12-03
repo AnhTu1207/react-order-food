@@ -1,19 +1,14 @@
 import { FC, useMemo, useState } from "react";
-import {
-  Avatar,
-  Card,
-  Typography,
-  Button,
-  Select,
-  MenuItem,
-} from "@material-ui/core";
+import { Avatar, Card, Typography, Button } from "@material-ui/core";
 import { EventNoteOutlined } from "@material-ui/icons";
 import { useSelector } from "react-redux";
-import { map, reduce } from "lodash";
+import { map } from "lodash";
 
 import { RootState } from "store";
-import { useTranslations } from "hooks";
 import { getVndPrice } from "utils";
+
+import ModalPaymentMethod from "./ModalPaymentMethod";
+import { useCreateOrder } from "api/order";
 
 import {
   ActionBox,
@@ -25,109 +20,128 @@ import {
   useStyles,
   OptionName,
 } from "./style";
+import { Spinner } from "components";
 
-enum PaymentType {
-  ZALO = "zalo",
-  COD = "cod",
-  MOMO = "momo",
+type Props = {
+  onPaymentSuccess: () => void;
 }
 
-const BoxOrderItem: FC = () => {
+const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
   const classes = useStyles();
   const { cartItems } = useSelector((state: RootState) => state.cart);
-  const { i18n } = useTranslations();
-  const [paymentType, setPaymentType] = useState(PaymentType.COD);
+  const [openModal, setOpenModal] = useState(false);
+  const [isVisibileCheckButton, setVisibileCheckouButton] = useState(true);
 
-  const cartItemsMapped = useMemo(() => {
-    if (!cartItems || !cartItems.length) return;
+  const { isLoading: creatingOrder, runRequest: createOrder } = useCreateOrder({
+    successCallback: () => {
+      setVisibileCheckouButton(false);
+      onPaymentSuccess();
+    },
+  });
 
-    return map(cartItems, (item) =>
-      map(item.products, (p) => ({
-        ...p,
-        storeId: item.storeId,
-        storeAvt: item.storeAvatar,
-        storeName: item.storeName,
-      }))
-    )[0];
+  const totalPrice = useMemo(() => {
+    if (!cartItems.length) return 0;
+
+    return cartItems
+      .map((item) =>
+        item.products.reduce((total, p) => (total += p.price * p.quantity), 0)
+      )
+      .reduce((total, i) => (total += i), 0);
   }, [cartItems]);
+
+  const onClickPayment = (paymentMethod: string) => {
+    setOpenModal(false);
+    const mappedObject = {
+      store_id: cartItems.map((item) => item.storeId.toString()) as string[],
+      total: totalPrice,
+      payment_option: "cash",
+      address: "address",
+      user_id: sessionStorage.getItem("user_id") as string,
+      items: getFoodItems(),
+    };
+
+    createOrder(mappedObject);
+  };
+
+  const getFoodItems = () => {
+    let items: {
+      food_id: string;
+      qty: number;
+      price: number;
+    }[] = [];
+
+    cartItems.map((item) => {
+      return item.products.map((p) => {
+        items.push({
+          food_id: p.id.toString(),
+          qty: p.quantity,
+          price: p.price,
+        });
+        return {
+          food_id: p.id,
+          qty: p.quantity,
+          price: p.price,
+        };
+      });
+    });
+
+    return items;
+  };
 
   return (
     <Card className={classes.rootWithFullWidth}>
-      {map(cartItemsMapped, (product, index) => (
-        <CustomCartContent display={"flex"} key={index}>
-          <CustomCardHeader
-            className={classes.foodBox}
-            avatar={
-              <Avatar
-                className={classes.imgFood}
-                alt={product.name}
-                src={product.avatar}
+      {map(cartItems, (order) => (
+        <>
+          {map(order.products, (product, index) => (
+            <CustomCartContent display={"flex"} key={index}>
+              <CustomCardHeader
+                className={classes.foodBox}
+                avatar={
+                  <Avatar
+                    className={classes.imgFood}
+                    alt={product.name}
+                    src={product.avatar}
+                  />
+                }
+                title={<FoodName noWrap>{product.name}</FoodName>}
+                subheader={
+                  <OptionName noWrap>
+                    {getVndPrice(product.price * product.quantity)}
+                  </OptionName>
+                }
               />
-            }
-            title={<FoodName noWrap>{product.name}</FoodName>}
-            subheader={
-              <OptionName noWrap>
-                {getVndPrice(product.price * product.quantity)}
-              </OptionName>
-            }
-          />
 
-          <ActionBox>
-            <CustomIconButton disabled>
-              <EventNoteOutlined className={classes.icon} />
-            </CustomIconButton>
-            <Quantity>{product.quantity}</Quantity>
-          </ActionBox>
-        </CustomCartContent>
+              <ActionBox>
+                <CustomIconButton disabled>
+                  <EventNoteOutlined className={classes.icon} />
+                </CustomIconButton>
+                <Quantity>{product.quantity}</Quantity>
+              </ActionBox>
+            </CustomCartContent>
+          ))}
+        </>
       ))}
-      {cartItemsMapped?.length && (
+      {!!(cartItems.length && isVisibileCheckButton) && (
         <>
           <CustomCartContent display="flex">
-            <div>
-              <Typography>
-                {i18n.t("check_out.total")}:{" "}
-                {getVndPrice(
-                  reduce(
-                    cartItemsMapped,
-                    (sum, item) => (sum += item.price * item.quantity),
-                    0
-                  )
-                )}
-              </Typography>
-              <div className={classes.paymentWrapper}>
-                <Typography className={classes.paymentTitle}>
-                  {i18n.t("check_out.payment_method")}
-                </Typography>
-                <Select value={paymentType} className={classes.paymentMethod}>
-                  <MenuItem
-                    value={PaymentType.COD}
-                    onClick={() => setPaymentType(PaymentType.COD)}
-                  >
-                    {i18n.t("check_out.cod")}
-                  </MenuItem>
-                  <MenuItem
-                    value={PaymentType.MOMO}
-                    onClick={() => setPaymentType(PaymentType.MOMO)}
-                    disabled
-                  >
-                    {i18n.t("check_out.momo")}
-                  </MenuItem>
-                  <MenuItem
-                    value={PaymentType.ZALO}
-                    onClick={() => setPaymentType(PaymentType.ZALO)}
-                    disabled
-                  >
-                    {i18n.t("check_out.zalo_pay")}
-                  </MenuItem>
-                </Select>
-              </div>
-            </div>
-            <div className={classes.right}>
-              <Button variant="contained" className={classes.button}>
-                Checkout
-              </Button>
-            </div>
+            <Typography>Total: {getVndPrice(totalPrice)}</Typography>
+            <Button
+              variant="contained"
+              className={classes.checkoutButton}
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              {creatingOrder ? <Spinner color="#FFF" size={14} /> : "Check out"}
+            </Button>
           </CustomCartContent>
+          <ModalPaymentMethod
+            open={openModal}
+            onClose={() => {
+              setOpenModal(false);
+            }}
+            onClickPayment={onClickPayment}
+          />
         </>
       )}
     </Card>

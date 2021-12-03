@@ -49,6 +49,13 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     paymentTitle: {
       marginRight: 10,
+    },
+    checkoutButton: {
+      background: "var(--color-primary)",
+      color: "#FFF",
+      '&:hover': {
+        background: "var(--color-button-hover)"
+      }
     }
   })
 );

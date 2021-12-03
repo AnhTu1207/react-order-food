@@ -1,7 +1,7 @@
 import { axiosBaseConfig, setUpInterceptors } from "utils";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { MainRoute, AuthRoute } from "navigation";
+import { MainRoute, AuthRoute, NonAuthRoutes } from "navigation";
 
 import { PrivateRoute } from "components";
 
@@ -31,6 +31,14 @@ function App() {
                 <item.Component {...props} />
               </PrivateRoute>
             )}
+            key={item.path}
+          />
+        ))}
+        {NonAuthRoutes.map((item) => (
+          <Route
+            exact={item.exact}
+            render={(props) => <item.Component {...props} />}
+            path={item.path}
             key={item.path}
           />
         ))}
