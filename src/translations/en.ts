@@ -8,6 +8,7 @@ export default {
     sub_text: "Don't have an account?",
     sign_up_link: "Sign up",
     message_error: "Wrong username or password!",
+    forgot_password: "Forgot password.",
   },
   signup: {
     button_title: "Sign up",
@@ -90,10 +91,10 @@ export default {
     cod: "COD",
     zalo_pay: "Zalo pay",
     momo: "Momo",
-    payment_method: "Payment method"
+    payment_method: "Payment method",
   },
   tags: {
-    home_page: "Trang chủ"
+    home_page: "Trang chủ",
   },
   change_pass_page: {
     button_title: "Change Password",
@@ -110,5 +111,9 @@ export default {
     address_input_placeholder: "Address",
     title: "Edit Profile",
     message_error: "Update profile failed!",
+  },
+  history_page: {
+    title: "Order History",
+    dont_have_order: "You don't have any orders yet!",
   },
 };

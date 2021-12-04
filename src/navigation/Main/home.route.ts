@@ -6,10 +6,16 @@ import {
   ProductDetail,
   ChangePassword,
   EditProfile,
-  Category
+  Category,
+  History,
 } from "page";
 
 export const MainRoute: IRoute[] = [
+  {
+    exact: true,
+    path: "/history",
+    Component: History,
+  },
   {
     exact: true,
     path: "/edit-profile",
@@ -37,7 +43,7 @@ export const MainRoute: IRoute[] = [
   },
   {
     exact: true,
-    path: '/category/:categoryId',
+    path: "/category/:categoryId",
     Component: Category,
   },
   {

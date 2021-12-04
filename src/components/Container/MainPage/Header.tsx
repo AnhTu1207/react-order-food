@@ -101,7 +101,7 @@ const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
                 />
               </ListItem>
 
-              <ListItem button>
+              <ListItem button onClick={() => history.push("/history")}>
                 <ListItemIcon>
                   <HistoryOutlined className={classes.icons} />
                 </ListItemIcon>

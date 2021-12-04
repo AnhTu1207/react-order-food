@@ -1,3 +1,5 @@
+import { DoorFront } from "@mui/icons-material";
+
 export { default as Home } from "./Home";
 export { default as Login } from "./Login";
 export { default as ProductDetail } from "./ProductDetail";
@@ -9,3 +11,4 @@ export { default as Verify } from "./Verify";
 export { default as Category } from "./Category";
 export { default as ChangePassword } from "./ChangePassword";
 export { default as EditProfile } from "./EditProfile";
+export { default as History } from "./History";
