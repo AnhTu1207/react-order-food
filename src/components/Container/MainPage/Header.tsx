@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import {
   IconButton,
   Popover,
@@ -8,6 +8,7 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
+import { map, find } from "lodash";
 import {
   EditOutlined,
   HistoryOutlined,
@@ -17,9 +18,10 @@ import {
 } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 
-import { useTranslations } from "hooks";
-import { Logo } from "components";
+import { useTranslations, useDebounce } from "hooks";
+import { useSearchFoods } from "api/food";
 
+import { Logo } from "components";
 import {
   useStyles,
   CustomToolbar,
@@ -36,6 +38,12 @@ const Header: FC = () => {
   const history = useHistory();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [searchValue, setSearchValue] = useState("");
+  const searchQueryString = useDebounce({
+    delay: 300,
+    value: searchValue
+  });
+  const { runRequest: searchFoods, responseData: foods } = useSearchFoods({});
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -44,6 +52,19 @@ const Header: FC = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    searchFoods({ search: searchQueryString });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQueryString]);
+
+  const onSelectFood = (foodName: string) => {
+    const foundFood = find(foods?.data, (item) => item.name === foodName);
+
+    if (foundFood) {
+      history.push(`/store/${foundFood.store_id}`);
+    }
+  }
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -58,16 +79,24 @@ const Header: FC = () => {
           <div className={classes.search}>
             <SearchWrapper>
               <Autocomplete
-                options={["option 1", "option 2"]}
+                options={map(foods?.data, item => item.name)}
                 freeSolo
                 fullWidth
                 disableClearable
                 renderInput={(params: unknown) => (
                   <div className={classes.searchWrapper}>
                     <CustomSearchIcon className={classes.searchIcon} />
-                    <SearchInput {...params} placeholder="Search" />
+                    <SearchInput
+                      {...params}
+                      placeholder="Search"
+                      value={searchValue}
+                      onChange={(e) => setSearchValue(e.target.value)}
+                    />
                   </div>
                 )}
+                onChange={(e, value) => {
+                  onSelectFood(value);
+                }}
               />
             </SearchWrapper>
           </div>
