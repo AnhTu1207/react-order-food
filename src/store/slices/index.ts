@@ -3,6 +3,6 @@ import { cartSlice } from "./cart";
 
 const { actions } = cartSlice;
 
-export const { addToCart, minusQuantity, plusQuantity, removeFormCart } =
+export const { addToCart, minusQuantity, plusQuantity, removeFormCart, reset } =
   actions;
 export { loginSlice, loginSelector, cartSlice };

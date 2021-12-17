@@ -17,7 +17,7 @@ const MainPageTemplate: FC<IProps> = ({ children }: IProps) => {
 
   return (
     <Wrapper>
-      <Header onClickMenu={() => {}} />
+      <Header />
       <Content elevation={0}>{children}</Content>
       <Footer />
     </Wrapper>

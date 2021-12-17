@@ -9,6 +9,7 @@ import {
   BoxProductDetail,
   BoxStore,
 } from "./Box";
+import { Button } from "./Button";
 
 export {
   PrivateRoute,
@@ -21,4 +22,5 @@ export {
   BoxProduct,
   BoxProductDetail,
   BoxStore,
+  Button
 };

@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import currency from "currency.js";
 import { Avatar, Card, Typography } from "@material-ui/core";
 import { Add, DeleteOutline, Remove } from "@material-ui/icons";
 
@@ -44,6 +43,7 @@ const BoxCartItem: FC<IProps> = ({ cartItem, isCartDrawer }: IProps) => {
         [product.id]: product.price + optionPrice,
       }));
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlePlusQuantity = (productId: number) => {

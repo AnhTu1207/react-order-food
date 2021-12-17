@@ -7,10 +7,12 @@ import { PrivateRoute } from "components";
 
 import "./App.css";
 
+
 axiosBaseConfig();
 setUpInterceptors();
 
 function App() {
+  
   return (
     <Router>
       <Switch>

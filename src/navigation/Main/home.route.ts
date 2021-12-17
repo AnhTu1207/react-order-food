@@ -6,7 +6,8 @@ import {
   ProductDetail,
   ChangePassword,
   EditProfile,
-  Category
+  Category,
+  OrderHistory
 } from "page";
 
 export const MainRoute: IRoute[] = [
@@ -45,4 +46,9 @@ export const MainRoute: IRoute[] = [
     path: "/",
     Component: Home,
   },
+  {
+    exact: true,
+    path: "/order-history",
+    Component: OrderHistory
+  }
 ];

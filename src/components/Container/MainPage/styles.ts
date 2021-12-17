@@ -13,6 +13,7 @@ import {
   withTheme,
   Paper,
   Box,
+  TextField,
   Typography,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -36,6 +37,10 @@ export const useStyles = makeStyles((theme: Theme) =>
         display: "block",
       },
     },
+    searchWrapper: {
+      display: "flex",
+      alignItems: "center"
+    },
     search: {
       position: "relative",
       borderRadius: theme.shape.borderRadius,
@@ -52,13 +57,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginRight: 16,
     },
     searchIcon: {
-      padding: theme.spacing(0, 2),
-      height: "100%",
-      position: "absolute",
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      marginRight: 5,
     },
     inputRoot: {
       color: "#000",
@@ -223,4 +222,21 @@ export const Logo_Footer = styled(Box)({
   textAlign: "right",
   width: "50%",
   marginLeft: "12%",
+});
+
+export const SearchWrapper = styled("div")({
+  width: 150,
+});
+
+export const SearchInput = styled(TextField)({
+  color: "var(--primary-color)",
+  "& .MuiInput-underline:after": {
+    display: "none !important",
+  },
+  "& .MuiInput-underline:before": {
+    display: "none !important",
+  },
+  "& .MuiInput-formControl": {
+    marginTop: "0 !important",
+  },
 });

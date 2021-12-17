@@ -110,5 +110,9 @@ export default {
     address_input_placeholder: "Address",
     title: "Edit Profile",
     message_error: "Update profile failed!",
+    message_success: "Updated!"
   },
+  order_history: {
+    title: "Your order"
+  }
 };

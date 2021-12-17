@@ -10,3 +10,8 @@ export type CreateOrderRequestType = {
     price: number;
   }[];
 };
+
+export type GetOrdersByUserQueryType = {
+  limit?: number;
+  page?: number;
+}

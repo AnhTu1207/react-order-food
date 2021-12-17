@@ -31,6 +31,9 @@ const Login: FC = () => {
     successCallback: (data) => {
       sessionStorage.setItem("user_token", data.data.accessToken);
       sessionStorage.setItem("user_id", data.data.id);
+      sessionStorage.setItem("user_address", data.data.address);
+      sessionStorage.setItem("user_name", data.data.name);
+      sessionStorage.setItem("user_phone", data.data.phone);
       history.replace("/");
     },
     failureCallback: () => {

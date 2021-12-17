@@ -19,6 +19,7 @@ const ContentHome: FC<IProps> = ({ contenthome }: IProps) => {
           src={
             "https://www.jmenu.com/editable/templates/default/images/how-to2.png"
           }
+          alt=""
         />
       </BoxContent>
     </div>

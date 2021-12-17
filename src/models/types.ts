@@ -58,6 +58,9 @@ export type User = {
   createdAt: string;
   updatedAt: string;
   accessToken: string;
+  phone: string;
+  address: string;
+  name: string;
 };
 
 export interface UserInfo {
@@ -138,3 +141,49 @@ export type Store = {
   avatar_placeholder: string;
   status: boolean;
 };
+
+export type OrderItem = {
+  food: {
+    name: string;
+    store: Store;
+  };
+  food_id: string;
+  order_id: string;
+  price: number;
+  qty: number;
+  update_at: string;
+};
+
+export type Order = {
+  id: string;
+  store_id: string;
+  driver_id: null | string;
+  coupon_id: null | string;
+  user_id: string;
+  total: number;
+  rating: number;
+  status: string;
+  payment_option: string;
+  createdAt: string;
+  updatedAt: string;
+  shipper_fee: number;
+  store: {
+    name: string;
+  };
+  user: {
+    name: string;
+    address: string;
+    phone: string;
+  };
+  driver: null | string;
+  coupon: null | string;
+  orders_items: OrderItem[];
+};
+
+export enum PaymentStatusIndex {
+  PAYMENT = 0,
+  FINDING_DRIVER = 1,
+  COOKING_FOODS = 2,
+  DELIVERING = 3,
+  DONE = 4,
+}

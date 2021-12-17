@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Typography } from "@material-ui/core";
 import { LocationOn } from "@material-ui/icons";
 
-import { useTranslations } from "hooks";
 import { Store } from "models/types";
 
 import { useStyles } from "./styles";
@@ -12,8 +11,6 @@ interface IProps {
 }
 const BoxProductDetail: FC<IProps> = ({ store }: IProps) => {
   const classes = useStyles();
-
-  const { i18n } = useTranslations();
 
   return (
     <div className={classes.wrapper}>

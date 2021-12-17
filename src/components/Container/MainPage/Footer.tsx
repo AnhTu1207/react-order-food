@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import { FC } from "react";
 
 import { useTranslations } from "hooks";

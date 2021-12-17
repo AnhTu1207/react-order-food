@@ -10,7 +10,7 @@ type Props = {
 const Spinner: FC<Props> = ({ color, size, center }: Props) => {
   return (
     <SpinnerContainer center={center}>
-      <SpinnerStyled bgColor={color || "#FFF"} size={size}  />
+      <SpinnerStyled bgColor={color || "var(--color-primary)"} size={size}  />
     </SpinnerContainer>
   );
 };

@@ -13,7 +13,7 @@ export const axiosBaseConfig = () => {
 };
 
 export const axiosSetAuthToken = (token: string) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${token || sessionStorage.getItem("user_token") as string}`;
 };
 
 export const axiosRemoveAuthToken = () => {

@@ -1,14 +1,19 @@
-import { FC, useMemo, useState } from "react";
+import { FC, useMemo, useState, useEffect } from "react";
 import { Avatar, Card, Typography, Button } from "@material-ui/core";
 import { EventNoteOutlined } from "@material-ui/icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { map } from "lodash";
+import { useHistory } from "react-router-dom";
 
 import { RootState } from "store";
 import { getVndPrice } from "utils";
+import { useGetOrderByUser } from "api/order";
+import { PaymentStatusIndex } from "models/types";
+import { useCreateOrder } from "api/order";
+import { reset } from "store/slices";
 
 import ModalPaymentMethod from "./ModalPaymentMethod";
-import { useCreateOrder } from "api/order";
+import { Spinner } from "components";
 
 import {
   ActionBox,
@@ -20,28 +25,90 @@ import {
   useStyles,
   OptionName,
 } from "./style";
-import { Spinner } from "components";
 
 type Props = {
-  onPaymentSuccess: () => void;
+  onPaymentSuccess: (activeStep: PaymentStatusIndex) => void;
+};
+
+enum OrderStatus {
+  DONE = "done",
+  FINDING_DRIVER = "finding_driver",
+  WAIT_COOKING = "cooking_foods",
+  DELIVEING = "delivering",
 }
+
+declare const window: {
+  autoSendRequestOrder: ReturnType<typeof setTimeout>;
+};
 
 const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
   const classes = useStyles();
   const { cartItems } = useSelector((state: RootState) => state.cart);
   const [openModal, setOpenModal] = useState(false);
+  const dispatch = useDispatch();
   const [isVisibileCheckButton, setVisibileCheckouButton] = useState(true);
+  const history = useHistory();
 
   const { isLoading: creatingOrder, runRequest: createOrder } = useCreateOrder({
-    successCallback: () => {
+    successCallback: (data) => {
+      localStorage.setItem("newest_order_id", data.id);
       setVisibileCheckouButton(false);
-      onPaymentSuccess();
+      onPaymentSuccess(PaymentStatusIndex.FINDING_DRIVER);
     },
   });
 
+  const { runRequest: fetchOrderByUser } = useGetOrderByUser({
+    successCallback: (data) => {
+      const newestOrder = data.data.find(
+        (item) => item.id === localStorage.getItem("newest_order_id")
+      );
+      if (
+        localStorage.getItem("newest_order_id") &&
+        newestOrder?.status !== OrderStatus.DONE
+      ) {
+        autoGetOrder();
+        updateValueStep(newestOrder?.status || "");
+      }
+    },
+  });
+
+  const autoGetOrder = (): void => {
+    if (window.autoSendRequestOrder) {
+      clearInterval(window.autoSendRequestOrder);
+    }
+    window.autoSendRequestOrder = setInterval(() => {
+      fetchOrderByUser(sessionStorage.getItem("user_id") as string);
+    }, 10000);
+  };
+
+  const updateValueStep = (status: string): void => {
+    let activeStepIndex: number = 0;
+
+    switch (status) {
+      case OrderStatus.FINDING_DRIVER:
+        activeStepIndex = PaymentStatusIndex.FINDING_DRIVER;
+        break;
+      case OrderStatus.WAIT_COOKING:
+        activeStepIndex = PaymentStatusIndex.COOKING_FOODS;
+        break;
+      case OrderStatus.DELIVEING:
+        activeStepIndex = PaymentStatusIndex.DELIVERING;
+        break;
+      case OrderStatus.DONE:
+        clearInterval(window.autoSendRequestOrder);
+        localStorage.removeItem("newest_order_id");
+        activeStepIndex = PaymentStatusIndex.DONE;
+        dispatch(reset());
+        break;
+      default:
+        activeStepIndex = PaymentStatusIndex.FINDING_DRIVER;
+        break;
+    }
+    onPaymentSuccess(activeStepIndex);
+  };
+
   const totalPrice = useMemo(() => {
     if (!cartItems.length) return 0;
-
     return cartItems
       .map((item) =>
         item.products.reduce((total, p) => (total += p.price * p.quantity), 0)
@@ -55,7 +122,7 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
       store_id: cartItems.map((item) => item.storeId.toString()) as string[],
       total: totalPrice,
       payment_option: "cash",
-      address: "address",
+      address: sessionStorage.getItem("user_address") as string,
       user_id: sessionStorage.getItem("user_id") as string,
       items: getFoodItems(),
     };
@@ -88,12 +155,24 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
     return items;
   };
 
+  useEffect(() => {
+    if (localStorage.getItem("newest_order_id")) {
+      setVisibileCheckouButton(false);
+      fetchOrderByUser(sessionStorage.getItem("user_id") as string);
+    }
+
+    return () => {
+      clearInterval(window.autoSendRequestOrder);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Card className={classes.rootWithFullWidth}>
       {map(cartItems, (order) => (
         <>
           {map(order.products, (product, index) => (
-            <CustomCartContent display={"flex"} key={index}>
+            <CustomCartContent display="flex" key={index}>
               <CustomCardHeader
                 className={classes.foodBox}
                 avatar={
@@ -121,7 +200,7 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
           ))}
         </>
       ))}
-      {!!(cartItems.length && isVisibileCheckButton) && (
+      {!!(cartItems.length && isVisibileCheckButton) ? (
         <>
           <CustomCartContent display="flex">
             <Typography>Total: {getVndPrice(totalPrice)}</Typography>
@@ -140,8 +219,27 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
             onClose={() => {
               setOpenModal(false);
             }}
-            onClickPayment={onClickPayment}
+            onClickPayment={(paymentMethod) => {
+              autoGetOrder();
+              onClickPayment(paymentMethod);
+            }}
           />
+        </>
+      ) : (
+        <>
+          <CustomCartContent display="flex">
+            <Button
+              variant="contained"
+              className={classes.checkoutButton}
+              onClick={() => {
+                localStorage.removeItem("newest_order_id");
+                dispatch(reset());
+                history.replace("/");
+              }}
+            >
+              {creatingOrder ? <Spinner color="#FFF" size={14} /> : "Cancel"}
+            </Button>
+          </CustomCartContent>
         </>
       )}
     </Card>

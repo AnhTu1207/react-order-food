@@ -99,5 +99,8 @@ export const cartSlice = createSlice({
         state.cartItems = state.cartItems.filter((x) => x.storeId !== storeId);
       }
     },
+    reset(state) {
+      state.cartItems = [];
+    }
   },
 });

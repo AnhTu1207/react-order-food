@@ -1,13 +1,13 @@
 import { FC, useState } from "react";
 import {
   IconButton,
-  InputBase,
   Popover,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 import {
   EditOutlined,
   HistoryOutlined,
@@ -23,15 +23,14 @@ import { Logo } from "components";
 import {
   useStyles,
   CustomToolbar,
-  CustomSearchIcon,
   CustomAccountIcon,
   CustomAppbar,
+  CustomSearchIcon,
+  SearchWrapper,
+  SearchInput,
 } from "./styles";
 
-interface IProps {
-  onClickMenu: () => void;
-}
-const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
+const Header: FC = () => {
   const classes = useStyles();
   const { i18n } = useTranslations();
   const history = useHistory();
@@ -57,26 +56,26 @@ const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
             <Logo margin="4px 0 0 0" />
           </div>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <CustomSearchIcon />
-            </div>
-            <InputBase
-              placeholder={i18n.t(
-                "main_page_template.input_search_placeholder"
-              )}
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
+            <SearchWrapper>
+              <Autocomplete
+                options={["option 1", "option 2"]}
+                freeSolo
+                fullWidth
+                disableClearable
+                renderInput={(params: unknown) => (
+                  <div className={classes.searchWrapper}>
+                    <CustomSearchIcon className={classes.searchIcon} />
+                    <SearchInput {...params} placeholder="Search" />
+                  </div>
+                )}
+              />
+            </SearchWrapper>
           </div>
 
           <IconButton onClick={handleClick}>
             <CustomAccountIcon />
           </IconButton>
 
-          {/* Popover */}
           <Popover
             id={id}
             open={open}
@@ -105,9 +104,11 @@ const Header: FC<IProps> = ({ onClickMenu }: IProps) => {
                 <ListItemIcon>
                   <HistoryOutlined className={classes.icons} />
                 </ListItemIcon>
-                <ListItemText
-                  primary={i18n.t("main_page_template.order_history")}
-                />
+                <div onClick={() => history.push("/order-history")}>
+                  <ListItemText
+                    primary={i18n.t("main_page_template.order_history")}
+                  />
+                </div>
               </ListItem>
 
               <ListItem

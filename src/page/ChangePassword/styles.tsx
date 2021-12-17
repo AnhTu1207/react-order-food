@@ -2,7 +2,6 @@ import { styled } from "@material-ui/styles";
 import {
   Button,
   LinearProgress,
-  Typography,
   TextField,
   CircularProgress,
 } from "@material-ui/core";
