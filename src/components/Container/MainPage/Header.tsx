@@ -100,7 +100,7 @@ const Header: FC = () => {
                 />
               </ListItem>
 
-              <ListItem button>
+              <ListItem button onClick={() => history.push("/history")}>
                 <ListItemIcon>
                   <HistoryOutlined className={classes.icons} />
                 </ListItemIcon>

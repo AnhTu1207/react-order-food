@@ -20,6 +20,8 @@ import {
   CircleLoading,
   CustomAlert,
   ButtonWrapper,
+  LinkForgotPass,
+  SubtextForgotPass,
 } from "./styles";
 
 const Login: FC = () => {
@@ -114,6 +116,11 @@ const Login: FC = () => {
                   {i18n.t("login.sign_up_link")}
                 </LinkSignUp>
               </Subtext>
+              {/* <SubtextForgotPass>
+                <LinkForgotPass onClick={() => history.replace("/signup")}>
+                  {i18n.t("login.forgot_password")}
+                </LinkForgotPass>
+              </SubtextForgotPass> */}
             </FormWrapper>
           </form>
         </LoginWrapper>

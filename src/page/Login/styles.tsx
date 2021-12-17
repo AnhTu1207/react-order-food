@@ -69,7 +69,18 @@ export const Subtext = styled(Typography)({
   textAlign: "center",
 });
 
+export const SubtextForgotPass = styled(Typography)({
+  color: "#000",
+  fontSize: 14,
+  textAlign: "center",
+  marginTop: 15,
+});
+
 export const LinkSignUp = styled("span")({
+  color: "var(--color-primary)",
+});
+
+export const LinkForgotPass = styled("span")({
   color: "var(--color-primary)",
 });
 

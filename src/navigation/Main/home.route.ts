@@ -7,10 +7,15 @@ import {
   ChangePassword,
   EditProfile,
   Category,
-  OrderHistory
+  OrderHistory,
 } from "page";
 
 export const MainRoute: IRoute[] = [
+  {
+    exact: true,
+    path: "/history",
+    Component: OrderHistory,
+  },
   {
     exact: true,
     path: "/edit-profile",
@@ -38,7 +43,7 @@ export const MainRoute: IRoute[] = [
   },
   {
     exact: true,
-    path: '/category/:categoryId',
+    path: "/category/:categoryId",
     Component: Category,
   },
   {
