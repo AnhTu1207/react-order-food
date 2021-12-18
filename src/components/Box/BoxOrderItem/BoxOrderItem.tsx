@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 import { RootState } from "store";
 import { getVndPrice } from "utils";
-import { useGetOrderByUser } from "api/order";
+import { useGetOrderByUser, useDeleteOrder } from "api/order";
 import { PaymentStatusIndex } from "models/types";
 import { useCreateOrder } from "api/order";
 import { reset } from "store/slices";
@@ -55,6 +55,14 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
       setVisibileCheckouButton(false);
       onPaymentSuccess(PaymentStatusIndex.FINDING_DRIVER);
     },
+  });
+
+  const { isLoading: deletingOrder, runRequest: deleteOrder } = useDeleteOrder({
+    successCallback: () => {
+      localStorage.removeItem("newest_order_id");
+      dispatch(reset());
+      history.replace("/");
+    }
   });
 
   const { runRequest: fetchOrderByUser } = useGetOrderByUser({
@@ -200,7 +208,7 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
           ))}
         </>
       ))}
-      {!!(cartItems.length && isVisibileCheckButton) ? (
+      {!!(cartItems.length && isVisibileCheckButton) && (
         <>
           <CustomCartContent display="flex">
             <Typography>Total: {getVndPrice(totalPrice)}</Typography>
@@ -225,19 +233,19 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
             }}
           />
         </>
-      ) : (
+      )}
+
+      {localStorage.getItem("newest_order_id") && (
         <>
           <CustomCartContent display="flex">
             <Button
               variant="contained"
               className={classes.checkoutButton}
               onClick={() => {
-                localStorage.removeItem("newest_order_id");
-                dispatch(reset());
-                history.replace("/");
+                deleteOrder(localStorage.getItem("newest_order_id") as string);
               }}
             >
-              {creatingOrder ? <Spinner color="#FFF" size={14} /> : "Cancel"}
+              {deletingOrder ? <Spinner color="#FFF" size={14} /> : "Cancel"}
             </Button>
           </CustomCartContent>
         </>

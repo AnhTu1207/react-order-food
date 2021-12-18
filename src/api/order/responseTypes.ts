@@ -29,3 +29,8 @@ export type GetOrdersByUserResponseType = {
   total: number;
   data: Order[];
 };
+
+export type DeleteOrderResponseType = {
+  status: number;
+  data: Order;
+}

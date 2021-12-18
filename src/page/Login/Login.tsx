@@ -20,8 +20,8 @@ import {
   CircleLoading,
   CustomAlert,
   ButtonWrapper,
-  LinkForgotPass,
-  SubtextForgotPass,
+  // LinkForgotPass,
+  // SubtextForgotPass,
 } from "./styles";
 
 const Login: FC = () => {
