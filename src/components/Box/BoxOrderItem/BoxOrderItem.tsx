@@ -62,7 +62,7 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
       localStorage.removeItem("newest_order_id");
       dispatch(reset());
       history.replace("/");
-    }
+    },
   });
 
   const { runRequest: fetchOrderByUser } = useGetOrderByUser({
@@ -70,10 +70,7 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
       const newestOrder = data.data.find(
         (item) => item.id === localStorage.getItem("newest_order_id")
       );
-      if (
-        localStorage.getItem("newest_order_id") &&
-        newestOrder?.status !== OrderStatus.DONE
-      ) {
+      if (localStorage.getItem("newest_order_id")) {
         autoGetOrder();
         updateValueStep(newestOrder?.status || "");
       }
@@ -91,7 +88,7 @@ const BoxOrderItem: FC<Props> = ({ onPaymentSuccess }: Props) => {
 
   const updateValueStep = (status: string): void => {
     let activeStepIndex: number = 0;
-
+    console.log(status);
     switch (status) {
       case OrderStatus.FINDING_DRIVER:
         activeStepIndex = PaymentStatusIndex.FINDING_DRIVER;
