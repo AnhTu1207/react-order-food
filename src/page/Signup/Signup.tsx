@@ -25,15 +25,27 @@ import {
 
 const Signup: FC = () => {
   const { i18n } = useTranslations();
-  const [isErr, setErr] = useState(false);
+  const [alert, setAlert] = useState({
+    type: "error",
+    message: "",
+    open: false,
+  });
   const history = useHistory();
 
   const { runRequest: signup, isLoading: isLoadingSignup } = useSignup({
     successCallback: () => {
-      alert("Please verify your email!");
+      setAlert({
+        open: true,
+        message: "Please verify your email!",
+        type: "success",
+      });
     },
-    failureCallback: () => {
-      setErr(true);
+    failureCallback: (err) => {
+      setAlert({
+        open: true,
+        message: err.response?.data?.message[0] || '',
+        type: "error",
+      });
     },
   });
 
@@ -58,13 +70,13 @@ const Signup: FC = () => {
         <title>{i18n.t("signup.title")}</title>
       </Helmet>
       <Snackbar
-        open={isErr}
+        open={alert.open}
         autoHideDuration={3000}
-        onClose={() => setErr(false)}
+        onClose={() => setAlert({ ...alert, open: false })}
         anchorOrigin={{ horizontal: "center", vertical: "top" }}
       >
-        <CustomAlert severity="error">
-          {i18n.t("login.message_error")}
+        <CustomAlert severity={alert.type === "error" ? "error" : "success"}>
+          {alert.message}
         </CustomAlert>
       </Snackbar>
       <Wrapper>

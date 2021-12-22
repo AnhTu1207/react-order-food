@@ -62,7 +62,7 @@ const Header: FC = () => {
     const foundFood = find(foods?.data, (item) => item.name === foodName);
 
     if (foundFood) {
-      history.push(`/store/${foundFood.store_id}`);
+      history.replace(`/store/${foundFood.store_id}`);
     }
   }
 
@@ -79,7 +79,7 @@ const Header: FC = () => {
           <div className={classes.search}>
             <SearchWrapper>
               <Autocomplete
-                options={map(foods?.data, item => item.name)}
+                options={searchValue ? map(foods?.data, item => item.name) : []}
                 freeSolo
                 fullWidth
                 disableClearable

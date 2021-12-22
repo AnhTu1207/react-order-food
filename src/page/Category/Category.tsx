@@ -6,6 +6,7 @@ import { map } from "lodash";
 import { useGetFoodByCategory } from "api/food";
 
 import { MainPageTemplate, Spinner, BoxProduct } from "components";
+import Cart from "page/Home/Cart";
 import Tags from "page/Home/Tags";
 
 type Params = {
@@ -40,6 +41,7 @@ const Category: FC = () => {
           </Grid>
         </div>
       )}
+      <Cart />
     </MainPageTemplate>
   );
 };

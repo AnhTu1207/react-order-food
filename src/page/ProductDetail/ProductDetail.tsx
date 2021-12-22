@@ -25,7 +25,7 @@ const ProductDetail: FC = () => {
   useEffect(() => {
     fetchStore(storeId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [storeId]);
 
   return (
     <div>

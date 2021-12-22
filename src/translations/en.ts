@@ -21,6 +21,7 @@ export default {
     title: "Sign up",
     sub_text: "Have an account?",
     login_link: "Login",
+    message_errors: 'Email must be unique',
   },
   main_page_template: {
     menu: {
